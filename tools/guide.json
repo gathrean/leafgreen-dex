@@ -1,0 +1,1032 @@
+{
+ "chapters": [
+  {
+   "id": "brock",
+   "name": "Pallet Town to Pewter",
+   "badges": 0,
+   "blurb": "Pick a starter, deliver Oak's Parcel, get through Viridian Forest. Brock is badge one."
+  },
+  {
+   "id": "misty",
+   "name": "Mt. Moon to Cerulean",
+   "badges": 1,
+   "blurb": "Mt. Moon, Nugget Bridge and Bill. Misty is badge two."
+  },
+  {
+   "id": "surge",
+   "name": "Vermilion and the S.S. Anne",
+   "badges": 2,
+   "blurb": "Underground Path, Cut from the S.S. Anne, the Old Rod. Lt. Surge is badge three."
+  },
+  {
+   "id": "erika",
+   "name": "Rock Tunnel to Celadon",
+   "badges": 3,
+   "blurb": "Rock Tunnel, Lavender, Celadon and the Rocket Hideout. Erika is badge four."
+  },
+  {
+   "id": "koga",
+   "name": "Pokémon Tower to Fuchsia",
+   "badges": 4,
+   "blurb": "Silph Scope, Poké Flute, both Snorlax, the Safari Zone. Koga is badge five."
+  },
+  {
+   "id": "sabrina",
+   "name": "Saffron and Silph Co.",
+   "badges": 5,
+   "blurb": "Clear Silph Co. Sabrina is badge six."
+  },
+  {
+   "id": "blaine",
+   "name": "Seafoam and Cinnabar",
+   "badges": 6,
+   "blurb": "Surf south past Seafoam to Cinnabar. Blaine is badge seven."
+  },
+  {
+   "id": "sevii",
+   "name": "Sevii Islands 1 to 3",
+   "badges": 7,
+   "blurb": "Bill takes you to One Island. Then back to Viridian for Giovanni."
+  },
+  {
+   "id": "league",
+   "name": "Victory Road and the League",
+   "badges": 8,
+   "blurb": "Route 23, Victory Road, the Elite Four."
+  },
+  {
+   "id": "post",
+   "name": "Postgame",
+   "badges": 99,
+   "blurb": "National Dex, Sevii Islands 4 to 7, Cerulean Cave, the legendaries."
+  }
+ ],
+ "unlocks": {
+  "cut": {
+   "name": "Cut",
+   "group": "HMs you can use",
+   "chapter": "surge"
+  },
+  "flash": {
+   "name": "Flash",
+   "group": "HMs you can use",
+   "chapter": "misty"
+  },
+  "surf": {
+   "name": "Surf",
+   "group": "HMs you can use",
+   "chapter": "blaine"
+  },
+  "strength": {
+   "name": "Strength",
+   "group": "HMs you can use",
+   "chapter": "sabrina"
+  },
+  "rock-smash": {
+   "name": "Rock Smash",
+   "group": "HMs you can use",
+   "chapter": "sevii"
+  },
+  "waterfall": {
+   "name": "Waterfall",
+   "group": "HMs you can use",
+   "chapter": "post"
+  },
+  "old-rod": {
+   "name": "Old Rod",
+   "group": "Rods",
+   "chapter": "surge"
+  },
+  "good-rod": {
+   "name": "Good Rod",
+   "group": "Rods",
+   "chapter": "koga"
+  },
+  "super-rod": {
+   "name": "Super Rod",
+   "group": "Rods",
+   "chapter": "koga"
+  },
+  "silph-scope": {
+   "name": "Silph Scope",
+   "group": "Key items",
+   "chapter": "koga"
+  },
+  "poke-flute": {
+   "name": "Poké Flute",
+   "group": "Key items",
+   "chapter": "koga"
+  },
+  "coin-case": {
+   "name": "Coin Case",
+   "group": "Key items",
+   "chapter": "erika"
+  },
+  "national-dex": {
+   "name": "National Dex",
+   "group": "Key items",
+   "chapter": "post"
+  }
+ },
+ "balls": {
+  "poke": "brock",
+  "great": "erika",
+  "ultra": "koga",
+  "safari": "koga"
+ },
+ "locations": [
+  {
+   "id": "pallet-town",
+   "name": "Pallet Town",
+   "chapter": "brock",
+   "map": "kanto:pallet",
+   "mapName": "Pallet Town"
+  },
+  {
+   "id": "kanto-route-1",
+   "name": "Route 1",
+   "chapter": "brock",
+   "map": "kanto:r1"
+  },
+  {
+   "id": "viridian-city",
+   "name": "Viridian City",
+   "chapter": "brock",
+   "map": "kanto:viridian"
+  },
+  {
+   "id": "kanto-route-22",
+   "name": "Route 22",
+   "chapter": "brock",
+   "map": "kanto:r22"
+  },
+  {
+   "id": "kanto-route-2",
+   "name": "Route 2",
+   "chapter": "brock",
+   "map": "kanto:r2",
+   "areas": [
+    {
+     "label": null,
+     "keys": [
+      "kanto-route-2/south-towards-viridian-city",
+      "kanto-route-2/north-towards-pewter-city"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "viridian-forest",
+   "name": "Viridian Forest",
+   "chapter": "brock",
+   "map": "kanto:viridian-forest"
+  },
+  {
+   "id": "kanto-route-3",
+   "name": "Route 3",
+   "chapter": "misty",
+   "map": "kanto:r3"
+  },
+  {
+   "id": "mt-moon",
+   "name": "Mt. Moon",
+   "chapter": "misty",
+   "map": "kanto:mt-moon",
+   "areas": [
+    {
+     "label": "1F",
+     "keys": [
+      "mt-moon/1f"
+     ]
+    },
+    {
+     "label": "B1F",
+     "keys": [
+      "mt-moon/b1f"
+     ]
+    },
+    {
+     "label": "B2F",
+     "keys": [
+      "mt-moon/b2f"
+     ]
+    }
+   ],
+   "mapName": "Mt. Moon 1F"
+  },
+  {
+   "id": "kanto-route-4",
+   "name": "Route 4",
+   "chapter": "misty",
+   "map": "kanto:r4",
+   "areas": [
+    {
+     "label": null,
+     "keys": [
+      "kanto-route-4",
+      "kanto-route-4/pokemon-center"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cerulean-city",
+   "name": "Cerulean City",
+   "chapter": "misty",
+   "map": "kanto:cerulean"
+  },
+  {
+   "id": "kanto-route-24",
+   "name": "Route 24",
+   "chapter": "misty",
+   "map": "kanto:r24"
+  },
+  {
+   "id": "kanto-route-25",
+   "name": "Route 25",
+   "chapter": "misty",
+   "map": "kanto:r25"
+  },
+  {
+   "id": "kanto-route-5",
+   "name": "Route 5",
+   "chapter": "surge",
+   "map": "kanto:r5"
+  },
+  {
+   "id": "kanto-underground-path",
+   "name": "Underground Path (5 to 6)",
+   "chapter": "surge",
+   "map": "kanto:underground-path",
+   "mapName": "Underground Path North Entrance"
+  },
+  {
+   "id": "kanto-route-6",
+   "name": "Route 6",
+   "chapter": "surge",
+   "map": "kanto:r6"
+  },
+  {
+   "id": "vermilion-city",
+   "name": "Vermilion City",
+   "chapter": "surge",
+   "map": "kanto:vermilion",
+   "areas": [
+    {
+     "label": "City",
+     "keys": [
+      "vermilion-city"
+     ]
+    },
+    {
+     "label": "Harbor by the S.S. Anne",
+     "keys": [
+      "ss-anne"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kanto-route-11",
+   "name": "Route 11",
+   "chapter": "surge",
+   "map": "kanto:r11"
+  },
+  {
+   "id": "digletts-cave",
+   "name": "Diglett's Cave",
+   "chapter": "surge",
+   "map": "kanto:digletts-cave",
+   "mapName": "Digletts Cave B1F"
+  },
+  {
+   "id": "kanto-route-9",
+   "name": "Route 9",
+   "chapter": "erika",
+   "map": "kanto:r9",
+   "req": [
+    "cut"
+   ]
+  },
+  {
+   "id": "kanto-route-10",
+   "name": "Route 10",
+   "chapter": "erika",
+   "map": "kanto:r10",
+   "req": [
+    "cut"
+   ]
+  },
+  {
+   "id": "rock-tunnel",
+   "name": "Rock Tunnel",
+   "chapter": "erika",
+   "map": "kanto:rock-tunnel",
+   "areas": [
+    {
+     "label": "1F",
+     "keys": [
+      "rock-tunnel/1f"
+     ]
+    },
+    {
+     "label": "B1F",
+     "keys": [
+      "rock-tunnel/b1f"
+     ]
+    }
+   ],
+   "req": [
+    "cut"
+   ],
+   "mapName": "Rock Tunnel 1F"
+  },
+  {
+   "id": "kanto-route-8",
+   "name": "Route 8",
+   "chapter": "erika",
+   "map": "kanto:r8"
+  },
+  {
+   "id": "kanto-route-7",
+   "name": "Route 7",
+   "chapter": "erika",
+   "map": "kanto:r7"
+  },
+  {
+   "id": "celadon-city",
+   "name": "Celadon City",
+   "chapter": "erika",
+   "map": "kanto:celadon",
+   "areas": [
+    {
+     "label": "City",
+     "keys": [
+      "celadon-city"
+     ]
+    },
+    {
+     "label": "Celadon Mansion",
+     "keys": [
+      "celadon-city/celadon-mansion"
+     ]
+    },
+    {
+     "label": "Game Corner prizes",
+     "keys": [
+      "celadon-city/prize-corner"
+     ],
+     "req": [
+      "coin-case"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pokemon-tower",
+   "name": "Pokémon Tower",
+   "chapter": "koga",
+   "map": "kanto:pokemon-tower",
+   "areas": [
+    {
+     "label": "3F",
+     "keys": [
+      "pokemon-tower/3f"
+     ]
+    },
+    {
+     "label": "4F",
+     "keys": [
+      "pokemon-tower/4f"
+     ]
+    },
+    {
+     "label": "5F",
+     "keys": [
+      "pokemon-tower/5f"
+     ]
+    },
+    {
+     "label": "6F",
+     "keys": [
+      "pokemon-tower/6f"
+     ]
+    },
+    {
+     "label": "7F",
+     "keys": [
+      "pokemon-tower/7f"
+     ]
+    }
+   ],
+   "req": [
+    "silph-scope"
+   ],
+   "mapName": "Pokémon Tower 3F"
+  },
+  {
+   "id": "kanto-route-12",
+   "name": "Route 12",
+   "chapter": "koga",
+   "map": "kanto:r12"
+  },
+  {
+   "id": "kanto-route-13",
+   "name": "Route 13",
+   "chapter": "koga",
+   "map": "kanto:r13"
+  },
+  {
+   "id": "kanto-route-14",
+   "name": "Route 14",
+   "chapter": "koga",
+   "map": "kanto:r14"
+  },
+  {
+   "id": "kanto-route-15",
+   "name": "Route 15",
+   "chapter": "koga",
+   "map": "kanto:r15"
+  },
+  {
+   "id": "fuchsia-city",
+   "name": "Fuchsia City",
+   "chapter": "koga",
+   "map": "kanto:fuchsia"
+  },
+  {
+   "id": "kanto-safari-zone",
+   "name": "Safari Zone",
+   "chapter": "koga",
+   "map": "kanto:safari-zone",
+   "areas": [
+    {
+     "label": "Center",
+     "keys": [
+      "kanto-safari-zone/middle"
+     ]
+    },
+    {
+     "label": "Area 1 (East)",
+     "keys": [
+      "kanto-safari-zone/area-1-east"
+     ]
+    },
+    {
+     "label": "Area 2 (North)",
+     "keys": [
+      "kanto-safari-zone/area-2-north"
+     ]
+    },
+    {
+     "label": "Area 3 (West)",
+     "keys": [
+      "kanto-safari-zone/area-3-west"
+     ]
+    }
+   ],
+   "safari": true,
+   "mapName": "Safari Zone Center"
+  },
+  {
+   "id": "kanto-route-16",
+   "name": "Route 16",
+   "chapter": "koga",
+   "map": "kanto:r16"
+  },
+  {
+   "id": "kanto-route-17",
+   "name": "Route 17 (Cycling Road)",
+   "chapter": "koga",
+   "map": "kanto:r17"
+  },
+  {
+   "id": "kanto-route-18",
+   "name": "Route 18",
+   "chapter": "koga",
+   "map": "kanto:r18"
+  },
+  {
+   "id": "saffron-city",
+   "name": "Saffron City",
+   "chapter": "sabrina",
+   "map": "kanto:saffron",
+   "areas": [
+    {
+     "label": "Fighting Dojo",
+     "keys": [
+      "saffron-city/fighting-dojo"
+     ]
+    },
+    {
+     "label": "Silph Co. 7F",
+     "keys": [
+      "saffron-city/silph-co-7f"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kanto-power-plant",
+   "name": "Power Plant",
+   "chapter": "blaine",
+   "map": "kanto:power-plant",
+   "req": [
+    "surf"
+   ]
+  },
+  {
+   "id": "kanto-sea-route-19",
+   "name": "Route 19",
+   "chapter": "blaine",
+   "map": "kanto:r19",
+   "req": [
+    "surf"
+   ]
+  },
+  {
+   "id": "kanto-sea-route-20",
+   "name": "Route 20",
+   "chapter": "blaine",
+   "map": "kanto:r20",
+   "req": [
+    "surf"
+   ]
+  },
+  {
+   "id": "seafoam-islands",
+   "name": "Seafoam Islands",
+   "chapter": "blaine",
+   "map": "kanto:seafoam",
+   "areas": [
+    {
+     "label": "1F",
+     "keys": [
+      "seafoam-islands/1f"
+     ]
+    },
+    {
+     "label": "B1F",
+     "keys": [
+      "seafoam-islands/b1f"
+     ]
+    },
+    {
+     "label": "B2F",
+     "keys": [
+      "seafoam-islands/b2f"
+     ]
+    },
+    {
+     "label": "B3F",
+     "keys": [
+      "seafoam-islands/b3f"
+     ],
+     "req": [
+      "strength"
+     ]
+    },
+    {
+     "label": "B4F",
+     "keys": [
+      "seafoam-islands/b4f"
+     ],
+     "req": [
+      "strength"
+     ]
+    }
+   ],
+   "req": [
+    "surf"
+   ],
+   "mapName": "Seafoam Islands 1F"
+  },
+  {
+   "id": "cinnabar-island",
+   "name": "Cinnabar Island",
+   "chapter": "blaine",
+   "map": "kanto:cinnabar",
+   "areas": [
+    {
+     "label": "Island",
+     "keys": [
+      "cinnabar-island"
+     ]
+    },
+    {
+     "label": "Pokémon Lab",
+     "keys": [
+      "cinnabar-island/cinnabar-lab"
+     ]
+    }
+   ],
+   "req": [
+    "surf"
+   ]
+  },
+  {
+   "id": "pokemon-mansion",
+   "name": "Pokémon Mansion",
+   "chapter": "blaine",
+   "map": "kanto:mansion",
+   "areas": [
+    {
+     "label": "1F",
+     "keys": [
+      "pokemon-mansion/1f"
+     ]
+    },
+    {
+     "label": "2F",
+     "keys": [
+      "pokemon-mansion/2f"
+     ]
+    },
+    {
+     "label": "3F",
+     "keys": [
+      "pokemon-mansion/3f"
+     ]
+    },
+    {
+     "label": "B1F",
+     "keys": [
+      "pokemon-mansion/b1f"
+     ]
+    }
+   ],
+   "req": [
+    "surf"
+   ],
+   "mapName": "Pokémon Mansion 1F"
+  },
+  {
+   "id": "kanto-sea-route-21",
+   "name": "Route 21",
+   "chapter": "blaine",
+   "map": "kanto:r21",
+   "req": [
+    "surf"
+   ]
+  },
+  {
+   "id": "one-island",
+   "name": "One Island",
+   "chapter": "sevii",
+   "map": "sevii:one"
+  },
+  {
+   "id": "kindle-road",
+   "name": "Kindle Road",
+   "chapter": "sevii",
+   "map": "sevii:kindle"
+  },
+  {
+   "id": "treasure-beach",
+   "name": "Treasure Beach",
+   "chapter": "sevii",
+   "map": "sevii:treasure"
+  },
+  {
+   "id": "mt-ember",
+   "name": "Mt. Ember",
+   "chapter": "sevii",
+   "map": "sevii:mt-ember",
+   "areas": [
+    {
+     "label": "Outside",
+     "keys": [
+      "mt-ember"
+     ]
+    },
+    {
+     "label": "Ruby Path caves",
+     "keys": [
+      "mt-ember/cave",
+      "mt-ember/inside",
+      "mt-ember/1f-cave-behind-team-rocket"
+     ]
+    },
+    {
+     "label": "Ruby Path B1F",
+     "keys": [
+      "mt-ember/b1f"
+     ]
+    },
+    {
+     "label": "Ruby Path B2F",
+     "keys": [
+      "mt-ember/b2f"
+     ]
+    },
+    {
+     "label": "Ruby Path B3F",
+     "keys": [
+      "mt-ember/b3f"
+     ]
+    },
+    {
+     "label": "Summit",
+     "keys": [
+      "mt-ember/summit"
+     ]
+    }
+   ],
+   "mapName": "Mt. Ember Exterior"
+  },
+  {
+   "id": "cape-brink",
+   "name": "Cape Brink (Two Island)",
+   "chapter": "sevii",
+   "map": "sevii:cape-brink"
+  },
+  {
+   "id": "bond-bridge",
+   "name": "Bond Bridge",
+   "chapter": "sevii",
+   "map": "sevii:bond"
+  },
+  {
+   "id": "berry-forest",
+   "name": "Berry Forest",
+   "chapter": "sevii",
+   "map": "sevii:berry-forest"
+  },
+  {
+   "id": "three-isle-port",
+   "name": "Three Isle Port",
+   "chapter": "sevii",
+   "map": "sevii:three-isle-port",
+   "mapName": "Three Island Port"
+  },
+  {
+   "id": "kanto-route-23",
+   "name": "Route 23",
+   "chapter": "league",
+   "map": "kanto:r23"
+  },
+  {
+   "id": "kanto-victory-road-2",
+   "name": "Victory Road",
+   "chapter": "league",
+   "map": "kanto:victory-road",
+   "areas": [
+    {
+     "label": "1F",
+     "keys": [
+      "kanto-victory-road-2/1f"
+     ]
+    },
+    {
+     "label": "2F",
+     "keys": [
+      "kanto-victory-road-2/2f"
+     ]
+    },
+    {
+     "label": "3F",
+     "keys": [
+      "kanto-victory-road-2/3f"
+     ]
+    }
+   ],
+   "mapName": "Victory Road 1F"
+  },
+  {
+   "id": "roaming-kanto",
+   "name": "Roaming beast",
+   "chapter": "post",
+   "map": "kanto:pallet",
+   "areas": [
+    {
+     "label": null,
+     "keys": [
+      "roaming-kanto/area"
+     ]
+    }
+   ],
+   "req": [
+    "hof",
+    "national-dex"
+   ],
+   "mapName": "Route 1"
+  },
+  {
+   "id": "four-island",
+   "name": "Four Island",
+   "chapter": "post",
+   "map": "sevii:four"
+  },
+  {
+   "id": "icefall-cave",
+   "name": "Icefall Cave",
+   "chapter": "post",
+   "map": "sevii:icefall-cave",
+   "areas": [
+    {
+     "label": "Entrance",
+     "keys": [
+      "icefall-cave/entrance"
+     ]
+    },
+    {
+     "label": "1F",
+     "keys": [
+      "icefall-cave/1f"
+     ]
+    },
+    {
+     "label": "B1F",
+     "keys": [
+      "icefall-cave/b1f"
+     ]
+    },
+    {
+     "label": "Back (Waterfall)",
+     "keys": [
+      "icefall-cave/waterfall"
+     ],
+     "req": [
+      "waterfall"
+     ]
+    }
+   ],
+   "mapName": "Four Island Icefall Cave Entrance"
+  },
+  {
+   "id": "five-island",
+   "name": "Five Island",
+   "chapter": "post",
+   "map": "sevii:five"
+  },
+  {
+   "id": "five-isle-meadow",
+   "name": "Five Isle Meadow",
+   "chapter": "post",
+   "map": "sevii:meadow"
+  },
+  {
+   "id": "memorial-pillar",
+   "name": "Memorial Pillar",
+   "chapter": "post",
+   "map": "sevii:memorial"
+  },
+  {
+   "id": "water-labyrinth",
+   "name": "Water Labyrinth",
+   "chapter": "post",
+   "map": "sevii:water-lab"
+  },
+  {
+   "id": "resort-gorgeous",
+   "name": "Resort Gorgeous",
+   "chapter": "post",
+   "map": "sevii:resort-gorgeous"
+  },
+  {
+   "id": "lost-cave",
+   "name": "Lost Cave",
+   "chapter": "post",
+   "map": "sevii:lost-cave",
+   "areas": [
+    {
+     "label": null,
+     "keys": [
+      "lost-cave/room-1",
+      "lost-cave/room-2",
+      "lost-cave/room-3",
+      "lost-cave/room-4",
+      "lost-cave/room-5",
+      "lost-cave/room-6",
+      "lost-cave/room-7",
+      "lost-cave/room-8",
+      "lost-cave/room-9",
+      "lost-cave/room-10",
+      "lost-cave/item-rooms"
+     ]
+    }
+   ],
+   "mapName": "Five Island Lost Cave Entrance"
+  },
+  {
+   "id": "water-path",
+   "name": "Water Path",
+   "chapter": "post",
+   "map": "sevii:water-path"
+  },
+  {
+   "id": "ruin-valley",
+   "name": "Ruin Valley",
+   "chapter": "post",
+   "map": "sevii:ruin-valley"
+  },
+  {
+   "id": "green-path",
+   "name": "Green Path",
+   "chapter": "post",
+   "map": "sevii:green-path"
+  },
+  {
+   "id": "outcast-island",
+   "name": "Outcast Island",
+   "chapter": "post",
+   "map": "sevii:outcast"
+  },
+  {
+   "id": "pattern-bush",
+   "name": "Pattern Bush",
+   "chapter": "post",
+   "map": "sevii:pattern-bush"
+  },
+  {
+   "id": "kanto-altering-cave",
+   "name": "Altering Cave",
+   "chapter": "post",
+   "map": "sevii:altering-cave",
+   "areas": [
+    {
+     "label": null,
+     "keys": [
+      "kanto-altering-cave/a"
+     ]
+    }
+   ],
+   "mapName": "Six Island Altering Cave"
+  },
+  {
+   "id": "trainer-tower",
+   "name": "Trainer Tower (Seven Island)",
+   "chapter": "post",
+   "map": "sevii:trainer-tower"
+  },
+  {
+   "id": "canyon-entrance",
+   "name": "Sevault Canyon Entrance",
+   "chapter": "post",
+   "map": "sevii:canyon"
+  },
+  {
+   "id": "sevault-canyon",
+   "name": "Sevault Canyon",
+   "chapter": "post",
+   "map": "sevii:sevault"
+  },
+  {
+   "id": "tanoby-ruins",
+   "name": "Tanoby Ruins",
+   "chapter": "post",
+   "map": "sevii:tanoby",
+   "areas": [
+    {
+     "label": "Sea",
+     "keys": [
+      "tanoby-ruins"
+     ]
+    },
+    {
+     "label": "Chambers (Unown)",
+     "keys": [
+      "monean-chamber",
+      "liptoo-chamber",
+      "weepth-chamber",
+      "dilford-chamber",
+      "scufib-chamber",
+      "rixy-chamber",
+      "viapos-chamber"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cerulean-cave",
+   "name": "Cerulean Cave",
+   "chapter": "post",
+   "map": "kanto:cerulean-cave",
+   "areas": [
+    {
+     "label": "1F",
+     "keys": [
+      "cerulean-cave/1f"
+     ]
+    },
+    {
+     "label": "2F",
+     "keys": [
+      "cerulean-cave/2f"
+     ]
+    },
+    {
+     "label": "B1F",
+     "keys": [
+      "cerulean-cave/b1f"
+     ]
+    }
+   ],
+   "req": [
+    "hof"
+   ],
+   "mapName": "Cerulean Cave 1F"
+  }
+ ],
+ "extra": {}
+}

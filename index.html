@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>LeafGreen Dex</title>
+  <meta name="description" content="Route-by-route catch checklist for Pokémon LeafGreen, with encounter odds, ball picks, a Pokédex and Professor Oak's rating.">
+  <meta name="theme-color" content="#2f6b3a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="LG Dex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&family=Pixelify+Sans:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#/routes">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/3.png" alt="" width="48" height="48">
+      <span><b>LeafGreen</b> Dex</span>
+    </a>
+    <button class="sync-pill" id="syncPill" type="button" aria-label="Sync settings"><i></i><span>Local</span></button>
+  </header>
+
+  <nav class="tabs" aria-label="Pages">
+    <a href="#/routes" data-tab="routes">Routes</a>
+    <a href="#/dex" data-tab="dex">Pokédex</a>
+    <a href="#/map" data-tab="map">Map</a>
+    <a href="#/oak" data-tab="oak">Oak</a>
+  </nav>
+
+  <main id="app" tabindex="-1"></main>
+
+  <dialog id="sheet" class="sheet"></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="maps.js"></script>
+  <script src="sync.js"></script>
+  <script src="mapview.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
