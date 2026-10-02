@@ -22,7 +22,8 @@ Choices made so far, kept alongside the site. The same list shows at the top of 
 - Fossil: Helix (Omanyte). Old Amber for Aerodactyl too.
 - Luffy (Joy) moves now: Cut, Poison Powder, Leech Seed, Razor Leaf. Next: Giga Drain (Erika) for Poison Powder, then Sleep Powder (Two Island) for Leech Seed.
 - Usopp moves now: Thrash, Dig, Double Kick, Mega Punch (keeping Mega Punch). Later: Earthquake (Giovanni) for Dig, Megahorn at Lv 43 for Thrash.
-- HMs on the team, no HM carrier: Cut on Luffy (in place of Tackle), Fly on Zoro, Strength and Surf on Usopp or Robin. The Move Deleter in Fuchsia can remove HMs later.
+- HMs on the team, no HM carrier: Cut on Luffy (in place of Tackle), Flash on Butterfree (stand-in, so no crew slot lost), Fly on Zoro, Strength and Surf on Usopp or Robin. The Move Deleter in Fuchsia can remove HMs later.
+- Rock Slide tutor (Rock Tunnel B1F, one-time): skipped for now. Maybe Omastar later.
 - TM34 Shock Wave from Lt. Surge is reserved for Nami.
 - Luffy's Sleep Powder comes back at the Two Island Move Reminder: Big Mushroom from Pokémon Tower 5F, or two Tiny.
 - Master Ball: save it for Mewtwo or Entei.
