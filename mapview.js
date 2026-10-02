@@ -4,11 +4,13 @@
   const LEAFLET_JS = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";
   const ITEM = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/";
   const SPRITE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/";
+  const RIVAL_IMG = "https://play.pokemonshowdown.com/sprites/trainers/blue-gen3.png";
   const BLANK = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   const LAYERS = [
     { id: "labels", n: "Place names", on: 1, z: 1 },
+    { id: "rival", n: "Your rival (Gary)", on: 1, z: 1 },
     { id: "specials", n: "Gifts, fossils & legendaries", on: 1, z: 2 },
     { id: "trainers", n: "Trainer battles", on: 1, z: 3.5 },
     { id: "mons", n: "Pokémon", on: 1, z: 3 },
@@ -46,6 +48,7 @@
   const prefs = ls.get("lgdex.map", {});
   prefs.layers = Object.assign(Object.fromEntries(LAYERS.map((l) => [l.id, l.on])), prefs.layers || {});
   if (!prefs.v2) { prefs.layers.trainers = 1; prefs.v2 = 1; }
+  if (prefs.layers.rival === undefined) prefs.layers.rival = 1;
   prefs.kinds = Object.assign(Object.fromEntries(KINDS.map((k) => [k.id, 1])), prefs.kinds || {});
   const savePrefs = () => ls.set("lgdex.map", prefs);
 
@@ -106,6 +109,12 @@
       const src = m[3] ? ITEM + m[3] + ".png" : ITEM + (m[2].startsWith("HM") ? "hm-normal" : "tm-normal") + ".png";
       const mk = L.marker(ll(x, y), { icon: icon(`<img src="${src}" alt="">${m[5] ? "<i>?</i>" : ""}`, `mk-item ${layer === "hidden" ? "hid" : ""} ${m[5] ? "renew" : ""} ${got ? "got" : ""}`, [28, 28]) });
       mk.on("click", () => itemPopup(mk, m, layer === "hidden"));
+      return mk;
+    }
+    if (layer === "rival") {
+      // m = [x, y, [[label, [[dex, lv]...]]...], place]
+      const mk = L.marker(ll(x, y), { icon: icon(`<img src="${RIVAL_IMG}" alt="Gary"><span>${m[2].length > 1 ? m[2].length + " fights" : "Rival"}</span>`, "mk-rival", [44, 44]), riseOnHover: true, zIndexOffset: 500 });
+      mk.on("click", () => rivalPopup(mk, m));
       return mk;
     }
     if (layer === "specials") {
@@ -178,6 +187,19 @@
 
   function obstacleHint(n) {
     return n === "Cut tree" ? "Needs Cut (HM01) and the Cascade Badge." : n === "Strength boulder" ? "Needs Strength (HM04) and the Rainbow Badge." : n === "Rock Smash rock" ? "Needs Rock Smash (HM06). Smashing can start a wild battle." : "";
+  }
+
+  function rivalPopup(mk, m) {
+    const A = window.APP;
+    const d = document.createElement("div");
+    d.className = "mk-pop";
+    const render = () => {
+      d.innerHTML = `<div class="rv-hd"><img src="${RIVAL_IMG}" alt=""><div><b>Gary</b><br><span class="muted">${esc(m[3])}</span></div></div>` + m[2].map(([label, party]) =>
+        `<div class="mk-sec">${esc(label)}</div><div class="mk-party">${party.map(([id, lv]) => { const st = A ? A.monS(id) : 0; return `<button data-seen="${id}" class="${st >= 1 ? "on" : ""}"><img src="${SPRITE + id}.png" alt=""><span>${esc((A && A.name(id)) || "#" + id)}</span><small>Lv ${lv} · ${st === 2 ? "caught" : st === 1 ? "seen ✓" : "tap: seen"}</small></button>`; }).join("")}</div>`).join("");
+    };
+    render();
+    d.addEventListener("click", (e) => { const b = e.target.closest("button[data-seen]"); if (b && A) { A.toggleSeen(+b.dataset.seen); render(); } });
+    L.popup({ maxWidth: 320, offset: [0, -18] }).setLatLng(mk.getLatLng()).setContent(d).openOn(map);
   }
 
   function trainerPopup(mk, m, x, y) {

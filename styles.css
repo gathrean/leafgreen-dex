@@ -602,3 +602,8 @@ details.loc.here:not(.active) { box-shadow: inset 0 0 0 2px var(--red), inset 0 
   .bag-body .chip { padding: 5px 10px; font-size: 13px; }
   .float-plan.min .fp-tabs { border-bottom: 0; }
 }
+.mk-rival img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: 50% 8%; background: #fbfdf8; box-shadow: 0 0 0 3px #c8443a, 0 3px 8px rgba(0,0,0,.5); image-rendering: pixelated; }
+.mk-rival span { position: absolute; left: 50%; top: 44px; transform: translateX(-50%); white-space: nowrap; font: 700 11px var(--f-display); background: #c8443a; color: #fff; padding: 1px 6px; border-radius: 999px; box-shadow: 0 0 0 2px #fff; }
+.rv-hd { display: flex; gap: 10px; align-items: center; }
+.rv-hd img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: 50% 8%; background: #f1f6ec; box-shadow: 0 0 0 2px #c8443a; image-rendering: pixelated; }
+.rv-hd b { font-family: var(--f-display); font-size: 16px; }
