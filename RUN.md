@@ -20,7 +20,8 @@ Choices made so far, kept alongside the site. The same list shows at the top of 
 ## Decisions made
 
 - Fossil: Helix (Omanyte). Old Amber for Aerodactyl too.
-- CH'DING (Farfetch'd, traded for Spearow) is the HM carrier: Cut and Fly. Keep his Stick on him.
+- HMs on the team, no HM carrier: Cut on Luffy (in place of Tackle), Fly on Zoro, Strength and Surf on Usopp or Robin. The Move Deleter in Fuchsia can remove HMs later.
+- Luffy's moves: Cut now, Razor Leaf at Lv 22, Giga Drain from Erika, Sleep Powder back at Two Island.
 - TM34 Shock Wave from Lt. Surge is reserved for Nami.
 - TM28 Dig: taught to Usopp. Done.
 - Mega Punch tutor (Route 4) was recommended for Usopp over Mega Kick.
@@ -33,4 +34,5 @@ Choices made so far, kept alongside the site. The same list shows at the top of 
 - Butterfree: core until Zoro joins. Sleep Powder at Lv 15 for catching.
 - Pikachu: benched.
 - Pidgeotto “Bobby”: deposited.
+- CH'DING (Farfetch'd, traded for Spearow): dropped as HM carrier, boxed.
 - Skipped: Sandshrew, Magikarp training, the Paras mushroom hunt, the MR. NIDO trade.

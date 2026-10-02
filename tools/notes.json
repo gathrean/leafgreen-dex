@@ -408,7 +408,7 @@
      [
       2,
       "Luffy",
-      "Ivysaur. Resists Electric. Shreds Rock Tunnel's Hikers next."
+      "Ivysaur. Cut replaces Tackle now; Razor Leaf at Lv 22 replaces Poison Powder. Resists Electric."
      ],
      [
       34,
@@ -419,11 +419,6 @@
       12,
       "Stand-in",
       "Butterfree. Takes the rival's Kadabra; Sleep Powder at Lv 15 for catching."
-     ],
-     [
-      83,
-      "CH'DING",
-      "Farfetch'd, HM carrier: Cut now, Fly later. False Swipe at Lv 46 for catching."
      ]
     ],
     "prep": [
@@ -477,7 +472,7 @@
      },
      {
       "k": "v12",
-      "t": "Teach Cut to CH'DING (Farfetch'd), so Luffy keeps all four battle moves."
+      "t": "Teach Cut to Luffy in place of Tackle. Cut is 50 power, Tackle only 35."
      },
      {
       "k": "v13",
@@ -563,12 +558,7 @@
      [
       84,
       "Zoro",
-      "Doduo on Route 16. Press B at Lv 31 to wait for Drill Peck at 37."
-     ],
-     [
-      83,
-      "CH'DING",
-      "Farfetch'd, carries Cut and Fly."
+      "Doduo on Route 16. Teach it Fly. Press B at Lv 31 to wait for Drill Peck at 37."
      ]
     ],
     "prep": [
@@ -614,7 +604,7 @@
      },
      {
       "k": "e10",
-      "t": "Route 16 (Cut the tree west of Celadon): catch Doduo, the future Zoro. The house there gives HM02 Fly; teach it to CH'DING."
+      "t": "Route 16 (Cut the tree west of Celadon): catch Doduo, the future Zoro. The house there gives HM02 Fly; teach it to Zoro (Doduo can learn it right away)."
      },
      {
       "k": "e11",
@@ -622,7 +612,7 @@
      },
      {
       "k": "e12",
-      "t": "Beat Erika: Rainbow Badge (lets you use Strength) and TM19 Giga Drain for Luffy."
+      "t": "Beat Erika: Rainbow Badge (lets you use Strength) and TM19 Giga Drain. Luffy swaps Vine Whip for it."
      },
      {
       "k": "e13",
@@ -1443,7 +1433,7 @@
     3,
     "Luffy",
     "Venusaur",
-    "Sleep Powder, Razor Leaf, Giga Drain (TM19 from Erika), Cut"
+    "Razor Leaf (Lv 22), Giga Drain (TM19), Sleep Powder (Move Reminder), Cut"
    ],
    [
     34,
@@ -1467,7 +1457,7 @@
     85,
     "Zoro",
     "Dodrio",
-    "Drill Peck, Tri Attack, Agility, Fly"
+    "Drill Peck, Tri Attack, Agility, Fly (HM02)"
    ],
    [
     131,
@@ -1551,7 +1541,8 @@
     "h": "Decisions made",
     "items": [
      "Fossil: Helix (Omanyte). Old Amber for Aerodactyl too.",
-     "CH'DING (Farfetch'd, traded for Spearow) is the HM carrier: Cut and Fly. Keep his Stick on him.",
+     "HMs on the team, no HM carrier: Cut on Luffy (in place of Tackle), Fly on Zoro, Strength and Surf on Usopp or Robin. The Move Deleter in Fuchsia can remove HMs later.",
+     "Luffy's moves: Cut now, Razor Leaf at Lv 22, Giga Drain from Erika, Sleep Powder back at Two Island.",
      "TM34 Shock Wave from Lt. Surge is reserved for Nami.",
      "TM28 Dig: taught to Usopp. Done.",
      "Mega Punch tutor (Route 4) was recommended for Usopp over Mega Kick.",
@@ -1566,6 +1557,7 @@
      "Butterfree: core until Zoro joins. Sleep Powder at Lv 15 for catching.",
      "Pikachu: benched.",
      "Pidgeotto “Bobby”: deposited.",
+     "CH'DING (Farfetch'd, traded for Spearow): dropped as HM carrier, boxed.",
      "Skipped: Sandshrew, Magikarp training, the Paras mushroom hunt, the MR. NIDO trade."
     ]
    }
