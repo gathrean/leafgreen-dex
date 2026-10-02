@@ -2975,6 +2975,874 @@
     "need": 50,
     "reward": "Exp. Share"
    }
+  ],
+  "plan": [
+   {
+    "id": "misty",
+    "title": "Mt. Moon to Misty",
+    "badges": 1,
+    "target": "Lv 21 to 22",
+    "bosses": [
+     {
+      "name": "Rival",
+      "where": "Nugget Bridge, Cerulean",
+      "party": [
+       [
+        17,
+        17
+       ],
+       [
+        63,
+        16
+       ],
+       [
+        19,
+        15
+       ],
+       [
+        4,
+        18
+       ]
+      ]
+     },
+     {
+      "name": "Misty",
+      "where": "Cerulean Gym",
+      "party": [
+       [
+        120,
+        18
+       ],
+       [
+        121,
+        21
+       ]
+      ]
+     }
+    ],
+    "team": [
+     [
+      2,
+      "Luffy",
+      "Ivysaur. Razor Leaf at Lv 22 is your Misty plan."
+     ],
+     [
+      33,
+      "Usopp",
+      "Nidoran♂ evolves at Lv 16. Hold the Moon Stone for now."
+     ],
+     [
+      25,
+      "Fill-in",
+      "Pikachu's Thundershock is a backup for Starmie."
+     ]
+    ],
+    "prep": [
+     "Take the Helix Fossil at the end of Mt. Moon B2F.",
+     "Pick up both Moon Stones (1F item ball, B2F hidden).",
+     "Dig up a Big Mushroom on B1F and keep it for Luffy's Sleep Powder later.",
+     "Buy the Magikarp in the Route 4 Pokémon Center for ₽500. It's your Water stand-in until Robin joins.",
+     "Your rival leads into a Charmander. Fire beats Luffy, so send Usopp or Pikachu."
+    ]
+   },
+   {
+    "id": "surge",
+    "title": "Vermilion and Lt. Surge",
+    "badges": 2,
+    "target": "Lv 24 to 25",
+    "bosses": [
+     {
+      "name": "Rival",
+      "where": "S.S. Anne",
+      "party": [
+       [
+        17,
+        19
+       ],
+       [
+        20,
+        16
+       ],
+       [
+        64,
+        18
+       ],
+       [
+        5,
+        20
+       ]
+      ]
+     },
+     {
+      "name": "Lt. Surge",
+      "where": "Vermilion Gym",
+      "party": [
+       [
+        100,
+        21
+       ],
+       [
+        25,
+        18
+       ],
+       [
+        26,
+        24
+       ]
+      ]
+     }
+    ],
+    "team": [
+     [
+      2,
+      "Luffy",
+      "Ivysaur resists Electric."
+     ],
+     [
+      34,
+      "Usopp",
+      "Use the Moon Stone around Lv 23. Ground type makes him immune to Electric."
+     ],
+     [
+      130,
+      "Fill-in",
+      "Magikarp evolves at Lv 20."
+     ]
+    ],
+    "prep": [
+     "Get TM28 Dig from the Team Rocket grunt by the burgled house in Cerulean. Teach it to Usopp.",
+     "Board the S.S. Anne and get HM01 Cut from the captain. Teach it to Luffy.",
+     "Surge's gym is behind a Cut tree.",
+     "Get the Old Rod from the Fishing Guru in Vermilion.",
+     "Dig and Nidoking's Ground typing make Surge's Raichu harmless."
+    ]
+   },
+   {
+    "id": "erika",
+    "title": "Rock Tunnel to Erika",
+    "badges": 3,
+    "target": "Lv 28 to 30",
+    "bosses": [
+     {
+      "name": "Erika",
+      "where": "Celadon Gym",
+      "party": [
+       [
+        71,
+        29
+       ],
+       [
+        114,
+        24
+       ],
+       [
+        45,
+        29
+       ]
+      ]
+     }
+    ],
+    "team": [
+     [
+      2,
+      "Luffy",
+      "Becomes Venusaur at Lv 32."
+     ],
+     [
+      34,
+      "Usopp",
+      ""
+     ],
+     [
+      38,
+      "Sanji",
+      "Vulpix + Fire Stone. Burns Erika's whole team."
+     ],
+     [
+      135,
+      "Nami",
+      "Eevee + Thunder Stone."
+     ],
+     [
+      84,
+      "Zoro",
+      "Doduo on Route 16. Press B to stop it evolving at Lv 31 until it learns Drill Peck at Lv 37 (Dodrio waits until 47)."
+     ]
+    ],
+    "prep": [
+     "Celadon Dept. Store 4F sells the Fire Stone (Sanji) and Thunder Stone (Nami).",
+     "Eevee is on the Celadon Mansion roof room table (back entrance).",
+     "Vulpix lives on Routes 7 and 8.",
+     "Cut the tree west of Celadon for Route 16: Doduo in the grass, HM02 Fly in the house.",
+     "Rock Tunnel is dark. Flash from the Route 2 aide (10 caught) helps but isn't required.",
+     "After Erika, the Rocket Hideout under the Game Corner has the Silph Scope."
+    ]
+   },
+   {
+    "id": "koga",
+    "title": "Pokémon Tower to Koga",
+    "badges": 4,
+    "target": "Lv 40 to 43",
+    "bosses": [
+     {
+      "name": "Rival",
+      "where": "Pokémon Tower 2F",
+      "party": [
+       [
+        17,
+        25
+       ],
+       [
+        102,
+        23
+       ],
+       [
+        130,
+        22
+       ],
+       [
+        64,
+        20
+       ],
+       [
+        5,
+        25
+       ]
+      ]
+     },
+     {
+      "name": "Giovanni",
+      "where": "Rocket Hideout B4F",
+      "party": [
+       [
+        95,
+        25
+       ],
+       [
+        111,
+        24
+       ],
+       [
+        115,
+        29
+       ]
+      ]
+     },
+     {
+      "name": "Koga",
+      "where": "Fuchsia Gym",
+      "party": [
+       [
+        109,
+        37
+       ],
+       [
+        89,
+        39
+       ],
+       [
+        109,
+        37
+       ],
+       [
+        110,
+        43
+       ]
+      ]
+     }
+    ],
+    "team": [
+     [
+      3,
+      "Luffy",
+      ""
+     ],
+     [
+      85,
+      "Zoro",
+      "Drill Peck at Lv 37 if you held off evolving."
+     ],
+     [
+      135,
+      "Nami",
+      ""
+     ],
+     [
+      34,
+      "Usopp",
+      ""
+     ],
+     [
+      38,
+      "Sanji",
+      ""
+     ],
+     [
+      130,
+      "Fill-in",
+      "Gyarados holds the Water slot."
+     ]
+    ],
+    "prep": [
+     "Pokémon Tower needs the Silph Scope. Normal moves can't hit Ghosts; use Usopp's Dig and Nami.",
+     "Mr. Fuji gives the Poké Flute. Each Snorlax is a one-time Lv 30 catch: save first, bring Ultra Balls.",
+     "Koga's Koffing and Weezing float (Levitate), so Ground moves miss. Use Nami, Sanji and Zoro.",
+     "Safari Zone: HM03 Surf in the Secret House, and the Gold Teeth that trade for HM04 Strength.",
+     "Game Corner prize TMs: TM24 Thunderbolt (Nami), TM35 Flamethrower (Sanji), TM13 Ice Beam (Usopp)."
+    ]
+   },
+   {
+    "id": "sabrina",
+    "title": "Silph Co. and Sabrina",
+    "badges": 5,
+    "target": "Lv 43 to 45",
+    "bosses": [
+     {
+      "name": "Rival",
+      "where": "Silph Co. 7F",
+      "party": [
+       [
+        18,
+        37
+       ],
+       [
+        102,
+        38
+       ],
+       [
+        130,
+        35
+       ],
+       [
+        65,
+        35
+       ],
+       [
+        6,
+        40
+       ]
+      ]
+     },
+     {
+      "name": "Giovanni",
+      "where": "Silph Co. 11F",
+      "party": [
+       [
+        33,
+        37
+       ],
+       [
+        115,
+        35
+       ],
+       [
+        111,
+        37
+       ],
+       [
+        31,
+        41
+       ]
+      ]
+     },
+     {
+      "name": "Sabrina",
+      "where": "Saffron Gym",
+      "party": [
+       [
+        64,
+        38
+       ],
+       [
+        122,
+        37
+       ],
+       [
+        49,
+        38
+       ],
+       [
+        65,
+        43
+       ]
+      ]
+     }
+    ],
+    "team": [
+     [
+      3,
+      "Luffy",
+      "Bench for Sabrina: Psychic hits Poison hard."
+     ],
+     [
+      85,
+      "Zoro",
+      ""
+     ],
+     [
+      135,
+      "Nami",
+      ""
+     ],
+     [
+      34,
+      "Usopp",
+      "Bench for Sabrina too."
+     ],
+     [
+      38,
+      "Sanji",
+      ""
+     ],
+     [
+      131,
+      "Nico Robin",
+      "Lapras, gift on Silph Co. 7F."
+     ]
+    ],
+    "prep": [
+     "Give the guards Tea (from the old lady in Celadon Mansion 1F) to enter Saffron.",
+     "Robin joins on Silph Co. 7F after the rival battle.",
+     "The Silph president gives you the Master Ball. Save it for Mewtwo or the roaming beast.",
+     "TM29 Psychic is free from Mr. Psychic's house in Saffron. Teach it to Robin.",
+     "Win the Fighting Dojo first if you want Hitmonlee or Hitmonchan for the Pokédex."
+    ]
+   },
+   {
+    "id": "blaine",
+    "title": "Seafoam to Blaine",
+    "badges": 6,
+    "target": "Lv 45 to 47",
+    "bosses": [
+     {
+      "name": "Blaine",
+      "where": "Cinnabar Gym",
+      "party": [
+       [
+        58,
+        42
+       ],
+       [
+        77,
+        40
+       ],
+       [
+        78,
+        42
+       ],
+       [
+        59,
+        47
+       ]
+      ]
+     }
+    ],
+    "team": [
+     [
+      3,
+      "Luffy",
+      ""
+     ],
+     [
+      85,
+      "Zoro",
+      ""
+     ],
+     [
+      135,
+      "Nami",
+      ""
+     ],
+     [
+      34,
+      "Usopp",
+      ""
+     ],
+     [
+      38,
+      "Sanji",
+      ""
+     ],
+     [
+      131,
+      "Nico Robin",
+      "Surf carries this one."
+     ]
+    ],
+    "prep": [
+     "Surf south from Fuchsia. Articuno (Lv 50) waits in Seafoam B4F: save first, Ultra Balls.",
+     "Revive the Helix Fossil and Old Amber at the Cinnabar Lab.",
+     "The Secret Key for Blaine's gym is in the Pokémon Mansion.",
+     "Robin's Surf and Usopp's Ground moves handle Blaine."
+    ]
+   },
+   {
+    "id": "sevii",
+    "title": "Sevii Islands 1 to 3",
+    "badges": 7,
+    "target": "Lv 47 to 50",
+    "bosses": [],
+    "team": [
+     [
+      3,
+      "Luffy",
+      "Gets Sleep Powder back here."
+     ],
+     [
+      85,
+      "Zoro",
+      ""
+     ],
+     [
+      135,
+      "Nami",
+      ""
+     ],
+     [
+      34,
+      "Usopp",
+      ""
+     ],
+     [
+      38,
+      "Sanji",
+      ""
+     ],
+     [
+      131,
+      "Nico Robin",
+      ""
+     ]
+    ],
+    "prep": [
+     "Two Island Move Reminder: trade a Big Mushroom to give Luffy Sleep Powder again.",
+     "Moltres (Lv 50) is at the Mt. Ember summit.",
+     "Zapdos (Lv 50) is in the Power Plant: Surf up from Route 10. The item balls there are Electrode traps.",
+     "Luffy's Sleep Powder makes every legendary much easier to catch."
+    ]
+   },
+   {
+    "id": "giovanni",
+    "title": "Giovanni and Route 22",
+    "badges": 7,
+    "target": "Lv 50",
+    "bosses": [
+     {
+      "name": "Giovanni",
+      "where": "Viridian Gym",
+      "party": [
+       [
+        111,
+        45
+       ],
+       [
+        51,
+        42
+       ],
+       [
+        31,
+        44
+       ],
+       [
+        34,
+        45
+       ],
+       [
+        111,
+        50
+       ]
+      ]
+     },
+     {
+      "name": "Rival",
+      "where": "Route 22",
+      "party": [
+       [
+        18,
+        47
+       ],
+       [
+        111,
+        45
+       ],
+       [
+        102,
+        45
+       ],
+       [
+        130,
+        45
+       ],
+       [
+        65,
+        47
+       ],
+       [
+        6,
+        53
+       ]
+      ]
+     }
+    ],
+    "team": [
+     [
+      3,
+      "Luffy",
+      "Sweeps Giovanni's Ground types."
+     ],
+     [
+      131,
+      "Nico Robin",
+      "Surf and Ice Beam (Lapras learns it at Lv 31)."
+     ],
+     [
+      85,
+      "Zoro",
+      ""
+     ],
+     [
+      38,
+      "Sanji",
+      ""
+     ],
+     [
+      34,
+      "Usopp",
+      "Gets TM26 Earthquake from Giovanni."
+     ],
+     [
+      135,
+      "Nami",
+      "Bench vs Giovanni: Ground hits her hard."
+     ]
+    ],
+    "prep": [
+     "Giovanni is all Ground and Rock: Luffy and Robin do the work.",
+     "Teach TM26 Earthquake (Giovanni's reward) to Usopp.",
+     "Your rival's Charizard is Lv 53. Robin's Surf."
+    ]
+   },
+   {
+    "id": "league",
+    "title": "Victory Road and the Elite Four",
+    "badges": 8,
+    "target": "Lv 55 to 60",
+    "bosses": [
+     {
+      "name": "Lorelei",
+      "where": "Ice",
+      "party": [
+       [
+        87,
+        52
+       ],
+       [
+        91,
+        51
+       ],
+       [
+        80,
+        52
+       ],
+       [
+        124,
+        54
+       ],
+       [
+        131,
+        54
+       ]
+      ]
+     },
+     {
+      "name": "Bruno",
+      "where": "Fighting",
+      "party": [
+       [
+        95,
+        51
+       ],
+       [
+        107,
+        53
+       ],
+       [
+        106,
+        53
+       ],
+       [
+        95,
+        54
+       ],
+       [
+        68,
+        56
+       ]
+      ]
+     },
+     {
+      "name": "Agatha",
+      "where": "Ghost",
+      "party": [
+       [
+        94,
+        54
+       ],
+       [
+        42,
+        54
+       ],
+       [
+        93,
+        53
+       ],
+       [
+        24,
+        56
+       ],
+       [
+        94,
+        58
+       ]
+      ]
+     },
+     {
+      "name": "Lance",
+      "where": "Dragon",
+      "party": [
+       [
+        130,
+        56
+       ],
+       [
+        148,
+        54
+       ],
+       [
+        148,
+        54
+       ],
+       [
+        142,
+        58
+       ],
+       [
+        149,
+        60
+       ]
+      ]
+     },
+     {
+      "name": "Champion",
+      "where": "Indigo Plateau",
+      "party": [
+       [
+        18,
+        59
+       ],
+       [
+        65,
+        57
+       ],
+       [
+        112,
+        59
+       ],
+       [
+        103,
+        59
+       ],
+       [
+        130,
+        61
+       ],
+       [
+        6,
+        63
+       ]
+      ]
+     }
+    ],
+    "team": [
+     [
+      3,
+      "Luffy",
+      ""
+     ],
+     [
+      85,
+      "Zoro",
+      ""
+     ],
+     [
+      135,
+      "Nami",
+      ""
+     ],
+     [
+      34,
+      "Usopp",
+      ""
+     ],
+     [
+      38,
+      "Sanji",
+      ""
+     ],
+     [
+      131,
+      "Nico Robin",
+      ""
+     ]
+    ],
+    "prep": [
+     "Victory Road needs Strength for its boulders.",
+     "Lorelei: Nami's Thunderbolt and Sanji's fire.",
+     "Bruno: Zoro's Drill Peck; Robin's Surf for his Onix.",
+     "Agatha: her Gengar float (Levitate), so skip Earthquake. Robin's Psychic, and Nami for Golbat.",
+     "Lance: Robin's Ice Beam does 4x to Dragonite.",
+     "Champion: Charizard Lv 63 goes to Robin. Nami takes Gyarados, Sanji or Zoro take Exeggutor.",
+     "Stock Full Restores and Revives at the Indigo Plateau mart."
+    ]
+   }
+  ],
+  "crew": [
+   [
+    3,
+    "Luffy",
+    "Venusaur",
+    "Sleep Powder, Razor Leaf, Giga Drain (TM19 from Erika), Cut"
+   ],
+   [
+    85,
+    "Zoro",
+    "Dodrio",
+    "Drill Peck, Tri Attack, Agility, Fly"
+   ],
+   [
+    135,
+    "Nami",
+    "Jolteon",
+    "Thunderbolt (TM24), Double Kick, Pin Missile, Flash"
+   ],
+   [
+    34,
+    "Usopp",
+    "Nidoking",
+    "Earthquake (TM26), Ice Beam (TM13), Thunderbolt or Dig, Strength"
+   ],
+   [
+    38,
+    "Sanji",
+    "Ninetales",
+    "Flamethrower (TM35), Confuse Ray, Quick Attack, Fire Spin"
+   ],
+   [
+    131,
+    "Nico Robin",
+    "Lapras",
+    "Surf, Ice Beam, Psychic (TM29), Body Slam"
+   ]
   ]
  }
 }

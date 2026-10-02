@@ -176,7 +176,8 @@
   function locStatus(l) {
     const all = l.mons;
     const caught = all.filter((id) => monS(id) === 2).length;
-    return { total: all.length, caught, done: all.length > 0 && caught === all.length };
+    const seen = all.filter((id) => monS(id) >= 1).length;
+    return { total: all.length, caught, seen, done: all.length > 0 && caught === all.length };
   }
   const WILD = new Set(["walk", "surf", "old-rod", "good-rod", "super-rod", "rock-smash"]);
   function availableUncaught(l, wildOnly) {
@@ -338,6 +339,8 @@
     </details>`;
   }
 
+  const progHtml = (st) => st.total ? `${st.caught}/${st.total}<small>caught · <span class="sn">${st.seen} seen</span></small>` : `–<small>no wild</small>`;
+
   function renderLoc(l, i) {
     const st = locStatus(l);
     const reqs = (l.req || []).map((r) => `<span class="lock ${has(r) ? "ok" : ""}">${has(r) ? "✓" : "🔒"} ${esc(unlockName(r))}</span>`).join("");
@@ -346,7 +349,7 @@
       <summary>
         <span class="num">${st.done ? "✓" : i + 1}</span>
         <span class="name">${esc(l.name)}</span>
-        <span class="prog" data-prog>${st.total ? `${st.caught}/${st.total}` : "–"}<small>${st.total ? "caught" : "no wild"}</small></span>
+        <span class="prog" data-prog>${progHtml(st)}</span>
         <span class="meta">${reqs}${(l.gates || []).length ? `<span>${l.gates.length} locked part${l.gates.length > 1 ? "s" : ""}</span>` : ""}</span>
         ${strip ? `<span class="strip">${strip}</span>` : ""}
       </summary>
@@ -430,7 +433,7 @@
     $$(`details.loc`).forEach((el) => {
       if (!el.dataset.mons.split(",").includes(String(id))) return;
       const st = locStatus(LOC[el.dataset.loc]);
-      $("[data-prog]", el).innerHTML = st.total ? `${st.caught}/${st.total}<small>caught</small>` : "–";
+      $("[data-prog]", el).innerHTML = progHtml(st);
       el.classList.toggle("done", st.done);
       $(".num", el).textContent = st.done ? "✓" : LOC[el.dataset.loc].i + 1;
     });
@@ -588,6 +591,36 @@
     if (li < lines.length) box.classList.add("wait");
   }
 
+  // ---------------- PLAN PAGE ----------------
+  function renderPlan() {
+    const P = D.extra.plan || [];
+    const b = flag("badges");
+    const cur = flag("hof") ? null : (P.find((m) => m.badges >= b) || P[P.length - 1]).id;
+    const sprite = (id, cls) => `<img class="${cls || ""}" src="${spr(id)}" alt="" loading="lazy" width="56" height="56">`;
+    let h = `<div class="box plan-crew"><h2>The crew</h2><p class="muted small" style="margin:4px 0 10px">Party order follows the order the Straw Hats joined. Tap one for its Pokédex page.</p><div class="crew">` +
+      (D.extra.crew || []).map(([id, nick, sp, moves], i) => `<button class="crew-m" data-act="dex" data-id="${id}"><span class="slot">${i + 1}</span>${sprite(id)}<b>${esc(nick)}</b><span class="muted small">${esc(sp)}</span><span class="small">${esc(moves)}</span></button>`).join("") + `</div></div>`;
+    P.forEach((m) => {
+      const isCur = m.id === cur;
+      const done = P.indexOf(m) < P.findIndex((x) => x.id === cur) || (!cur);
+      const prep = m.prep.map((t, i) => {
+        const k = `plan:${m.id}:${i}`;
+        return `<label class="prep ${flag(k) ? "on" : ""}"><input type="checkbox" data-act="plan" data-k="${k}" ${flag(k) ? "checked" : ""}><span>${esc(t)}</span></label>`;
+      }).join("");
+      h += `<details class="box plan ${isCur ? "now" : ""} ${done ? "past" : ""}" ${isCur || UI.plan === m.id ? "open" : ""} data-plan="${m.id}">
+        <summary><span class="kicker">${isCur ? "You are here" : done ? "Done" : "Up next"}</span><h2>${esc(m.title)}</h2><span class="muted small">Target ${esc(m.target)}</span></summary>
+        <div class="plan-body">
+          ${m.bosses.length ? `<div class="bosses">${m.bosses.map((bo) => `<div class="boss"><div class="boss-h"><b>${esc(bo.name)}</b><span class="muted small">${esc(bo.where)}</span></div><div class="party">${bo.party.map(([id, lv]) => `<button data-act="dex" data-id="${id}">${sprite(id)}<small>${lv}</small></button>`).join("")}</div></div>`).join("")}</div>` : ""}
+          <h3>Your team</h3>
+          <div class="team">${m.team.map(([id, nick, note]) => `<div class="tm">${sprite(id, monS(id) === 2 ? "" : "sil")}<div><b>${esc(nick)}</b> <span class="muted small">${esc(SP[id].n)}</span>${note ? `<div class="small">${esc(note)}</div>` : ""}</div></div>`).join("")}</div>
+          <h3>Before you go</h3>
+          <div class="preps">${prep}</div>
+        </div></details>`;
+    });
+    $("#app").innerHTML = `<div class="planpage">${h}</div>`;
+    const curEl = $(".plan.now");
+    if (curEl && !UI.planScrolled) { UI.planScrolled = 1; }
+  }
+
   // ---------------- SYNC SHEET ----------------
   function openSync() {
     const dlg = $("#sheet");
@@ -630,6 +663,7 @@
     document.body.classList.remove("is-split");
     if (page === "dex") { renderDex(); if (arg) openMon(+arg); }
     else if (page === "oak") renderOak();
+    else if (page === "plan") renderPlan();
     else if (page === "map") { MAPVIEW.show($("#app"), arg); return; }
     else renderRoutes(arg);
     if (!arg) window.scrollTo(0, 0);
@@ -659,6 +693,7 @@
     } else if (act === "badges") { setFlag("badges", +t.dataset.v); route(); }
     else if (act === "flag") { setFlag(t.dataset.v, flag(t.dataset.v) ? 0 : 1); route(); }
     else if (act === "map") { UI.map = t.dataset.v; saveUI(); route(); }
+    else if (act === "plan") { e.preventDefault(); const k = t.dataset.k; setFlag(k, flag(k) ? 0 : 1); t.checked = !!flag(k); t.closest(".prep").classList.toggle("on", !!flag(k)); return; }
     else if (act === "filt") { UI.filter[t.dataset.v] = UI.filter[t.dataset.v] ? 0 : 1; saveUI(); route(); }
     else if (act === "dexf") { UI.dexFilter = t.dataset.v; saveUI(); renderDex(); }
     else if (act === "natl") { UI.natl = !UI.natl; saveUI(); renderDex(); }
