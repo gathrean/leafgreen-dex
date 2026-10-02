@@ -3244,6 +3244,10 @@
       "t": "Vermilion house: trade a Spearow for Farfetch'd."
      },
      {
+      "k": "v20",
+      "t": "S.S. Anne 2F, first cabin: talk to the gentleman. He shows you Snorlax, which counts as seen."
+     },
+     {
       "k": "v11",
       "t": "S.S. Anne: beat your rival, then see the captain for HM01 Cut. The ship leaves after you get off."
      },
@@ -3532,8 +3536,16 @@
       "t": "Route 15 gate 2F: Oak's aide gives the Exp. Share at 50 caught."
      },
      {
+      "k": "k15",
+      "t": "Route 15 gate 2F: look through the left binoculars. Articuno counts as seen."
+     },
+     {
       "k": "k7",
       "t": "Fuchsia: the Fishing Guru's brother gives the Good Rod. The Substitute tutor is in town too."
+     },
+     {
+      "k": "k14",
+      "t": "Fuchsia zoo: read every enclosure sign. Chansey, Voltorb, Kangaskhan, Slowpoke, Lapras and Kabuto (the fossil you didn't take) all count as seen."
      },
      {
       "k": "k8",
