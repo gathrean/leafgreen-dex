@@ -1,12 +1,14 @@
 // Offline support: app files network-first, tiles and sprites cache-first.
-const SHELL = "lgdex-shell-v1";
-const ASSETS = "lgdex-assets-v1";
+const SHELL = "lgdex-shell-v2";
+const ASSETS = "lgdex-assets-v2";
 const SHELL_FILES = ["./", "index.html", "styles.css", "app.js", "data.js", "maps.js", "sync.js", "mapview.js", "map/markers.js", "manifest.webmanifest", "icon.svg"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(SHELL).then((c) => c.addAll(SHELL_FILES)).then(() => self.skipWaiting()));
 });
-self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
+self.addEventListener("activate", (e) => e.waitUntil(
+  caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== SHELL && k !== ASSETS).map((k) => caches.delete(k)))).then(() => self.clients.claim())
+));
 
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);

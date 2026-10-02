@@ -10,12 +10,12 @@
   const LAYERS = [
     { id: "labels", n: "Place names", on: 1, z: 1 },
     { id: "specials", n: "Gifts, fossils & legendaries", on: 1, z: 2 },
-    { id: "mons", n: "Pokémon", on: 1, z: 2 },
-    { id: "items", n: "Items", on: 1, z: 3 },
-    { id: "hidden", n: "Hidden items", on: 1, z: 3 },
-    { id: "obstacles", n: "Cut trees, boulders, rocks", on: 1, z: 3 },
+    { id: "trainers", n: "Trainer battles", on: 1, z: 3.5 },
+    { id: "mons", n: "Pokémon", on: 1, z: 3 },
+    { id: "items", n: "Items", on: 1, z: 4 },
+    { id: "hidden", n: "Hidden items", on: 1, z: 4 },
+    { id: "obstacles", n: "Cut trees, boulders, rocks", on: 1, z: 4 },
     { id: "warps", n: "Doors & warps", on: 0, z: 4 },
-    { id: "trainers", n: "Trainers", on: 0, z: 4 },
     { id: "npcs", n: "People", on: 0, z: 4 },
   ];
   const KINDS = [
@@ -45,13 +45,14 @@
   };
   const prefs = ls.get("lgdex.map", {});
   prefs.layers = Object.assign(Object.fromEntries(LAYERS.map((l) => [l.id, l.on])), prefs.layers || {});
+  if (!prefs.v2) { prefs.layers.trainers = 1; prefs.v2 = 1; }
   prefs.kinds = Object.assign(Object.fromEntries(KINDS.map((k) => [k.id, 1])), prefs.kinds || {});
   const savePrefs = () => ls.set("lgdex.map", prefs);
 
   function addCss(href) { return new Promise((res) => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = href; l.onload = res; l.onerror = res; document.head.appendChild(l); }); }
   function addJs(src) { return new Promise((res, rej) => { const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
   function load() {
-    if (!loading) loading = Promise.all([addCss(LEAFLET_CSS), addJs(LEAFLET_JS), addJs("map/markers.js")]);
+    if (!loading) loading = Promise.all([addCss(LEAFLET_CSS), addJs(LEAFLET_JS), addJs("map/markers.js?t=" + Date.now().toString(36).slice(0, -4))]);
     return loading;
   }
 
@@ -69,13 +70,27 @@
     map.getContainer().style.setProperty("--s", Math.pow(2, z - W.maxZoom));
     const A = window.APP;
     placedSpecials = [];
+    // labels: most important first, skip any that would overlap one already shown
+    const boxes = [];
+    const fits = (x, y, text, size) => {
+      const p = map.latLngToContainerPoint(ll(x, y));
+      const w = text.length * size * 0.62 + 6, h = size + 6;
+      const b = [p.x - w / 2, p.y - h / 2, p.x + w / 2, p.y + h / 2];
+      if (boxes.some((o) => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1])) return false;
+      boxes.push(b);
+      return true;
+    };
+    W.labelsSorted = W.labelsSorted || W.labels.slice().sort((a, b) => [3, 0, 2, 1][a[3]] - [3, 0, 2, 1][b[3]]);
     LAYERS.forEach((L0) => {
       if (!prefs.layers[L0.id] || z < L0.z) return;
-      (L0.id === "mons" ? W.monsM : W[L0.id]).forEach((m) => {
+      (L0.id === "mons" ? W.monsM : L0.id === "labels" ? W.labelsSorted : W[L0.id]).forEach((m) => {
         const x = L0.id === "labels" ? m[1] : m[0], y = L0.id === "labels" ? m[2] : m[1];
-        if (L0.id === "labels" && (m[3] === 0 || m[3] === 2) && z < 3) return;
-        if (L0.id === "labels" && m[3] === 3 && z < 2) return;
+        if (L0.id === "labels") {
+          const minZ = [4.5, 1, 4.5, 3][m[3]];
+          if (z < minZ) return;
+        }
         if (!inView(x, y)) return;
+        if (L0.id === "labels" && !fits(x, y, m[0], [11, 15, 14, 15][m[3]])) return;
         const mk = build(L0.id, m, z, A);
         if (mk) group.addLayer(mk);
       });
@@ -112,7 +127,18 @@
       });
       return mk;
     }
-    if (layer === "obstacles" || layer === "npcs" || layer === "trainers") {
+    if (layer === "trainers") {
+      // m = [x, y, "Bug Catcher Rick", sprite, place, [[dex, lv]...], leader]
+      const beat = A && A.flag("tr:" + x + "," + y);
+      if (beat && prefs.hideBeaten) return null;
+      const big = z >= W.maxZoom - 0.5;
+      const spr = big && m[3] ? `<img src="map/obj/${m[3]}.png" alt="">` : "";
+      const top = m[5].length ? Math.max(...m[5].map((p) => p[1])) : "";
+      const mk = L.marker(ll(x, y), { icon: icon(spr + `<b class="${m[6] ? "gym" : ""}">${beat ? "✓" : m[6] ? "GYM" : "!"}${!beat && top ? `<small>${top}</small>` : ""}</b>`, `mk-obj mk-tr ${beat ? "beat" : ""} ${big ? "big" : ""}`), keyboard: false, riseOnHover: true });
+      mk.on("click", () => trainerPopup(mk, m, x, y));
+      return mk;
+    }
+    if (layer === "obstacles" || layer === "npcs") {
       const spr = m[3] ? `<img src="map/obj/${m[3]}.png" alt="">` : `<i></i>`;
       const mk = L.marker(ll(x, y), { icon: icon(spr + (layer === "trainers" ? "<b>!</b>" : ""), "mk-obj " + layer), keyboard: false });
       mk.bindPopup(`<b>${esc(m[2])}</b><br><span class="muted">${esc(m[4])}</span>${layer === "obstacles" ? `<br>${esc(obstacleHint(m[2]))}` : ""}`);
@@ -152,6 +178,25 @@
 
   function obstacleHint(n) {
     return n === "Cut tree" ? "Needs Cut (HM01) and the Cascade Badge." : n === "Strength boulder" ? "Needs Strength (HM04) and the Rainbow Badge." : n === "Rock Smash rock" ? "Needs Rock Smash (HM06). Smashing can start a wild battle." : "";
+  }
+
+  function trainerPopup(mk, m, x, y) {
+    const A = window.APP;
+    const d = document.createElement("div");
+    d.className = "mk-pop";
+    const render = () => {
+      const beat = A && A.flag("tr:" + x + "," + y);
+      d.innerHTML = `<b>${esc(m[2])}</b><br><span class="muted">${esc(m[4])}</span>` +
+        (m[5].length ? `<div class="mk-party">${m[5].map(([id, lv]) => `<button data-id="${id}"><img src="${SPRITE + id}.png" alt=""><span>${esc((A && A.name(id)) || "#" + id)}</span><small>Lv ${lv}</small></button>`).join("")}</div>` : `<p class="muted">Team not listed.</p>`);
+      const btn = document.createElement("button");
+      btn.className = "btn " + (beat ? "on" : "primary") + " mk-go";
+      btn.textContent = beat ? "Beaten ✓" : "Mark beaten";
+      btn.onclick = () => { A.setFlag("tr:" + x + "," + y, beat ? 0 : 1); render(); draw(); };
+      d.appendChild(btn);
+    };
+    render();
+    d.addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b && A) A.openMon(+b.dataset.id); });
+    L.popup({ maxWidth: 300, offset: [0, -14] }).setLatLng(mk.getLatLng()).setContent(d).openOn(map);
   }
 
   function itemPopup(mk, m, hidden) {
@@ -222,6 +267,7 @@
         (l.id === "mons" ? `<div class="mv-sub">${KINDS.map((k) => `<label class="mv-row"><input type="checkbox" data-kind="${k.id}" ${prefs.kinds[k.id] ? "checked" : ""}><span>${esc(k.n)}</span></label>`).join("")}
           <label class="mv-row"><input type="checkbox" data-hidelocked ${prefs.hideLocked ? "checked" : ""}><span>Hide what my bag can't reach yet</span></label></div>` : "")).join("") +
       `<label class="mv-row"><input type="checkbox" data-hidegot ${prefs.hideGot ? "checked" : ""}><span>Hide items I've picked up</span></label>
+       <label class="mv-row"><input type="checkbox" data-hidebeaten ${prefs.hideBeaten ? "checked" : ""}><span>Hide trainers I've beaten</span></label>
        <p class="muted small" style="margin:8px 0 0">Locks follow "Your bag" on the Routes tab. Zoom in for smaller markers. Tap a door to jump inside.</p>`;
   }
 
@@ -269,7 +315,7 @@
     map = L.map(el, { crs: L.CRS.Simple, minZoom: 0, maxZoom: W.maxZoom + 2, zoomSnap: 0.5, attributionControl: false, zoomControl: true });
     const bounds = L.latLngBounds(ll(0, 0), ll(W.w, W.h));
     const Tiles = L.TileLayer.extend({
-      getTileUrl(c) { return tileSet.has(`${c.z}/${c.x}/${c.y}`) ? `map/tiles/${c.z}/${c.x}/${c.y}.webp` : BLANK; },
+      getTileUrl(c) { return tileSet.has(`${c.z}/${c.x}/${c.y}`) ? `map/tiles/${c.z}/${c.x}/${c.y}.webp?v=${W.ver}` : BLANK; },
     });
     new Tiles("", { maxNativeZoom: W.maxZoom, maxZoom: W.maxZoom + 2, tileSize: W.tile, bounds, noWrap: true, keepBuffer: 3, className: "mv-tiles" }).addTo(map);
     map.setMaxBounds(bounds.pad(0.25));
@@ -303,6 +349,7 @@
       else if (t.dataset.kind) prefs.kinds[t.dataset.kind] = t.checked ? 1 : 0;
       else if (t.hasAttribute("data-hidegot")) prefs.hideGot = t.checked ? 1 : 0;
       else if (t.hasAttribute("data-hidelocked")) prefs.hideLocked = t.checked ? 1 : 0;
+      else if (t.hasAttribute("data-hidebeaten")) prefs.hideBeaten = t.checked ? 1 : 0;
       else return;
       savePrefs(); draw();
     });
