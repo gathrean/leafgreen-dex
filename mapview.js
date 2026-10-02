@@ -104,7 +104,7 @@
       const got = A && A.flag(itemKey(m));
       if (got && prefs.hideGot) return null;
       const src = m[3] ? ITEM + m[3] + ".png" : ITEM + (m[2].startsWith("HM") ? "hm-normal" : "tm-normal") + ".png";
-      const mk = L.marker(ll(x, y), { icon: icon(`<img src="${src}" alt="">`, `mk-item ${layer === "hidden" ? "hid" : ""} ${got ? "got" : ""}`, [28, 28]) });
+      const mk = L.marker(ll(x, y), { icon: icon(`<img src="${src}" alt="">${m[5] ? "<i>?</i>" : ""}`, `mk-item ${layer === "hidden" ? "hid" : ""} ${m[5] ? "renew" : ""} ${got ? "got" : ""}`, [28, 28]) });
       mk.on("click", () => itemPopup(mk, m, layer === "hidden"));
       return mk;
     }
@@ -204,7 +204,7 @@
     const d = document.createElement("div");
     const render = () => {
       const got = A && A.flag(itemKey(m));
-      d.innerHTML = `<b>${esc(m[2])}</b>${hidden ? ` <span class="muted">(hidden)</span>` : ""}<br><span class="muted">${esc(m[4])}</span>${hidden ? `<br>Press A facing this spot, or use the Itemfinder.` : ""}<br>`;
+      d.innerHTML = `<b>${esc(m[2])}</b>${hidden ? ` <span class="muted">(hidden)</span>` : ""}<br><span class="muted">${esc(m[4])}</span>${hidden ? (m[5] ? `<p class="mk-renew">Random respawn. These start out empty. After every 1,500 steps, entering this area rerolls them, and they often stay empty.</p>` : `<br>Face this spot and press A. The Itemfinder helps you find it.`) : ""}<br>`;
       const btn = document.createElement("button");
       btn.className = "btn " + (got ? "on" : "primary") + " mk-go";
       btn.textContent = got ? "Picked up ✓" : "Mark picked up";

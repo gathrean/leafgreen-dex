@@ -613,6 +613,12 @@ for tid, body in re.findall(r"\[(TRAINER_\w+)\] = \{(.*?)\n    \},", trainers_h,
     }
 print("trainers parsed", len(trainer_info), "scripts", len(trainer_of_script), file=sys.stderr)
 
+# hidden items the game re-rolls every 1,500 steps (src/renewable_hidden_items.c); they start out taken
+renewable = set()
+rh = p("src/renewable_hidden_items.c")
+if os.path.exists(rh):
+    renewable = set(re.findall(r"HIDDEN_ID\((FLAG_HIDDEN_ITEM_\w+)\)", read(rh)))
+
 OBSTACLE = {"CUT_TREE": "Cut tree", "PUSHABLE_BOULDER": "Strength boulder", "ROCK_SMASH_ROCK": "Rock Smash rock"}
 SPECIAL_GFX = {"FOSSIL", "OLD_AMBER", "ZAPDOS", "ARTICUNO", "MOLTRES", "MEWTWO", "LUGIA", "HO_OH", "SNORLAX", "RUBY", "SAPPHIRE"}
 SPECIAL_DEX = {"Bulbasaur": 1, "Charmander": 4, "Squirtle": 7, "Hitmonlee": 106, "Hitmonchan": 107, "Eevee": 133, "Electrode": 101,
@@ -735,7 +741,7 @@ for k, (mx, my) in world.items():
     for b in m.get("bg_events") or []:
         if b.get("type") == "hidden_item" and b.get("item") not in (None, "ITEM_NONE"):
             x, y = (mx + b["x"]) * MT + 8, (my + b["y"]) * MT + 8
-            markers["hidden"].append([x, y, pretty_item(b["item"]), item_slug(b["item"]), name])
+            markers["hidden"].append([x, y, pretty_item(b["item"]), item_slug(b["item"]), name, 1 if b.get("flag") in renewable else 0])
     for i, wv in enumerate(m.get("warp_events") or []):
         x, y = (mx + wv["x"]) * MT + 8, (my + wv["y"]) * MT + 8
         dest = wv["dest_map"]

@@ -365,7 +365,7 @@
     }
    ],
    "mapName": "Mt. Moon 1F",
-   "notes": "Beat Super Nerd Miguel on B2F to choose the Helix Fossil (Omanyte) or Dome Fossil (Kabuto), revived later at the Cinnabar Lab. B1F hides 3 Tiny Mushrooms and 3 Big Mushrooms. Keep one Big Mushroom (or two Tiny) for the Move Reminder on Two Island.",
+   "notes": "Beat Super Nerd Miguel on B2F to choose the Helix Fossil (Omanyte) or Dome Fossil (Kabuto), revived later at the Cinnabar Lab. B1F's mushrooms are random respawns: they start out empty and only sometimes appear (a 10% roll for the Big ones). For mushrooms, catch Paras instead: about half carry a Tiny Mushroom.",
    "blurb": "End of Route 3, entered from the Route 4 west segment."
   },
   {
@@ -3040,7 +3040,7 @@
     "prep": [
      "Take the Helix Fossil at the end of Mt. Moon B2F.",
      "Pick up both Moon Stones (1F item ball, B2F hidden).",
-     "Dig up a Big Mushroom on B1F and keep it for Luffy's Sleep Powder later.",
+     "Catch a few Paras here and check their held items. About half hold a Tiny Mushroom; two Tiny get Luffy's Sleep Powder back later.",
      "Buy the Magikarp in the Route 4 Pokémon Center for ₽500. It's your Water stand-in until Robin joins.",
      "Your rival leads into a Charmander. Fire beats Luffy, so send Usopp or Pikachu."
     ]
@@ -3288,7 +3288,8 @@
      "Mr. Fuji gives the Poké Flute. Each Snorlax is a one-time Lv 30 catch: save first, bring Ultra Balls.",
      "Koga's Koffing and Weezing float (Levitate), so Ground moves miss. Use Nami, Sanji and Zoro.",
      "Safari Zone: HM03 Surf in the Secret House, and the Gold Teeth that trade for HM04 Strength.",
-     "Game Corner prize TMs: TM24 Thunderbolt (Nami), TM35 Flamethrower (Sanji), TM13 Ice Beam (Usopp)."
+     "Game Corner prize TMs: TM24 Thunderbolt (Nami), TM35 Flamethrower (Sanji), TM13 Ice Beam (Usopp).",
+     "Pokémon Tower 5F has a hidden Big Mushroom that's always there. It's a guaranteed way to get Sleep Powder back."
     ]
    },
    {
@@ -3515,7 +3516,7 @@
      ]
     ],
     "prep": [
-     "Two Island Move Reminder: trade a Big Mushroom to give Luffy Sleep Powder again.",
+     "Two Island Move Reminder: one Big Mushroom or two Tiny Mushrooms gets Luffy's Sleep Powder back.",
      "Moltres (Lv 50) is at the Mt. Ember summit.",
      "Zapdos (Lv 50) is in the Power Plant: Surf up from Route 10. The item balls there are Electrode traps.",
      "Luffy's Sleep Powder makes every legendary much easier to catch."
