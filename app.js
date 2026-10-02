@@ -492,8 +492,10 @@
       if (UI.dexFilter === "caught" && s !== 2) continue;
       if (q && !sp.n.toLowerCase().includes(q) && String(id) !== q.replace(/^#?0*/, "")) continue;
       const odd = !WHERE[id] && !obtainNote(id).startsWith("Evolve");
-      h += `<button class="dex-cell ${s === 2 ? "c" : s === 1 ? "s" : ""} ${odd ? "x" : ""}" data-id="${id}" data-act="dex">
-        <span class="no">#${String(id).padStart(3, "0")}</span><img src="${spr(id)}" alt="" loading="lazy" width="72" height="72"><div class="nm">${esc(sp.n)}</div></button>`;
+      h += `<div class="dex-cell ${s === 2 ? "c" : s === 1 ? "s" : ""} ${odd ? "x" : ""}" data-id="${id}" data-act="dex" role="button" tabindex="0" aria-label="${esc(sp.n)}">
+        <span class="no">#${String(id).padStart(3, "0")}</span>
+        <span class="dex-tg">${seenBtn(id)}${checkBtn(id)}</span>
+        <img src="${spr(id)}" alt="" loading="lazy" width="72" height="72"><div class="nm">${esc(sp.n)}</div></div>`;
     }
     $("#dexgrid").innerHTML = h || `<p class="muted">Nothing here.</p>`;
   }
@@ -726,6 +728,9 @@
         S = SYNC.merge(S, data); save(); toast("Imported"); $("#sheet").close(); route();
       } catch { toast("That code didn't work"); }
     }
+  });
+  document.addEventListener("keydown", (e) => {
+    if ((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("dex-cell")) { e.preventDefault(); openMon(+e.target.dataset.id); }
   });
   document.addEventListener("change", (e) => {
     const t = e.target;

@@ -297,7 +297,13 @@ h3 { font-size: 17px; }
 .dex-cell .no { position: absolute; top: 5px; left: 7px; font: 500 11px var(--f-display); color: var(--ink-3); }
 .dex-cell .nm { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dex-cell.c { box-shadow: inset 0 0 0 2px var(--leaf-2); }
-.dex-cell.c::after { content: ""; position: absolute; top: 6px; right: 6px; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(var(--red) 0 45%, #2a2a2a 45% 55%, #fff 55%); box-shadow: 0 0 0 1.5px #2a2a2a; }
+.dex-cell:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.dex-tg { position: absolute; top: 4px; right: 4px; display: flex; gap: 3px; z-index: 1; }
+.dex-tg .seen, .dex-tg .check { width: 22px; height: 22px; }
+.dex-tg .seen svg { width: 14px; height: 14px; }
+.dex-tg .check.c::after { width: 7px; height: 7px; top: 7.5px; left: 7.5px; box-shadow: 0 0 0 1.5px #2a2a2a; }
+.dex-cell .no { top: 7px; }
+.dex-cell img { margin-top: 8px; }
 .dex-cell.x .nm { color: var(--ink-3); }
 
 /* ---------- sheet ---------- */
