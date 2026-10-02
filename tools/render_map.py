@@ -438,8 +438,20 @@ def pretty_map(d):
     return re.sub(r"\s+", " ", s).strip()
 
 
-OBSTACLE = {"CUT_TREE": "Cut tree", "PUSHABLE_BOULDER": "Strength boulder", "ROCK_SMASH_ROCK": "Rock Smash rock", "SNORLAX": "Snorlax"}
-markers = {"items": [], "hidden": [], "obstacles": [], "npcs": [], "trainers": [], "warps": [], "labels": [], "mons": [], "maps": []}
+OBSTACLE = {"CUT_TREE": "Cut tree", "PUSHABLE_BOULDER": "Strength boulder", "ROCK_SMASH_ROCK": "Rock Smash rock"}
+SPECIAL_GFX = {"FOSSIL", "OLD_AMBER", "ZAPDOS", "ARTICUNO", "MOLTRES", "MEWTWO", "LUGIA", "HO_OH", "SNORLAX", "RUBY", "SAPPHIRE"}
+SPECIAL_DEX = {"Bulbasaur": 1, "Charmander": 4, "Squirtle": 7, "Hitmonlee": 106, "Hitmonchan": 107, "Eevee": 133, "Electrode": 101,
+               "Dome Fossil": 140, "Helix Fossil": 138, "Old Amber": 142, "Articuno": 144, "Zapdos": 145, "Moltres": 146,
+               "Mewtwo": 150, "Lugia": 249, "Ho Oh": 250, "Snorlax": 143}
+
+
+def special_label(script, short):
+    tail = script.split("EventScript_")[-1] if script and "EventScript_" in script else short.title()
+    tail = re.sub(r"Ball$|\d+$", "", tail)
+    return re.sub(r"(?<=[a-z])(?=[A-Z])", " ", tail).replace("_", " ").strip()
+
+
+markers = {"specials": [], "items": [], "hidden": [], "obstacles": [], "npcs": [], "trainers": [], "warps": [], "labels": [], "mons": [], "maps": []}
 
 # wild encounters (LeafGreen tables)
 wild = json.load(open(p("src/data/wild_encounters.json")))["wild_encounter_groups"][0]
@@ -519,7 +531,12 @@ for k, (mx, my) in world.items():
         x, y = (mx + o["x"]) * MT + 8, (my + o["y"]) * MT + 8
         g = o.get("graphics_id", "")
         short = g.replace("OBJ_EVENT_GFX_", "")
-        if short == "ITEM_BALL":
+        script = o.get("script", "")
+        if (short in SPECIAL_GFX and script not in ("0x0", "")) or (short == "ITEM_BALL" and script not in item_scripts):
+            label = special_label(script, short)
+            spr = sprite(g)
+            markers["specials"].append([x, y, label, spr[0] if spr else None, name, SPECIAL_DEX.get(label)])
+        elif short == "ITEM_BALL":
             item = item_scripts.get(o.get("script", ""))
             markers["items"].append([x, y, pretty_item(item) if item else "Item", item_slug(item) if item else None, name])
         elif short in OBSTACLE:

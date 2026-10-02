@@ -803,6 +803,9 @@
    "name": "Route 8",
    "chapter": "erika",
    "map": "kanto:r8",
+   "walkReq": [
+    "cut"
+   ],
    "gates": [
     {
      "need": [
@@ -890,6 +893,9 @@
    "name": "Route 16",
    "chapter": "erika",
    "map": "kanto:r16",
+   "walkReq": [
+    "cut"
+   ],
    "gates": [
     {
      "need": [
@@ -959,6 +965,9 @@
    "name": "Route 12",
    "chapter": "koga",
    "map": "kanto:r12",
+   "walkReq": [
+    "cut"
+   ],
    "gates": [
     {
      "need": [
@@ -1012,6 +1021,9 @@
    "name": "Route 13",
    "chapter": "koga",
    "map": "kanto:r13",
+   "walkReq": [
+    "cut"
+   ],
    "gates": [
     {
      "need": [
@@ -1058,6 +1070,9 @@
    "name": "Route 14",
    "chapter": "koga",
    "map": "kanto:r14",
+   "walkReq": [
+    "cut"
+   ],
    "gates": [
     {
      "need": [
@@ -1596,7 +1611,7 @@
    "map": "sevii:mt-ember",
    "areas": [
     {
-     "label": "Outside",
+     "label": "Exterior",
      "keys": [
       "mt-ember"
      ],

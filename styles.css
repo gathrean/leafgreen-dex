@@ -430,3 +430,27 @@ body.on-map .foot { display: none; }
 .mk-rows button.c { opacity: 0.55; }
 .mk-go { margin-top: 8px; padding: 7px 12px; font-size: 14px; }
 .mv-panel[hidden] { display: none; }
+
+/* ---------- route filters ---------- */
+.filters { padding: 10px 12px; margin-bottom: 16px; }
+
+/* ---------- desktop split ---------- */
+body.is-split main { max-width: none; padding: 0; }
+.split { display: grid; grid-template-columns: minmax(440px, 600px) 1fr; }
+.split-l { padding: 16px; min-width: 0; }
+.split-r { position: sticky; top: var(--split-top, 107px); height: calc(100vh - var(--split-top, 107px)); border-left: 1px solid var(--line); }
+.split-r #splitmap, .split-r .mv { height: 100%; display: flex; flex-direction: column; }
+.split-r .mv-map { flex: 1; height: auto !important; min-height: 0; }
+details.loc.active { box-shadow: inset 0 0 0 2px var(--red), inset 0 0 0 4px var(--panel), inset 0 0 0 5px var(--frame-2), var(--shadow); }
+
+/* ---------- map extras ---------- */
+.mv-sub { padding-left: 28px; display: grid; }
+.mv-sub .mv-row { padding: 5px 2px; font-size: 14px; }
+.leaflet-marker-icon.mk-mons.locked { opacity: 0.55; background: rgba(230, 230, 230, 0.9); }
+.mk-mons em.lk { margin-left: 4px; }
+.mk-lock { margin-top: 4px; font-size: 13px; color: #c8443a; font-weight: 600; }
+.mk-special { position: relative; }
+.mk-special img { position: absolute; left: 0; top: 0; width: 48px; height: 48px; transform: translate(-50%, -75%); filter: drop-shadow(0 0 2px #fff) drop-shadow(0 2px 2px rgba(0,0,0,.5)); }
+.mk-special span { position: absolute; left: 0; top: 10px; transform: translateX(-50%); white-space: nowrap; font: 700 11px var(--f-display); background: #c99a1c; color: #1f2a22; padding: 1px 6px; border-radius: 999px; box-shadow: 0 0 0 2px #fff; }
+.mk-special.c img { opacity: 0.5; }
+.mk-special.up span { top: -58px; }

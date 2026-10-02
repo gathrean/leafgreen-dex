@@ -41,12 +41,45 @@
   const LOCS = D.locations;
   LOCS.forEach((l, i) => { l.i = i; l.ci = chIndex[l.chapter]; });
   const LOC = Object.fromEntries(LOCS.map((l) => [l.id, l]));
+  UI.filter = Object.assign({ land: 1, surf: 1, fish: 1, rock: 1, other: 1, hideLocked: 0 }, UI.filter || {});
+  const CAT = (m) => (m === "walk" ? "land" : m === "surf" ? "surf" : m.endsWith("-rod") ? "fish" : m === "rock-smash" ? "rock" : "other");
+  const FILTERS = [["land", "Grass & caves"], ["surf", "Surfing"], ["fish", "Fishing"], ["rock", "Rock Smash"], ["other", "Gifts & trades"]];
+
+  // match a world-map area name ("Five Island Lost Cave Room1") to a checklist location
+  const words = (s) => " " + s.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim() + " ";
+  const BASES = LOCS.map((l) => [l, words(l.name.replace(/\s*\(.*\)$/, "")), words(l.mapName || l.name)]);
+  const mapCache = {};
+  function locForMap(name) {
+    if (name in mapCache) return mapCache[name];
+    const w = words(name);
+    let best = null, bestIdx = -1, bestLen = 0;
+    BASES.forEach(([l, base, mn]) => {
+      [base, mn].forEach((b) => {
+        const i = w.indexOf(b);
+        if (i >= 0 && (i > bestIdx || (i === bestIdx && b.length > bestLen))) { best = l; bestIdx = i; bestLen = b.length; }
+      });
+    });
+    return (mapCache[name] = best);
+  }
+  const KIND_UNLOCK = { surf: "surf", old_rod: "old-rod", good_rod: "good-rod", super_rod: "super-rod", rock: "rock-smash" };
+  function mapNeeds(name, kind) {
+    const l = locForMap(name);
+    const need = new Set(l ? l.req || [] : []);
+    if (KIND_UNLOCK[kind]) need.add(KIND_UNLOCK[kind]);
+    if (l) {
+      if (kind === "land") (l.walkReq || []).forEach((r) => need.add(r));
+      const w = words(name);
+      l.floors.forEach((f) => { if (f.label && f.req && w.includes(words(f.label))) f.req.forEach((r) => need.add(r)); });
+    }
+    return [...need].filter((u) => u !== "coin-case");
+  }
 
   // which unlocks a table needs
   function tableNeeds(loc, floor, t) {
     const need = new Set(loc.req || []);
     (floor.req || []).forEach((r) => need.add(r));
     if (METHOD_UNLOCK[t.m]) need.add(METHOD_UNLOCK[t.m]);
+    if (t.m === "walk") (loc.walkReq || []).forEach((r) => need.add(r));
     (t.req || []).forEach((r) => need.add(r));
     return [...need];
   }
@@ -218,7 +251,10 @@
         `</div></div>`;
     }
     h += renderBag();
-    h += `<div class="box mapwrap"><div class="tabs-mini">
+    h += `<div class="box filters"><div class="badges" style="margin:0">${FILTERS.map(([k, n]) => `<button class="chip ${UI.filter[k] ? "on" : ""}" data-act="filt" data-v="${k}">${n}</button>`).join("")}
+      <button class="chip ${UI.filter.hideLocked ? "on" : ""}" data-act="filt" data-v="hideLocked">Hide locked</button></div></div>`;
+    const split = isSplit();
+    if (!split) h += `<div class="box mapwrap"><div class="tabs-mini">
         <button class="chip ${UI.map === "kanto" ? "on" : ""}" data-act="map" data-v="kanto">Kanto</button>
         <button class="chip ${UI.map === "sevii" ? "on" : ""}" data-act="map" data-v="sevii">Sevii Islands</button>
         <span class="muted small" style="margin-left:auto;align-self:center">Tap a spot to jump</span></div>
@@ -237,7 +273,9 @@
       h += renderLoc(l, i);
     });
     h += `<p class="foot">Encounter odds from PokeAPI's LeafGreen tables. Sprites from the PokeAPI sprite archive. Fan-made, not affiliated with Nintendo or Game Freak.</p>`;
-    app.innerHTML = h;
+    app.innerHTML = split ? `<div class="split"><div class="split-l">${h}</div><div class="split-r"><div id="splitmap"></div></div></div>` : h;
+    document.body.classList.toggle("is-split", split);
+    if (split) startSplit(focusId);
 
     if (focusId && LOC[focusId]) {
       const el = document.getElementById("loc-" + focusId);
@@ -245,6 +283,47 @@
     }
     $$("details.loc[open]").forEach(fillLoc);
   }
+
+  // ---------------- desktop split: routes on the left, world map on the right ----------------
+  const SPLIT_MQ = window.matchMedia("(min-width: 1100px)");
+  const isSplit = () => SPLIT_MQ.matches;
+  let activeLoc = null, suppressScroll = 0, focusTimer = null;
+  function setActive(id) {
+    if (activeLoc === id) return false;
+    activeLoc = id;
+    $$("details.loc.active").forEach((e) => e.classList.remove("active"));
+    const el = document.getElementById("loc-" + id);
+    if (el) el.classList.add("active");
+    return true;
+  }
+  function onSplitScroll() {
+    if (!document.body.classList.contains("is-split") || Date.now() < suppressScroll) return;
+    const line = $(".tabs").getBoundingClientRect().bottom + 80;
+    const cards = $$("details.loc");
+    const hit = cards.find((c) => c.getBoundingClientRect().bottom > line);
+    if (!hit || !setActive(hit.dataset.loc)) return;
+    clearTimeout(focusTimer);
+    focusTimer = setTimeout(() => { const l = LOC[activeLoc]; if (l && MAPVIEW.ready) MAPVIEW.focusPlace(l.mapName || l.name, true); }, 220);
+  }
+  let scrollRaf = 0;
+  window.addEventListener("scroll", () => { if (!scrollRaf) scrollRaf = requestAnimationFrame(() => { scrollRaf = 0; onSplitScroll(); }); }, { passive: true });
+  function startSplit(focusId) {
+    const top = $(".tabs").getBoundingClientRect().bottom;
+    document.documentElement.style.setProperty("--split-top", top + "px");
+    activeLoc = null;
+    MAPVIEW.show($("#splitmap"), focusId ? (LOC[focusId].mapName || LOC[focusId].name) : null, {
+      embed: true,
+      onUserMove(name) {
+        const l = locForMap(name);
+        if (!l || l.id === activeLoc) return;
+        setActive(l.id);
+        suppressScroll = Date.now() + 1200;
+        const el = document.getElementById("loc-" + l.id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      },
+    }).then(() => { if (!focusId) onSplitScroll(); });
+  }
+  SPLIT_MQ.addEventListener("change", () => { if ((location.hash || "#/routes").startsWith("#/routes")) route(); });
 
   function renderBag() {
     const b = flag("badges");
@@ -293,11 +372,16 @@
     h += `</div></div>`;
 
     const multi = l.floors.length > 1;
+    let shown = 0;
     l.floors.forEach((f, fi) => {
+      const inner = f.tables.map((t) => renderTable(l, f, t)).join("");
+      if (!inner) return;
+      shown++;
       if (multi) h += `<h3 style="margin-top:4px">${esc(f.label || "Area " + (fi + 1))}</h3>`;
-      f.tables.forEach((t) => { h += renderTable(l, f, t); });
+      h += inner;
     });
     if (!l.floors.some((f) => f.tables.length)) h += `<p class="muted">No Pokémon to catch here.</p>`;
+    else if (!shown) h += `<p class="muted">Everything here is hidden by your filters.</p>`;
     body.innerHTML = h;
     body.dataset.filled = 1;
   }
@@ -305,6 +389,7 @@
   function renderTable(l, f, t) {
     const needs = tableNeeds(l, f, t);
     const ok = needsMet(needs);
+    if (!UI.filter[CAT(t.m)] || (UI.filter.hideLocked && !ok)) return "";
     const missing = needs.filter((n) => !has(n));
     const ci = Math.max(l.ci, ...needs.map((n) => (UNL[n] && UNL[n].chapter ? chIndex[UNL[n].chapter] : 0)));
     const showOdds = !["gift", "gift-egg", "npc-trade", "static", "pokeflute", "roaming-grass"].includes(t.m);
@@ -353,7 +438,7 @@
     if ($("#kCaught")) { $("#kCaught").textContent = k.caught; $("#kSeen").textContent = k.seen; $("#kBar").style.width = (k.caught / 151) * 100 + "%"; }
     if ($("#nCaught")) $("#nCaught").textContent = counts(386).caught;
     if ($("#bigmap")) $("#bigmap").innerHTML = MAPS.svg(UI.map, mapMarks(UI.map), { labels: true });
-    if (window.MAPVIEW && document.body.classList.contains("on-map")) MAPVIEW.redraw();
+    if (window.MAPVIEW && MAPVIEW.ready) MAPVIEW.redraw();
     $$(`.dex-cell[data-id="${id}"]`).forEach((c) => { c.classList.toggle("c", s === 2); c.classList.toggle("s", s === 1); });
   }
 
@@ -542,6 +627,7 @@
     const [, page, arg] = (location.hash || "#/routes").split("/");
     $$(".tabs a").forEach((a) => a.classList.toggle("on", a.dataset.tab === (page || "routes")));
     document.body.classList.toggle("on-map", page === "map");
+    document.body.classList.remove("is-split");
     if (page === "dex") { renderDex(); if (arg) openMon(+arg); }
     else if (page === "oak") renderOak();
     else if (page === "map") { MAPVIEW.show($("#app"), arg); return; }
@@ -573,6 +659,7 @@
     } else if (act === "badges") { setFlag("badges", +t.dataset.v); route(); }
     else if (act === "flag") { setFlag(t.dataset.v, flag(t.dataset.v) ? 0 : 1); route(); }
     else if (act === "map") { UI.map = t.dataset.v; saveUI(); route(); }
+    else if (act === "filt") { UI.filter[t.dataset.v] = UI.filter[t.dataset.v] ? 0 : 1; saveUI(); route(); }
     else if (act === "dexf") { UI.dexFilter = t.dataset.v; saveUI(); renderDex(); }
     else if (act === "natl") { UI.natl = !UI.natl; saveUI(); renderDex(); }
     else if (act === "dex") { openMon(+t.dataset.id); }
@@ -622,6 +709,8 @@
     flag, setFlag: (k, v) => { setFlag(k, v); }, monS, toast,
     name: (id) => (SP[id] ? SP[id].n : null),
     openMon: (id) => openMon(id),
+    canReach: (name, kind) => needsMet(mapNeeds(name, kind)),
+    lockText: (name, kind) => "Needs " + mapNeeds(name, kind).filter((u) => !has(u)).map(unlockName).join(" + "),
   };
   route();
 
