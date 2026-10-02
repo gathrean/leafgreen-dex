@@ -122,7 +122,7 @@ used_keys = set()
 locations = []
 for g in guide["locations"]:
     floors = []
-    for fl in g.get("areas", [{"keys": [g["id"]]}]):
+    for fl in g.get("areas") if "areas" in g else [{"keys": [g["id"]]}]:
         merged = defaultdict(dict)
         for k in fl["keys"]:
             if k not in tables:
@@ -145,6 +145,64 @@ for g in guide["locations"]:
     loc = {k: v for k, v in g.items() if k != "areas"}
     loc["floors"] = floors
     locations.append(loc)
+
+# ---------- trainer battles (from the world map render) ----------
+import re as _re
+markers_path = os.path.join(ROOT, "map", "markers.js")
+bosses = json.load(open(os.path.join(ROOT, "tools", "bosses.json")))
+OVERRIDE = [("SSAnne", "ss-anne"), ("Rocket Hideout", "rocket-hideout"), ("Celadon City Game Corner", "rocket-hideout"),
+            ("Silph Co", "silph-co"), ("Viridian City Gym", "viridian-gym"), ("Pewter City Gym", "pewter-city"),
+            ("Five Island Meadow", "five-isle-meadow"), ("Five Island Rocket Warehouse", "five-isle-meadow")]
+def words(x):
+    return " " + _re.sub(r"[^a-z0-9]+", " ", x.lower()).strip() + " "
+bases = [(l, words(_re.sub(r"\s*\(.*\)$", "", l["name"])), words(l.get("mapName", l["name"]))) for l in locations]
+def loc_for(name):
+    for pre, lid in OVERRIDE:
+        if name.startswith(pre):
+            return next(l for l in locations if l["id"] == lid)
+    w = words(name)
+    best, bi, bl = None, -1, 0
+    for l, b1, b2 in bases:
+        for b in (b1, b2):
+            i = w.find(b)
+            if i >= 0 and (i > bi or (i == bi and len(b) > bl)):
+                best, bi, bl = l, i, len(b)
+    return best
+unmatched = []
+if os.path.exists(markers_path):
+    ms = open(markers_path, encoding="utf-8").read()
+    W = json.loads(ms[ms.index("=") + 1: ms.rindex(";")])
+    for x, y, label, spr, place, party, leader in W["trainers"]:
+        if not party:
+            continue
+        l = loc_for(place)
+        if not l:
+            unmatched.append(place)
+            continue
+        nm = label.replace("Leader ", "").replace("Swimmer M ", "Swimmer ").replace("Swimmer F ", "Swimmer ").replace("Sis And Bro", "Sis and Bro").replace("Pokemaniac", "PokéManiac")
+        l.setdefault("battles", []).append({"n": nm, "p": party, "L": leader})
+RIVAL = [("TRAINER_RIVAL_OAKS_LAB_CHARMANDER", "pallet-town"), ("TRAINER_RIVAL_ROUTE22_EARLY_CHARMANDER", "kanto-route-22"),
+         ("TRAINER_RIVAL_CERULEAN_CHARMANDER", "cerulean-city"), ("TRAINER_RIVAL_SS_ANNE_CHARMANDER", "ss-anne"),
+         ("TRAINER_RIVAL_POKEMON_TOWER_CHARMANDER", "pokemon-tower"), ("TRAINER_RIVAL_SILPH_CHARMANDER", "silph-co"),
+         ("TRAINER_RIVAL_ROUTE22_LATE_CHARMANDER", "kanto-route-22"),
+         ("TRAINER_ELITE_FOUR_LORELEI", "indigo-plateau"), ("TRAINER_ELITE_FOUR_BRUNO", "indigo-plateau"),
+         ("TRAINER_ELITE_FOUR_AGATHA", "indigo-plateau"), ("TRAINER_ELITE_FOUR_LANCE", "indigo-plateau"),
+         ("TRAINER_CHAMPION_FIRST_CHARMANDER", "indigo-plateau")]
+NAMES = {"OAKS_LAB": "Rival (Oak's Lab)", "ROUTE22_EARLY": "Rival (first visit)", "CERULEAN": "Rival", "SS_ANNE": "Rival",
+         "POKEMON_TOWER": "Rival", "SILPH": "Rival", "ROUTE22_LATE": "Rival (before the League)", "LORELEI": "Lorelei",
+         "BRUNO": "Bruno", "AGATHA": "Agatha", "LANCE": "Lance", "CHAMPION": "Champion"}
+rival_pos = {}
+for tid, lid in RIVAL:
+    if tid not in bosses:
+        continue
+    key = next(k for k in NAMES if k in tid)
+    l = next(x for x in locations if x["id"] == lid)
+    pos = rival_pos.get(lid, 0) if "RIVAL" in tid else len(l.get("battles", []))
+    l.setdefault("battles", []).insert(pos, {"n": NAMES[key], "p": bosses[tid], "L": 1})
+    if "RIVAL" in tid:
+        rival_pos[lid] = pos + 1
+if unmatched:
+    print("trainers with no location:", sorted(set(unmatched)), file=sys.stderr)
 
 unused = sorted(set(tables) - used_keys)
 if unused:

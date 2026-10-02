@@ -41,9 +41,9 @@
   const LOCS = D.locations;
   LOCS.forEach((l, i) => { l.i = i; l.ci = chIndex[l.chapter]; });
   const LOC = Object.fromEntries(LOCS.map((l) => [l.id, l]));
-  UI.filter = Object.assign({ land: 1, surf: 1, fish: 1, rock: 1, other: 1, hideLocked: 0 }, UI.filter || {});
+  UI.filter = Object.assign({ land: 1, surf: 1, fish: 1, rock: 1, other: 1, battle: 1, hideLocked: 0 }, UI.filter || {});
   const CAT = (m) => (m === "walk" ? "land" : m === "surf" ? "surf" : m.endsWith("-rod") ? "fish" : m === "rock-smash" ? "rock" : "other");
-  const FILTERS = [["land", "Grass & caves"], ["surf", "Surfing"], ["fish", "Fishing"], ["rock", "Rock Smash"], ["other", "Gifts & trades"]];
+  const FILTERS = [["land", "Grass & caves"], ["surf", "Surfing"], ["fish", "Fishing"], ["rock", "Rock Smash"], ["other", "Gifts & trades"], ["battle", "In battle"]];
 
   // match a world-map area name ("Five Island Lost Cave Room1") to a checklist location
   const words = (s) => " " + s.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim() + " ";
@@ -402,10 +402,33 @@
       if (multi) h += `<h3 style="margin-top:4px">${esc(f.label || "Area " + (fi + 1))}</h3>`;
       h += inner;
     });
-    if (!l.floors.some((f) => f.tables.length)) h += `<p class="muted">No Pokémon to catch here.</p>`;
-    else if (!shown) h += `<p class="muted">Everything here is hidden by your filters.</p>`;
+    const hasWild = l.floors.some((f) => f.tables.length);
+    if (!hasWild && !(l.battles || []).length) h += `<p class="muted">No Pokémon to catch here.</p>`;
+    else if (hasWild && !shown && !UI.filter.battle) h += `<p class="muted">Everything here is hidden by your filters.</p>`;
+    if (UI.filter.battle && (l.battles || []).length) h += renderBattles(l);
     body.innerHTML = h;
     body.dataset.filled = 1;
+  }
+
+  // Pokémon trainers use here: mark them seen (trainer Pokémon can't be caught)
+  function renderBattles(l) {
+    const by = new Map();
+    l.battles.forEach((b) => b.p.forEach(([id, lv]) => {
+      if (!SP[id]) return;
+      const e = by.get(id) || { lo: lv, hi: lv, who: [] };
+      e.lo = Math.min(e.lo, lv); e.hi = Math.max(e.hi, lv);
+      if (!e.who.includes(b.n)) e.who.push(b.n);
+      by.set(id, e);
+    }));
+    const rows = [...by.entries()].sort((a, b) => a[0] - b[0]).map(([id, e]) => `<div class="row brow ${monS(id) >= 1 ? "seenrow" : ""}" data-row="${id}">
+        ${seenBtn(id)}
+        <img class="spr" src="${spr(id)}" alt="" loading="lazy" width="52" height="52">
+        <div class="who"><b>${esc(SP[id].n)}</b><span class="lv">${e.lo === e.hi ? `Lv ${e.lo}` : `Lv ${e.lo}–${e.hi}`}</span>
+          <div class="tip">${esc(e.who.slice(0, 3).join(", "))}${e.who.length > 3 ? ` +${e.who.length - 3} more` : ""}</div></div>
+        <div></div></div>`).join("");
+    const seen = [...by.keys()].filter((id) => monS(id) >= 1).length;
+    return `<div class="tbl battle"><div class="tbl-head"><h4>In battle</h4><span class="muted small">${seen}/${by.size} seen · ${l.battles.length} trainer${l.battles.length > 1 ? "s" : ""}</span></div>${rows}
+      <details class="trainers"><summary class="small">Trainers and their teams</summary>${l.battles.map((b) => `<div class="tr-row ${b.L ? "boss" : ""}"><b>${esc(b.n)}</b><span class="tr-party">${b.p.filter(([id]) => SP[id]).map(([id, lv]) => `<span><img src="${spr(id)}" alt="${esc(SP[id].n)}" loading="lazy" width="40" height="40"><small>${lv}</small></span>`).join("")}</span></div>`).join("")}</details></div>`;
   }
 
   function renderTable(l, f, t) {

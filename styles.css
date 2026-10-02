@@ -540,3 +540,14 @@ details.loc.active { box-shadow: inset 0 0 0 2px var(--red), inset 0 0 0 4px var
 .crew-slot.on b { color: var(--ink); }
 .crew-slot .slot { position: absolute; top: 4px; left: 7px; font: 700 11px var(--f-display); color: var(--ink-3); }
 .plan-done { justify-self: start; margin-top: 4px; }
+.tbl.battle .row.brow { grid-template-columns: 28px 44px 1fr auto; }
+@media (max-width: 420px) { .tbl.battle .row.brow { grid-template-columns: 28px 38px 1fr auto; } }
+.tbl.battle .tbl-head .muted { margin-left: auto; }
+.trainers { padding: 4px 12px 8px; }
+.trainers summary { cursor: pointer; color: var(--ink-3); padding: 6px 0; }
+.tr-row { display: grid; gap: 2px; padding: 6px 0; border-top: 1px dashed var(--line); font-size: 13.5px; }
+.tr-row.boss b { color: var(--red); }
+.tr-party { display: flex; flex-wrap: wrap; gap: 2px; }
+.tr-party span { display: grid; justify-items: center; }
+.tr-party img { width: 40px; height: 40px; margin: -4px 0 -6px; }
+.tr-party small { font: 700 10px var(--f-display); color: var(--ink-3); }

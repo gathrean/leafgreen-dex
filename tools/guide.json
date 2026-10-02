@@ -332,6 +332,14 @@
    "blurb": "Between the two halves of Route 2's west path."
   },
   {
+   "id": "pewter-city",
+   "name": "Pewter City (Gym)",
+   "chapter": "brock",
+   "map": "kanto:pewter",
+   "areas": [],
+   "mapName": "Pewter City Gym"
+  },
+  {
    "id": "kanto-route-3",
    "name": "Route 3",
    "chapter": "misty",
@@ -655,6 +663,14 @@
    "blurb": "South end of Route 6."
   },
   {
+   "id": "ss-anne",
+   "name": "S.S. Anne",
+   "chapter": "surge",
+   "map": "kanto:ss-anne",
+   "areas": [],
+   "mapName": "SSAnne 1F Corridor"
+  },
+  {
    "id": "kanto-route-11",
    "name": "Route 11",
    "chapter": "surge",
@@ -887,6 +903,14 @@
    "back": "Return with rods/Surf for the pond (Koffing, Grimer, Slowpoke).",
    "notes": "Gift Eevee Lv25 on the Condominiums rooftop; Tea on Condominiums 1F; Coin Case from the restaurant; Erika's Gym needs Cut. Celadon Game Corner: LeafGreen prizes: Abra Lv7 (120 coins), Clefairy Lv12 (750), Pinsir Lv18 (2500), Dratini Lv24 (4600), Porygon Lv18 (6500); the Rocket Hideout (Silph Scope) is under it.",
    "blurb": "West end of Route 7."
+  },
+  {
+   "id": "rocket-hideout",
+   "name": "Rocket Hideout",
+   "chapter": "erika",
+   "map": "kanto:celadon",
+   "areas": [],
+   "mapName": "Rocket Hideout B1F"
   },
   {
    "id": "kanto-route-16",
@@ -1256,6 +1280,14 @@
     }
    ],
    "notes": "Fighting Dojo: Beat Karate Master Koichi to choose Hitmonlee or Hitmonchan Lv25. Silph Co.: No wild Pokémon; after the rival battle an employee on 7F gives Lapras Lv25; Card Key on 5F; Giovanni on 11F."
+  },
+  {
+   "id": "silph-co",
+   "name": "Silph Co.",
+   "chapter": "sabrina",
+   "map": "kanto:saffron",
+   "areas": [],
+   "mapName": "Silph Co 1F"
   },
   {
    "id": "kanto-sea-route-19",
@@ -1894,6 +1926,14 @@
    "blurb": "Surf along the river from Route 10's north side."
   },
   {
+   "id": "viridian-gym",
+   "name": "Viridian Gym",
+   "chapter": "sevii",
+   "map": "kanto:viridian",
+   "areas": [],
+   "mapName": "Viridian City Gym"
+  },
+  {
    "id": "kanto-route-23",
    "name": "Route 23",
    "chapter": "league",
@@ -1955,6 +1995,14 @@
    "mapName": "Victory Road 1F",
    "notes": "Boulder switch puzzles; Indigo Plateau and the Elite Four are beyond it (no wild Pokémon there).",
    "blurb": "North end of Route 23."
+  },
+  {
+   "id": "indigo-plateau",
+   "name": "Indigo Plateau",
+   "chapter": "league",
+   "map": "kanto:indigo",
+   "areas": [],
+   "mapName": "Indigo Plateau Exterior"
   },
   {
    "id": "roaming-kanto",

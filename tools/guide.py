@@ -49,7 +49,7 @@ R = "kanto-route-"
 
 def L(id, name, chapter, map, areas=None, req=None, **kw):
     d = {"id": id, "name": name, "chapter": chapter, "map": map}
-    if areas:
+    if areas is not None:
         d["areas"] = [{"label": a[0], "keys": a[1], **({"req": a[2]} if len(a) > 2 else {})} for a in areas]
     if req:
         d["req"] = req
@@ -65,6 +65,7 @@ LOCATIONS = [
     L(R + "22", "Route 22", "brock", "kanto:r22"),
     L(R + "2", "Route 2", "brock", "kanto:r2", [("West path", [R + "2/south-towards-viridian-city"]), ("East side (Cut)", [R + "2/north-towards-pewter-city"], ["cut"])]),
     L("viridian-forest", "Viridian Forest", "brock", "kanto:viridian-forest"),
+    L("pewter-city", "Pewter City (Gym)", "brock", "kanto:pewter", [], mapName="Pewter City Gym"),
     # ---- misty
     L(R + "3", "Route 3", "misty", "kanto:r3"),
     L("mt-moon", "Mt. Moon", "misty", "kanto:mt-moon", [("1F", ["mt-moon/1f"]), ("B1F", ["mt-moon/b1f"]), ("B2F", ["mt-moon/b2f"])], mapName="Mt. Moon 1F"),
@@ -77,6 +78,7 @@ LOCATIONS = [
     L("kanto-underground-path", "Underground Path (5 to 6)", "surge", "kanto:underground-path", mapName="Underground Path North Entrance"),
     L(R + "6", "Route 6", "surge", "kanto:r6"),
     L("vermilion-city", "Vermilion City", "surge", "kanto:vermilion", [("City", ["vermilion-city"]), ("Harbor by the S.S. Anne", ["ss-anne"])]),
+    L("ss-anne", "S.S. Anne", "surge", "kanto:ss-anne", [], mapName="SSAnne 1F Corridor"),
     L(R + "11", "Route 11", "surge", "kanto:r11"),
     L("digletts-cave", "Diglett's Cave", "surge", "kanto:digletts-cave", mapName="Digletts Cave B1F"),
     # ---- erika
@@ -86,6 +88,7 @@ LOCATIONS = [
     L(R + "8", "Route 8", "erika", "kanto:r8", walkReq=["cut"]),
     L(R + "7", "Route 7", "erika", "kanto:r7"),
     L("celadon-city", "Celadon City", "erika", "kanto:celadon", [("City", ["celadon-city"]), ("Celadon Mansion", ["celadon-city/celadon-mansion"]), ("Game Corner prizes", ["celadon-city/prize-corner"], ["coin-case"])]),
+    L("rocket-hideout", "Rocket Hideout", "erika", "kanto:celadon", [], mapName="Rocket Hideout B1F"),
     L(R + "16", "Route 16", "erika", "kanto:r16", walkReq=["cut"]),
     # ---- koga
     L("pokemon-tower", "Pokémon Tower", "koga", "kanto:pokemon-tower", [("3F", ["pokemon-tower/3f"]), ("4F", ["pokemon-tower/4f"]), ("5F", ["pokemon-tower/5f"]), ("6F", ["pokemon-tower/6f"]), ("7F", ["pokemon-tower/7f"])], req=["silph-scope"], mapName="Pokémon Tower 3F"),
@@ -99,6 +102,7 @@ LOCATIONS = [
     L(R + "18", "Route 18", "koga", "kanto:r18"),
     # ---- sabrina
     L("saffron-city", "Saffron City", "sabrina", "kanto:saffron", [("Fighting Dojo", ["saffron-city/fighting-dojo"]), ("Silph Co. 7F", ["saffron-city/silph-co-7f"])]),
+    L("silph-co", "Silph Co.", "sabrina", "kanto:saffron", [], mapName="Silph Co 1F"),
     # ---- blaine
     L("kanto-sea-route-19", "Route 19", "blaine", "kanto:r19", req=["surf"]),
     L("kanto-sea-route-20", "Route 20", "blaine", "kanto:r20", req=["surf"]),
@@ -118,9 +122,11 @@ LOCATIONS = [
     L("three-isle-port", "Three Isle Port", "sevii", "sevii:three-isle-port", req=["national-dex"], mapName="Three Island Port"),
     L("kanto-sea-route-21", "Route 21", "sevii", "kanto:r21", req=["surf"]),
     L("kanto-power-plant", "Power Plant", "sevii", "kanto:power-plant", req=["surf"]),
+    L("viridian-gym", "Viridian Gym", "sevii", "kanto:viridian", [], mapName="Viridian City Gym"),
     # ---- league
     L(R + "23", "Route 23", "league", "kanto:r23", req=["surf"]),
     L("kanto-victory-road-2", "Victory Road", "league", "kanto:victory-road", [("1F", ["kanto-victory-road-2/1f"]), ("2F", ["kanto-victory-road-2/2f"]), ("3F", ["kanto-victory-road-2/3f"])], mapName="Victory Road 1F"),
+    L("indigo-plateau", "Indigo Plateau", "league", "kanto:indigo", [], mapName="Indigo Plateau Exterior"),
     # ---- postgame
     L("roaming-kanto", "Roaming beast", "post", "kanto:pallet", [(None, ["roaming-kanto/area"])], req=["hof", "sapphire"], mapName="Route 1"),
     L("four-island", "Four Island", "post", "sevii:four", req=["rainbow-pass"]),
