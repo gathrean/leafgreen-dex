@@ -710,7 +710,9 @@
     let h = `<div class="box plan-crew"><h2>The crew</h2><p class="muted small" style="margin:4px 0 10px">Party order follows the order the Straw Hats joined. Tap one for its Pokédex page.</p><div class="crew">` +
       (D.extra.crew || []).map(([id, nick, sp, moves], i) => `<button class="crew-m" data-act="dex" data-id="${id}"><span class="slot">${i + 1}</span>${planSprite(id)}<b>${esc(nick)}</b><span class="muted small">${esc(sp)}</span><span class="small">${esc(moves)}</span></button>`).join("") + `</div></div>`;
     P.forEach((m) => { h += planCard(m, false); });
-    $("#app").innerHTML = `<div class="planpage">${h}</div>`;
+    const run = D.extra.run || [];
+    const runHtml = run.length ? `<details class="box run" ${UI.runOpen === 0 ? "" : "open"}><summary><h2>My run</h2><span class="muted small">Your choices so far</span></summary>${run.map((g) => `<h3>${esc(g.h)}</h3><ul>${g.items.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`).join("")}</details>` : "";
+    $("#app").innerHTML = `<div class="planpage">${runHtml}${h}</div>`;
   }
 
   // ---------------- SYNC SHEET ----------------

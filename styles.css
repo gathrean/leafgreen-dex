@@ -585,3 +585,7 @@ details.loc.here:not(.active) { box-shadow: inset 0 0 0 2px var(--red), inset 0 
 }
 .split-r { position: sticky; }
 .mv { position: relative; }
+.run > summary { list-style: none; cursor: pointer; display: flex; align-items: baseline; gap: 10px; }
+.run > summary::-webkit-details-marker { display: none; }
+.run h3 { margin: 14px 0 4px; color: var(--leaf); }
+.run ul { margin: 0; padding-left: 18px; display: grid; gap: 3px; font-size: 14.5px; }
