@@ -408,12 +408,12 @@
      [
       2,
       "Luffy",
-      "Ivysaur. Cut replaces Tackle now; Razor Leaf at Lv 22 replaces Poison Powder. Resists Electric."
+      "Ivysaur: Cut, Poison Powder, Leech Seed, Razor Leaf. Resists Electric."
      ],
      [
       34,
       "Usopp",
-      "Nidoking. Lead vs Lt. Surge (immune to Electric) and the rival's Charmeleon. Dig, then Thrash at Lv 22."
+      "Nidoking: Thrash, Dig, Double Kick, Mega Punch. Lead vs Lt. Surge; Ground means Electric can't touch him."
      ],
      [
       12,
@@ -612,7 +612,7 @@
      },
      {
       "k": "e12",
-      "t": "Beat Erika: Rainbow Badge (lets you use Strength) and TM19 Giga Drain. Luffy swaps Vine Whip for it."
+      "t": "Beat Erika: Rainbow Badge (lets you use Strength) and TM19 Giga Drain. Luffy swaps Poison Powder for it."
      },
      {
       "k": "e13",
@@ -1433,13 +1433,13 @@
     3,
     "Luffy",
     "Venusaur",
-    "Razor Leaf (Lv 22), Giga Drain (TM19), Sleep Powder (Move Reminder), Cut"
+    "Razor Leaf, Cut, Giga Drain (TM19, for Poison Powder), Sleep Powder (Two Island, for Leech Seed)"
    ],
    [
     34,
     "Usopp",
     "Nidoking",
-    "Thrash (Lv 22), Megahorn (Lv 43), Earthquake (TM26), Ice Beam (TM13)"
+    "Mega Punch, Double Kick, Earthquake (TM26, for Dig), Megahorn (Lv 43, for Thrash)"
    ],
    [
     38,
@@ -1541,11 +1541,10 @@
     "h": "Decisions made",
     "items": [
      "Fossil: Helix (Omanyte). Old Amber for Aerodactyl too.",
+     "Luffy (Joy) moves now: Cut, Poison Powder, Leech Seed, Razor Leaf. Next: Giga Drain (Erika) for Poison Powder, then Sleep Powder (Two Island) for Leech Seed.",
+     "Usopp moves now: Thrash, Dig, Double Kick, Mega Punch (keeping Mega Punch). Later: Earthquake (Giovanni) for Dig, Megahorn at Lv 43 for Thrash.",
      "HMs on the team, no HM carrier: Cut on Luffy (in place of Tackle), Fly on Zoro, Strength and Surf on Usopp or Robin. The Move Deleter in Fuchsia can remove HMs later.",
-     "Luffy's moves: Cut now, Razor Leaf at Lv 22, Giga Drain from Erika, Sleep Powder back at Two Island.",
      "TM34 Shock Wave from Lt. Surge is reserved for Nami.",
-     "TM28 Dig: taught to Usopp. Done.",
-     "Mega Punch tutor (Route 4) was recommended for Usopp over Mega Kick.",
      "Luffy's Sleep Powder comes back at the Two Island Move Reminder: Big Mushroom from Pokémon Tower 5F, or two Tiny.",
      "Master Ball: save it for Mewtwo or Entei.",
      "Day Care: Nidoran♀ suggested, for Nidorina and then Nidoqueen with the spare Moon Stone."
