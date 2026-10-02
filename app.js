@@ -253,6 +253,7 @@
         cb.slice(0, 8).map(({ l, ids }) => `<a href="#/routes/${l.id}"><b>${esc(l.name)}</b><span class="muted small">${ids.length} left</span><span class="sprites">${ids.slice(0, 5).map((id) => `<img src="${spr(id)}" alt="${esc(SP[id].n)}" loading="lazy">`).join("")}</span></a>`).join("") +
         `</div></div>`;
     }
+    h += renderTeam();
     h += renderBag();
     h += `<div class="box filters"><div class="badges" style="margin:0">${FILTERS.map(([k, n]) => `<button class="chip ${UI.filter[k] ? "on" : ""}" data-act="filt" data-v="${k}">${n}</button>`).join("")}
       <button class="chip ${UI.filter.hideLocked ? "on" : ""}" data-act="filt" data-v="hideLocked">Hide locked</button></div></div>`;
@@ -328,6 +329,21 @@
     }).then(() => { if (!focusId) onSplitScroll(); });
   }
   SPLIT_MQ.addEventListener("change", () => { if ((location.hash || "#/routes").startsWith("#/routes")) route(); });
+
+  function renderTeam() {
+    const C = D.extra.crewLines || [];
+    if (!C.length) return "";
+    const joined = C.filter((c) => c.line.some((id) => monS(id) === 2)).length;
+    return `<div class="box team-box"><div class="team-hd"><h3>Straw Hat crew</h3><span class="muted small">${joined}/${C.length} aboard</span></div><div class="crew-row">` +
+      C.map((c, i) => {
+        const have = c.line.filter((id) => monS(id) === 2);
+        const id = have.length ? have[have.length - 1] : c.line[c.line.length - 1];
+        const final = c.line[c.line.length - 1];
+        const on = have.length > 0;
+        const next = on && id !== final ? `Next: ${SP[final].n}` : on ? SP[id].n : c.where;
+        return `<button class="crew-slot ${on ? "on" : ""}" data-act="dex" data-id="${on ? id : c.line[0]}"><span class="slot">${i + 1}</span><img src="${spr(id)}" alt="" width="56" height="56" class="${on ? "" : "sil"}"><b>${esc(c.nick)}</b><span class="small">${esc(next)}</span></button>`;
+      }).join("") + `</div></div>`;
+  }
 
   function renderBag() {
     const b = flag("badges");
@@ -443,6 +459,8 @@
     if ($("#kCaught")) { $("#kCaught").textContent = k.caught; $("#kSeen").textContent = k.seen; $("#kBar").style.width = (k.caught / 151) * 100 + "%"; }
     if ($("#nCaught")) $("#nCaught").textContent = counts(386).caught;
     if ($("#bigmap")) $("#bigmap").innerHTML = MAPS.svg(UI.map, mapMarks(UI.map), { labels: true });
+    const tb = $(".team-box");
+    if (tb) tb.outerHTML = renderTeam();
     if (window.MAPVIEW && MAPVIEW.ready) MAPVIEW.redraw();
     $$(`.dex-cell[data-id="${id}"]`).forEach((c) => { c.classList.toggle("c", s === 2); c.classList.toggle("s", s === 1); });
   }

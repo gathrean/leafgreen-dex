@@ -3844,6 +3844,57 @@
     "Lapras",
     "Surf, Ice Beam, Psychic (TM29), Body Slam"
    ]
+  ],
+  "crewLines": [
+   {
+    "nick": "Luffy",
+    "line": [
+     1,
+     2,
+     3
+    ],
+    "where": "Your starter"
+   },
+   {
+    "nick": "Zoro",
+    "line": [
+     84,
+     85
+    ],
+    "where": "Doduo, Route 16 (needs Cut)"
+   },
+   {
+    "nick": "Nami",
+    "line": [
+     133,
+     135
+    ],
+    "where": "Eevee, Celadon Mansion roof room + Thunder Stone"
+   },
+   {
+    "nick": "Usopp",
+    "line": [
+     32,
+     33,
+     34
+    ],
+    "where": "Nidoran♂, Route 3 or the Route 5 trade"
+   },
+   {
+    "nick": "Sanji",
+    "line": [
+     37,
+     38
+    ],
+    "where": "Vulpix, Routes 7 and 8 + Fire Stone"
+   },
+   {
+    "nick": "Nico Robin",
+    "line": [
+     131
+    ],
+    "where": "Lapras, gift on Silph Co. 7F"
+   }
   ]
  }
 }
