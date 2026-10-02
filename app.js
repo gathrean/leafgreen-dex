@@ -627,11 +627,12 @@
     const { P, cur, ci } = planState();
     const isCur = m.id === cur;
     const done = !cur || P.indexOf(m) < ci;
-    const prep = m.prep.map((t, i) => {
-      const k = `plan:${m.id}:${i}`;
+    // each item keeps a fixed key, so removing one never moves someone's tick onto another line
+    const prep = m.prep.map(({ k: pk, t }) => {
+      const k = `plan:${m.id}:${pk}`;
       return `<label class="prep ${flag(k) ? "on" : ""}"><input type="checkbox" data-act="plan" data-k="${k}" ${flag(k) ? "checked" : ""}><span>${esc(t)}</span></label>`;
     }).join("");
-    const left = m.prep.filter((t, i) => !flag(`plan:${m.id}:${i}`)).length;
+    const left = m.prep.filter(({ k }) => !flag(`plan:${m.id}:${k}`)).length;
     const kicker = (inline ? "Team plan · " : "") + (isCur ? "You are here" : done ? "Done" : "Up next");
     const open = inline ? isCur && !done : isCur || UI.plan === m.id;
     return `<details class="box plan ${inline ? "inline" : ""} ${isCur ? "now" : ""} ${done ? "past" : ""}" ${open ? "open" : ""} data-plan="${m.id}">
