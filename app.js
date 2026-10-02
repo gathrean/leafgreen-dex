@@ -615,18 +615,26 @@
 
   // ---------------- PLAN PAGE ----------------
   const PLAN_FOR_CHAPTER = { misty: ["misty"], surge: ["surge"], erika: ["erika"], koga: ["koga"], sabrina: ["sabrina"], blaine: ["blaine"], sevii: ["sevii", "giovanni"], league: ["league"] };
+  // badges you hold once a stop is behind you (sevii has no gym, so it only finishes by checklist or button)
+  const PLAN_BADGES_AFTER = { misty: 2, surge: 3, erika: 4, koga: 5, sabrina: 6, blaine: 7, giovanni: 8 };
+  function planDone(m) {
+    if (flag("plandone:" + m.id)) return true;
+    if (m.id === "league") return !!flag("hof");
+    if (PLAN_BADGES_AFTER[m.id] && flag("badges") >= PLAN_BADGES_AFTER[m.id]) return true;
+    return m.prep.length > 0 && m.prep.every(({ k }) => flag(`plan:${m.id}:${k}`));
+  }
   function planState() {
     const P = D.extra.plan || [];
-    const b = flag("badges");
-    const cur = flag("hof") ? null : (P.find((m) => m.badges >= b) || P[P.length - 1]).id;
-    const ci = P.findIndex((x) => x.id === cur);
+    const curM = P.find((m) => !planDone(m));
+    const cur = curM ? curM.id : null;
+    const ci = cur ? P.indexOf(curM) : P.length;
     return { P, cur, ci };
   }
   const planSprite = (id, cls) => `<img class="${cls || ""}" src="${spr(id)}" alt="" loading="lazy" width="56" height="56">`;
   function planCard(m, inline) {
     const { P, cur, ci } = planState();
     const isCur = m.id === cur;
-    const done = !cur || P.indexOf(m) < ci;
+    const done = planDone(m) || P.indexOf(m) < ci;
     // each item keeps a fixed key, so removing one never moves someone's tick onto another line
     const prep = m.prep.map(({ k: pk, t }) => {
       const k = `plan:${m.id}:${pk}`;
@@ -643,6 +651,7 @@
         <div class="team">${m.team.map(([id, nick, note]) => `<div class="tm">${planSprite(id, monS(id) === 2 ? "" : "sil")}<div><b>${esc(nick)}</b> <span class="muted small">${esc(SP[id].n)}</span>${note ? `<div class="small">${esc(note)}</div>` : ""}</div></div>`).join("")}</div>
         <h3>Before you go</h3>
         <div class="preps">${prep}</div>
+        <button class="btn ${flag("plandone:" + m.id) ? "on" : "primary"} plan-done" data-act="plandone" data-v="${m.id}">${flag("plandone:" + m.id) ? "Marked done ✓ (tap to undo)" : "Mark this stop done"}</button>
       </div></details>`;
   }
   function renderPlan() {
@@ -725,7 +734,15 @@
     } else if (act === "badges") { setFlag("badges", +t.dataset.v); route(); }
     else if (act === "flag") { setFlag(t.dataset.v, flag(t.dataset.v) ? 0 : 1); route(); }
     else if (act === "map") { UI.map = t.dataset.v; saveUI(); route(); }
-    else if (act === "plan") return; // handled on "change" below, so a tap on the label counts once
+    else if (act === "plan") return;
+    else if (act === "plandone") {
+      const id = t.dataset.v, on = !flag("plandone:" + id);
+      setFlag("plandone:" + id, on ? 1 : 0);
+      if (on && PLAN_BADGES_AFTER[id] && flag("badges") < PLAN_BADGES_AFTER[id]) { setFlag("badges", PLAN_BADGES_AFTER[id]); toast(`Bag updated: ${PLAN_BADGES_AFTER[id]} badges`); }
+      if (on && id === "league") setFlag("hof", 1);
+      route();
+      const nxt = $(".plan.now"); if (nxt) nxt.scrollIntoView({ behavior: "smooth", block: "start" });
+    } // handled on "change" below, so a tap on the label counts once
     else if (act === "filt") { UI.filter[t.dataset.v] = UI.filter[t.dataset.v] ? 0 : 1; saveUI(); route(); }
     else if (act === "dexf") { UI.dexFilter = t.dataset.v; saveUI(); renderDex(); }
     else if (act === "natl") { UI.natl = !UI.natl; saveUI(); renderDex(); }
@@ -755,8 +772,10 @@
     const t = e.target;
     if (!t.matches || !t.matches('input[data-act="plan"]')) return;
     const k = t.dataset.k;
+    const before = planState().cur;
     setFlag(k, t.checked ? 1 : 0);
     $$(`[data-act="plan"][data-k="${k}"]`).forEach((c) => { c.checked = t.checked; c.closest(".prep").classList.toggle("on", t.checked); });
+    if (planState().cur !== before) { route(); toast("Stop done. On to the next one!"); const nxt = $(".plan.now"); if (nxt) nxt.scrollIntoView({ behavior: "smooth", block: "start" }); }
   });
   document.addEventListener("toggle", (e) => {
     const el = e.target;
