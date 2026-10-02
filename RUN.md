@@ -27,6 +27,7 @@ Choices made so far, kept alongside the site. The same list shows at the top of 
 - Luffy's Sleep Powder comes back at the Two Island Move Reminder: Big Mushroom from Pokémon Tower 5F, or two Tiny.
 - Master Ball: save it for Mewtwo or Entei.
 - Day Care: done. Nidoran♀ became Nidorina, then Nidoqueen with the spare Moon Stone.
+- Day Care now: Magikarp (dropped off at Lv 7). Withdraw at Lv 19, win one level in battle, Gyarados at 20.
 
 ## Stand-ins
 
@@ -34,4 +35,4 @@ Choices made so far, kept alongside the site. The same list shows at the top of 
 - Pikachu: benched.
 - Pidgeotto “Bobby”: deposited.
 - CH'DING (Farfetch'd, traded for Spearow): dropped as HM carrier, boxed.
-- Skipped: Sandshrew, Magikarp training, the Paras mushroom hunt, the MR. NIDO trade.
+- Skipped: Sandshrew, the Paras mushroom hunt, the MR. NIDO trade.
