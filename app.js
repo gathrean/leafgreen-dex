@@ -281,7 +281,7 @@
     h += `<p class="foot">Encounter odds from PokeAPI's LeafGreen tables. Sprites from the PokeAPI sprite archive. Fan-made, not affiliated with Nintendo or Game Freak.</p>`;
     app.innerHTML = split ? `<div class="split"><div class="split-l">${h}</div><div class="split-r"><div id="splitmap"></div></div></div>` : h;
     document.body.classList.toggle("is-split", split);
-    if (split) startSplit(focusId);
+    if (split) { startSplit(focusId); mountFloatPlan($(".split-r")); }
 
     if (focusId && LOC[focusId]) {
       const el = document.getElementById("loc-" + focusId);
@@ -683,6 +683,28 @@
         <button class="btn ${flag("plandone:" + m.id) ? "on" : "primary"} plan-done" data-act="plandone" data-v="${m.id}">${flag("plandone:" + m.id) ? "Marked done ✓ (tap to undo)" : "Mark this stop done"}</button>
       </div></details>`;
   }
+  // floating checklist for the current stop, shown over the map on wide screens
+  function floatPlanHtml() {
+    const { P, cur } = planState();
+    const m = P.find((x) => x.id === cur);
+    if (!m) return "";
+    const left = m.prep.filter(({ k }) => !flag(`plan:${m.id}:${k}`)).length;
+    const items = m.prep.map(({ k: pk, t }) => {
+      const k = `plan:${m.id}:${pk}`;
+      return `<label class="prep ${flag(k) ? "on" : ""}"><input type="checkbox" data-act="plan" data-k="${k}" ${flag(k) ? "checked" : ""}><span>${esc(t)}</span></label>`;
+    }).join("");
+    return `<aside class="float-plan ${UI.floatMin ? "min" : ""}" aria-label="Checklist">
+      <button class="fp-head" data-act="floatmin"><span class="kicker">Checklist · ${left} to do</span><b>${esc(m.title)}</b><span class="fp-caret">${UI.floatMin ? "▴" : "▾"}</span></button>
+      <div class="fp-body">${items}<button class="btn primary plan-done" data-act="plandone" data-v="${m.id}">Mark this stop done</button></div>
+    </aside>`;
+  }
+  function mountFloatPlan(container) {
+    if (!container) return;
+    const old = container.querySelector(".float-plan");
+    if (old) old.remove();
+    container.insertAdjacentHTML("beforeend", floatPlanHtml());
+  }
+
   function renderPlan() {
     const { P } = planState();
     let h = `<div class="box plan-crew"><h2>The crew</h2><p class="muted small" style="margin:4px 0 10px">Party order follows the order the Straw Hats joined. Tap one for its Pokédex page.</p><div class="crew">` +
@@ -737,7 +759,7 @@
     if (page === "dex") { renderDex(); if (arg) openMon(+arg); }
     else if (page === "oak") renderOak();
     else if (page === "plan") renderPlan();
-    else if (page === "map") { MAPVIEW.show($("#app"), arg); return; }
+    else if (page === "map") { MAPVIEW.show($("#app"), arg).then(() => mountFloatPlan($("#app .mv"))); return; }
     else renderRoutes(arg);
     if (!arg) window.scrollTo(0, 0);
   }
@@ -777,6 +799,10 @@
       toast(on ? `Saved: you're at ${LOC[id].name}` : "Cleared your spot");
     }
     else if (act === "plan") return;
+    else if (act === "floatmin") {
+      UI.floatMin = !UI.floatMin; saveUI();
+      $$(".float-plan").forEach((fp) => { fp.classList.toggle("min", !!UI.floatMin); const c = $(".fp-caret", fp); if (c) c.textContent = UI.floatMin ? "▴" : "▾"; });
+    }
     else if (act === "plandone") {
       const id = t.dataset.v, on = !flag("plandone:" + id);
       setFlag("plandone:" + id, on ? 1 : 0);
@@ -817,6 +843,7 @@
     const before = planState().cur;
     setFlag(k, t.checked ? 1 : 0);
     $$(`[data-act="plan"][data-k="${k}"]`).forEach((c) => { c.checked = t.checked; c.closest(".prep").classList.toggle("on", t.checked); });
+    $$(".float-plan").forEach((fp) => fp.parentElement && mountFloatPlan(fp.parentElement));
     if (planState().cur !== before) { route(); toast("Stop done. On to the next one!"); const nxt = $(".plan.now"); if (nxt) nxt.scrollIntoView({ behavior: "smooth", block: "start" }); }
   });
   document.addEventListener("toggle", (e) => {
