@@ -388,17 +388,32 @@
      [
       2,
       "Luffy",
-      "Ivysaur resists Electric."
+      "Ivysaur resists Electric. Teach him Cut."
      ],
      [
       34,
       "Usopp",
-      "Nidoking by now. Ground type makes him immune to Electric."
+      "Nidoking. Ground type makes him immune to Electric; give him Dig."
      ],
      [
-      130,
-      "Fill-in",
-      "Magikarp evolves at Lv 20."
+      25,
+      "Stand-in",
+      "Pikachu. Good vs the rival's Pidgeotto on the S.S. Anne; bench it for Surge."
+     ],
+     [
+      12,
+      "Stand-in",
+      "Butterfree (Caterpie, Lv 10). Sleep Powder at Lv 15 covers for Luffy's when catching."
+     ],
+     [
+      27,
+      "Stand-in",
+      "Sandshrew, Route 4 (25%). Immune to Electric, so it walls Raichu while it Slashes (Lv 23)."
+     ],
+     [
+      17,
+      "Stand-in",
+      "Pidgeotto (Pidgey, Lv 18). Flying for Erika next, and Fly until Zoro joins."
      ]
     ],
     "prep": [
@@ -421,6 +436,14 @@
      {
       "k": "4",
       "t": "Dig and Nidoking's Ground typing make Surge's Raichu harmless."
+     },
+     {
+      "k": "s1",
+      "t": "Catch a Sandshrew on Route 4, just east of Mt. Moon. It's a LeafGreen exclusive, 25% in the grass."
+     },
+     {
+      "k": "s2",
+      "t": "Evolve Caterpie into Butterfree and Pidgey into Pidgeotto as you go."
      }
     ]
    },
@@ -474,6 +497,11 @@
       84,
       "Zoro",
       "Doduo on Route 16. Press B to stop it evolving at Lv 31 until it learns Drill Peck at Lv 37 (Dodrio waits until 47)."
+     ],
+     [
+      17,
+      "Stand-in",
+      "Pidgeotto. Flying beats Erika's grass types until Sanji's ready."
      ]
     ],
     "prep": [
@@ -603,9 +631,9 @@
       ""
      ],
      [
-      130,
-      "Fill-in",
-      "Gyarados holds the Water slot."
+      12,
+      "Stand-in",
+      "Butterfree. Psybeam at Lv 34 is super effective on Koga's Poison types. Out once Robin joins."
      ]
     ],
     "prep": [
