@@ -3039,20 +3039,40 @@
     ],
     "prep": [
      {
-      "k": "0",
-      "t": "Take the Helix Fossil at the end of Mt. Moon B2F."
-     },
-     {
-      "k": "1",
-      "t": "Pick up both Moon Stones (1F item ball, B2F hidden) and use one on Usopp right away. Nidoking learns Thrash at Lv 22 only if he's already evolved."
+      "k": "m1",
+      "t": "Route 3: beat the trainers along the way for EXP (Bug Catchers, Youngsters, Lasses)."
      },
      {
       "k": "3",
       "t": "Buy the Magikarp in the Route 4 Pokémon Center for ₽500. It's your Water stand-in until Robin joins."
      },
      {
+      "k": "m2",
+      "t": "Route 4 tutors outside Mt. Moon: Mega Punch (one-time) for Usopp. Mega Kick is the riskier option."
+     },
+     {
+      "k": "m3",
+      "t": "Mt. Moon 1F: TM09 Bullet Seed in an item ball. Luffy can use it."
+     },
+     {
+      "k": "1",
+      "t": "Pick up both Moon Stones (1F item ball, B2F hidden) and use one on Usopp right away. Nidoking learns Thrash at Lv 22 only if he's already evolved."
+     },
+     {
+      "k": "0",
+      "t": "Take the Helix Fossil at the end of Mt. Moon B2F."
+     },
+     {
+      "k": "m4",
+      "t": "Cerulean: heal up, then go north toward Nugget Bridge."
+     },
+     {
       "k": "4",
       "t": "Your rival leads into a Charmander. Fire beats Luffy, so send Usopp or Pikachu."
+     },
+     {
+      "k": "m5",
+      "t": "Beat Misty: Cascade Badge (lets you use Cut) and TM03 Water Pulse."
      }
     ]
    },
@@ -3137,31 +3157,79 @@
     ],
     "prep": [
      {
-      "k": "0",
-      "t": "Get TM28 Dig from the Team Rocket grunt by the burgled house in Cerulean. Teach it to Usopp."
+      "k": "v0",
+      "t": "Nugget Bridge (Route 24): beat all five trainers, then the Team Rocket grunt for a Nugget. Sell it for ₽5,000."
      },
      {
-      "k": "1",
-      "t": "Board the S.S. Anne and get HM01 Cut from the captain. Teach it to Luffy."
+      "k": "v1",
+      "t": "Routes 24 and 25: catch Abra (throw a ball on turn one) and Bellsprout. Beat the Route 25 hikers and campers."
      },
      {
-      "k": "2",
-      "t": "Surge's gym is behind a Cut tree."
+      "k": "v2",
+      "t": "Bill's Sea Cottage at the end of Route 25: help Bill, get the S.S. Ticket."
      },
      {
-      "k": "3",
-      "t": "Get the Old Rod from the Fishing Guru in Vermilion."
+      "k": "v3",
+      "t": "Cerulean: the burgled house is now open. Beat the Rocket grunt behind it for TM28 Dig. Teach it to Usopp."
      },
      {
-      "k": "4",
-      "t": "Dig and Nidoking's Ground typing make Surge's Raichu harmless."
+      "k": "v4",
+      "t": "Catch a Sandshrew on Route 4, just east of Mt. Moon (25%, LeafGreen exclusive)."
      },
      {
-      "k": "s1",
-      "t": "Catch a Sandshrew on Route 4, just east of Mt. Moon. It's a LeafGreen exclusive, 25% in the grass."
+      "k": "v5",
+      "t": "Route 5: the Day Care is here if you want to park a Pokémon."
      },
      {
-      "k": "s2",
+      "k": "v6",
+      "t": "Underground Path entrance (Route 5 side): trade a Nidoran♀ for a Nidoran♂ (MR. NIDO)."
+     },
+     {
+      "k": "v7",
+      "t": "Route 6 to Vermilion: beat the trainers on the way."
+     },
+     {
+      "k": "v8",
+      "t": "Vermilion Pokémon Fan Club: listen to the chairman for the Bike Voucher."
+     },
+     {
+      "k": "v9",
+      "t": "Vermilion house: the Fishing Guru gives the Old Rod."
+     },
+     {
+      "k": "v10",
+      "t": "Vermilion house: trade a Spearow for Farfetch'd."
+     },
+     {
+      "k": "v11",
+      "t": "S.S. Anne: beat your rival, then see the captain for HM01 Cut. The ship leaves after you get off."
+     },
+     {
+      "k": "v12",
+      "t": "Teach Cut to Luffy."
+     },
+     {
+      "k": "v13",
+      "t": "Back in Cerulean: trade the Bike Voucher at the Bike Shop for the Bicycle."
+     },
+     {
+      "k": "v14",
+      "t": "Cut the tree blocking Vermilion Gym. Beat Lt. Surge: Thunder Badge (lets you use Fly) and TM34 Shock Wave."
+     },
+     {
+      "k": "v15",
+      "t": "Diglett's Cave (east end of Route 11): catch Diglett, come out on Route 2."
+     },
+     {
+      "k": "v16",
+      "t": "Route 2 east (Cut): Oak's aide gives HM05 Flash at 10 caught. Trade an Abra for Mr. Mime in the house."
+     },
+     {
+      "k": "v17",
+      "t": "Pewter Museum back door (Cut): the scientist gives you the Old Amber."
+     },
+     {
+      "k": "v18",
       "t": "Evolve Caterpie into Butterfree and Pidgey into Pidgeotto as you go."
      }
     ]
@@ -3225,28 +3293,64 @@
     ],
     "prep": [
      {
-      "k": "0",
-      "t": "Celadon Dept. Store 4F sells the Fire Stone (Sanji) and Thunder Stone (Nami)."
+      "k": "e0",
+      "t": "Route 9 (Cut the tree east of Cerulean): beat the trainers."
      },
      {
-      "k": "1",
-      "t": "Eevee is on the Celadon Mansion roof room table (back entrance)."
+      "k": "e1",
+      "t": "Route 10 Pokémon Center: Oak's aide gives an Everstone at 20 caught."
      },
      {
-      "k": "2",
-      "t": "Vulpix lives on Routes 7 and 8."
+      "k": "e2",
+      "t": "Rock Tunnel: dark without Flash, but walkable. On B1F a tutor teaches Rock Slide (one-time)."
      },
      {
-      "k": "3",
-      "t": "Cut the tree west of Celadon for Route 16: Doduo in the grass, HM02 Fly in the house."
+      "k": "e3",
+      "t": "Lavender Town: heal. The Pokémon Tower needs the Silph Scope, so come back later."
      },
      {
-      "k": "4",
-      "t": "Rock Tunnel is dark. Flash from the Route 2 aide (10 caught) helps but isn't required."
+      "k": "e4",
+      "t": "Route 8, then the Underground Path to Route 7: catch Vulpix on Routes 7 or 8. It becomes Sanji."
      },
      {
-      "k": "5",
-      "t": "After Erika, the Rocket Hideout under the Game Corner has the Silph Scope."
+      "k": "e5",
+      "t": "Celadon Dept. Store 4F: buy a Fire Stone (Sanji) and a Thunder Stone (Nami)."
+     },
+     {
+      "k": "e6",
+      "t": "Celadon Dept. Store 3F: a tutor teaches Counter (one-time)."
+     },
+     {
+      "k": "e7",
+      "t": "Celadon Mansion: back entrance, roof room, take the Eevee. It becomes Nami."
+     },
+     {
+      "k": "e8",
+      "t": "Celadon Mansion 1F: the old lady gives you Tea. You need it to get into Saffron later."
+     },
+     {
+      "k": "e9",
+      "t": "Celadon restaurant: a man gives you the Coin Case."
+     },
+     {
+      "k": "e10",
+      "t": "Route 16 (Cut the tree west of Celadon): catch Doduo, the future Zoro. The house there gives HM02 Fly."
+     },
+     {
+      "k": "e11",
+      "t": "Route 16 gate 2F: Oak's aide gives the Amulet Coin at 40 caught."
+     },
+     {
+      "k": "e12",
+      "t": "Beat Erika: Rainbow Badge (lets you use Strength) and TM19 Giga Drain for Luffy."
+     },
+     {
+      "k": "e13",
+      "t": "Game Corner: the poster hides the switch to the Rocket Hideout. Get the Lift Key on B4F, beat Giovanni, take the Silph Scope."
+     },
+     {
+      "k": "e14",
+      "t": "Game Corner prizes (coins): TM24 Thunderbolt, TM35 Flamethrower, TM13 Ice Beam, plus Abra 120, Clefairy 750, Pinsir 2,500, Dratini 4,600, Porygon 6,500."
      }
     ]
    },
@@ -3357,28 +3461,60 @@
     ],
     "prep": [
      {
-      "k": "0",
-      "t": "Pokémon Tower needs the Silph Scope. Normal moves can't hit Ghosts; use Usopp's Dig and Nami."
+      "k": "k0",
+      "t": "Pokémon Tower (Silph Scope): beat your rival on 2F, calm the Marowak ghost, rescue Mr. Fuji at the top."
      },
      {
-      "k": "1",
-      "t": "Mr. Fuji gives the Poké Flute. Each Snorlax is a one-time Lv 30 catch: save first, bring Ultra Balls."
+      "k": "k1",
+      "t": "Lavender: Mr. Fuji gives you the Poké Flute."
      },
      {
-      "k": "2",
-      "t": "Koga's Koffing and Weezing float (Levitate), so Ground moves miss. Use Nami, Sanji and Zoro."
+      "k": "k2",
+      "t": "Route 12: wake Snorlax with the Poké Flute. Save first; it's a one-time Lv 30 catch."
      },
      {
-      "k": "3",
-      "t": "Safari Zone: HM03 Surf in the Secret House, and the Gold Teeth that trade for HM04 Strength."
+      "k": "k3",
+      "t": "Route 12 gate 2F: a girl gives TM27 Return."
      },
      {
-      "k": "4",
-      "t": "Game Corner prize TMs: TM24 Thunderbolt (Nami), TM35 Flamethrower (Sanji), TM13 Ice Beam (Usopp)."
+      "k": "k4",
+      "t": "Route 12 fishing house (south of Snorlax): the younger Fishing Guru gives the Super Rod."
      },
      {
-      "k": "5",
-      "t": "Pokémon Tower 5F has a hidden Big Mushroom that's always there. It's a guaranteed way to get Sleep Powder back."
+      "k": "k5",
+      "t": "Routes 13 and 14: grass behind Cut trees has Ditto. Beat the trainers."
+     },
+     {
+      "k": "k6",
+      "t": "Route 15 gate 2F: Oak's aide gives the Exp. Share at 50 caught."
+     },
+     {
+      "k": "k7",
+      "t": "Fuchsia: the Fishing Guru's brother gives the Good Rod. The Substitute tutor is in town too."
+     },
+     {
+      "k": "k8",
+      "t": "Safari Zone: find the Secret House (HM03 Surf) and the Gold Teeth. Chansey, Kangaskhan, Tauros, Pinsir and Dratini live here."
+     },
+     {
+      "k": "k9",
+      "t": "Fuchsia Warden's house: give him the Gold Teeth for HM04 Strength."
+     },
+     {
+      "k": "k10",
+      "t": "Route 16 Snorlax: your second chance. Then Route 17 Cycling Road (Bicycle) and Route 18."
+     },
+     {
+      "k": "k11",
+      "t": "Route 18 gate 2F: trade a Slowbro for Lickitung."
+     },
+     {
+      "k": "k12",
+      "t": "Pokémon Tower 5F: a hidden Big Mushroom that's always there, for Luffy's Sleep Powder later."
+     },
+     {
+      "k": "k13",
+      "t": "Beat Koga: Soul Badge (lets you Surf) and TM06 Toxic."
      }
     ]
    },
@@ -3493,24 +3629,36 @@
     ],
     "prep": [
      {
-      "k": "0",
-      "t": "Give the guards Tea (from the old lady in Celadon Mansion 1F) to enter Saffron."
+      "k": "s0",
+      "t": "Give the Tea to a Saffron gate guard to get in."
      },
      {
-      "k": "1",
-      "t": "Robin joins on Silph Co. 7F after the rival battle."
+      "k": "s1",
+      "t": "Fighting Dojo: beat everyone, then take Hitmonlee or Hitmonchan."
      },
      {
-      "k": "2",
-      "t": "The Silph president gives you the Master Ball. Save it for Mewtwo or the roaming beast."
+      "k": "s2",
+      "t": "Mr. Psychic's house: TM29 Psychic for Robin."
      },
      {
-      "k": "3",
-      "t": "TM29 Psychic is free from Mr. Psychic's house in Saffron. Teach it to Robin."
+      "k": "s3",
+      "t": "Silph Co.: find the Card Key on 5F to open the locked doors. A tutor on 2F teaches Thunder Wave."
      },
      {
-      "k": "4",
-      "t": "Win the Fighting Dojo first if you want Hitmonlee or Hitmonchan for the Pokédex."
+      "k": "s4",
+      "t": "Silph Co. 7F: beat your rival. A worker gives you Lapras, the future Nico Robin."
+     },
+     {
+      "k": "s5",
+      "t": "Silph Co. 11F: beat Giovanni. The president gives you the Master Ball. Save it for Mewtwo or the roaming beast."
+     },
+     {
+      "k": "s6",
+      "t": "Copycat's house: the Mimic tutor (bring her a Poké Doll from the Dept. Store)."
+     },
+     {
+      "k": "s7",
+      "t": "Beat Sabrina: Marsh Badge (lets you use Rock Smash) and TM04 Calm Mind."
      }
     ]
    },
@@ -3577,20 +3725,32 @@
     ],
     "prep": [
      {
-      "k": "0",
-      "t": "Surf south from Fuchsia. Articuno (Lv 50) waits in Seafoam B4F: save first, Ultra Balls."
+      "k": "b0",
+      "t": "Surf south from Fuchsia down Routes 19 and 20."
      },
      {
-      "k": "1",
-      "t": "Revive the Helix Fossil and Old Amber at the Cinnabar Lab."
+      "k": "b1",
+      "t": "Seafoam Islands: push the Strength boulders to slow the currents. Articuno (Lv 50) is on B4F. Save first."
      },
      {
-      "k": "2",
-      "t": "The Secret Key for Blaine's gym is in the Pokémon Mansion."
+      "k": "b2",
+      "t": "Cinnabar: Pokémon Mansion. Find the Secret Key on B1F; it opens Blaine's gym."
      },
      {
-      "k": "3",
-      "t": "Robin's Surf and Usopp's Ground moves handle Blaine."
+      "k": "b3",
+      "t": "Cinnabar Lab: revive the Helix Fossil (Omanyte) and the Old Amber (Aerodactyl)."
+     },
+     {
+      "k": "b4",
+      "t": "Cinnabar Lab trades: Ponyta for Seel, Venonat for Tangela, Raichu for Electrode."
+     },
+     {
+      "k": "b5",
+      "t": "Cinnabar Lab research room: the Metronome tutor."
+     },
+     {
+      "k": "b6",
+      "t": "Beat Blaine: Volcano Badge (lets you use Waterfall later) and TM38 Fire Blast."
      }
     ]
    },
@@ -3634,20 +3794,44 @@
     ],
     "prep": [
      {
-      "k": "0",
+      "k": "i0",
+      "t": "Talk to Bill on Cinnabar; he takes you to One Island. Celio gives you the Tri-Pass."
+     },
+     {
+      "k": "i1",
+      "t": "Kindle Road, Ember Spa: the old man gives HM06 Rock Smash."
+     },
+     {
+      "k": "i2",
+      "t": "Mt. Ember: beat the Team Rocket grunts at the entrance. The Explosion tutor is outside."
+     },
+     {
+      "k": "i3",
+      "t": "Mt. Ember summit: Moltres (Lv 50). Save first."
+     },
+     {
+      "k": "i4",
       "t": "Two Island Move Reminder: one Big Mushroom or two Tiny Mushrooms gets Luffy's Sleep Powder back."
      },
      {
-      "k": "1",
-      "t": "Moltres (Lv 50) is at the Mt. Ember summit."
+      "k": "i5",
+      "t": "Cape Brink house (Two Island): with Venusaur in the lead at max friendship, Luffy learns Frenzy Plant."
      },
      {
-      "k": "2",
-      "t": "Zapdos (Lv 50) is in the Power Plant: Surf up from Route 10. The item balls there are Electrode traps."
+      "k": "i6",
+      "t": "Three Island: Bond Bridge, then Berry Forest to rescue Lostelle (Hypno battle)."
      },
      {
-      "k": "3",
-      "t": "Luffy's Sleep Powder makes every legendary much easier to catch."
+      "k": "i7",
+      "t": "Back to One Island and Celio, then Bill takes you home to Kanto."
+     },
+     {
+      "k": "i8",
+      "t": "Route 21 (Surf from Pallet or Cinnabar): Tangela in the grass."
+     },
+     {
+      "k": "i9",
+      "t": "Power Plant (Surf from Route 10): Zapdos (Lv 50). The two 'item balls' are Electrode. Save first."
      }
     ]
    },
@@ -3748,16 +3932,16 @@
     ],
     "prep": [
      {
-      "k": "0",
-      "t": "Giovanni is all Ground and Rock: Luffy and Robin do the work."
+      "k": "g0",
+      "t": "Viridian Gym is open now. Beat Giovanni: Earth Badge and TM26 Earthquake for Usopp."
      },
      {
-      "k": "1",
-      "t": "Teach TM26 Earthquake (Giovanni's reward) to Usopp."
+      "k": "g1",
+      "t": "Route 22: beat your rival. His Charizard is Lv 53."
      },
      {
-      "k": "2",
-      "t": "Your rival's Charizard is Lv 53. Robin's Surf."
+      "k": "g2",
+      "t": "Route 23: show your badges at each gate."
      }
     ]
    },
@@ -3936,32 +4120,32 @@
     ],
     "prep": [
      {
-      "k": "0",
-      "t": "Victory Road needs Strength for its boulders."
+      "k": "l0",
+      "t": "Victory Road: Strength boulders onto the switches. A tutor on 2F teaches Double-Edge."
      },
      {
-      "k": "1",
-      "t": "Lorelei: Nami's Thunderbolt and Sanji's fire."
+      "k": "l1",
+      "t": "Indigo Plateau mart: stock Full Restores, Revives and Hyper Potions. Save before the Elite Four."
      },
      {
-      "k": "2",
-      "t": "Bruno: Zoro's Drill Peck; Robin's Surf for his Onix."
+      "k": "l2",
+      "t": "Lorelei (Ice): Nami's Thunderbolt and Sanji's fire."
      },
      {
-      "k": "3",
-      "t": "Agatha: her Gengar float (Levitate), so skip Earthquake. Robin's Psychic, and Nami for Golbat."
+      "k": "l3",
+      "t": "Bruno (Fighting): Zoro's Drill Peck; Robin's Surf for his Onix."
      },
      {
-      "k": "4",
-      "t": "Lance: Robin's Ice Beam does 4x to Dragonite."
+      "k": "l4",
+      "t": "Agatha (Ghost): her Gengar float (Levitate), so skip Earthquake. Robin's Psychic, Nami for Golbat."
      },
      {
-      "k": "5",
-      "t": "Champion: Charizard Lv 63 goes to Robin. Nami takes Gyarados, Sanji or Zoro take Exeggutor."
+      "k": "l5",
+      "t": "Lance (Dragon): Robin's Ice Beam does 4x to Dragonite."
      },
      {
-      "k": "6",
-      "t": "Stock Full Restores and Revives at the Indigo Plateau mart."
+      "k": "l6",
+      "t": "Champion: Charizard Lv 63 goes to Robin; Nami takes Gyarados; Sanji or Zoro take Exeggutor."
      }
     ]
    }
