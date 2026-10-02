@@ -1446,18 +1446,6 @@
     "Sleep Powder, Razor Leaf, Giga Drain (TM19 from Erika), Cut"
    ],
    [
-    85,
-    "Zoro",
-    "Dodrio",
-    "Drill Peck, Tri Attack, Agility, Fly"
-   ],
-   [
-    135,
-    "Nami",
-    "Jolteon",
-    "Shock Wave (TM34), later Thunderbolt (TM24), Double Kick, Pin Missile"
-   ],
-   [
     34,
     "Usopp",
     "Nidoking",
@@ -1468,6 +1456,18 @@
     "Sanji",
     "Ninetales",
     "Flamethrower (Vulpix Lv 29, or TM35), Confuse Ray, Will-O-Wisp, Quick Attack"
+   ],
+   [
+    135,
+    "Nami",
+    "Jolteon",
+    "Shock Wave (TM34), later Thunderbolt (TM24), Double Kick, Pin Missile"
+   ],
+   [
+    85,
+    "Zoro",
+    "Dodrio",
+    "Drill Peck, Tri Attack, Agility, Fly"
    ],
    [
     131,
@@ -1487,22 +1487,6 @@
     "where": "Your starter"
    },
    {
-    "nick": "Zoro",
-    "line": [
-     84,
-     85
-    ],
-    "where": "Doduo, Route 16 (needs Cut)"
-   },
-   {
-    "nick": "Nami",
-    "line": [
-     133,
-     135
-    ],
-    "where": "Eevee, Celadon Mansion roof room + Thunder Stone"
-   },
-   {
     "nick": "Usopp",
     "line": [
      32,
@@ -1518,6 +1502,22 @@
      38
     ],
     "where": "Vulpix, Route 8. Fire Stone after Lv 29"
+   },
+   {
+    "nick": "Nami",
+    "line": [
+     133,
+     135
+    ],
+    "where": "Eevee, Celadon Mansion roof room + Thunder Stone"
+   },
+   {
+    "nick": "Zoro",
+    "line": [
+     84,
+     85
+    ],
+    "where": "Doduo, Route 16 (needs Cut)"
    },
    {
     "nick": "Nico Robin",
@@ -1537,13 +1537,13 @@
     ]
    },
    {
-    "h": "The crew (party order = joining order)",
+    "h": "The crew (in the order they join your team)",
     "items": [
      "1. Luffy: Bulbasaur, Ivysaur, then Venusaur at Lv 32.",
-     "2. Zoro: Dodrio, from Doduo on Route 16. Press B at Lv 31 to wait for Drill Peck at 37.",
-     "3. Nami: Jolteon, from the Celadon Eevee (Lv 25) and a Thunder Stone.",
-     "4. Usopp: Nidoking. Evolved with a Moon Stone before Lv 22, so Thrash at 22 and Megahorn at 43.",
-     "5. Sanji: Ninetales. Keep Vulpix until Lv 29 for Flamethrower, then the Fire Stone.",
+     "2. Usopp: Nidoking. Evolved with a Moon Stone before Lv 22, so Thrash at 22 and Megahorn at 43.",
+     "3. Sanji: Ninetales. Keep Vulpix until Lv 29 for Flamethrower, then the Fire Stone.",
+     "4. Nami: Jolteon, from the Celadon Eevee (Lv 25) and a Thunder Stone.",
+     "5. Zoro: Dodrio, from Doduo on Route 16. Press B at Lv 31 to wait for Drill Peck at 37.",
      "6. Nico Robin: Lapras, the Silph Co. 7F gift."
     ]
    },

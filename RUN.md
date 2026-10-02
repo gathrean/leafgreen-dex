@@ -8,14 +8,14 @@ Choices made so far, kept alongside the site. The same list shows at the top of 
 - Starter Bulbasaur. Your roaming beast after the Sevii Islands will be Entei.
 - Goal: catch them all, with a Straw Hat crew as the main team.
 
-## The crew (party order = joining order)
+## The crew (in the order they join your team)
 
-- Luffy: Bulbasaur, Ivysaur, then Venusaur at Lv 32.
-- Zoro: Dodrio, from Doduo on Route 16. Press B at Lv 31 to wait for Drill Peck at 37.
-- Nami: Jolteon, from the Celadon Eevee (Lv 25) and a Thunder Stone.
-- Usopp: Nidoking. Evolved with a Moon Stone before Lv 22, so Thrash at 22 and Megahorn at 43.
-- Sanji: Ninetales. Keep Vulpix until Lv 29 for Flamethrower, then the Fire Stone.
-- Nico Robin: Lapras, the Silph Co. 7F gift.
+1. Luffy: Bulbasaur, Ivysaur, then Venusaur at Lv 32.
+2. Usopp: Nidoking. Evolved with a Moon Stone before Lv 22, so Thrash at 22 and Megahorn at 43.
+3. Sanji: Ninetales. Keep Vulpix until Lv 29 for Flamethrower, then the Fire Stone.
+4. Nami: Jolteon, from the Celadon Eevee (Lv 25) and a Thunder Stone.
+5. Zoro: Dodrio, from Doduo on Route 16. Press B at Lv 31 to wait for Drill Peck at 37.
+6. Nico Robin: Lapras, the Silph Co. 7F gift.
 
 ## Decisions made
 

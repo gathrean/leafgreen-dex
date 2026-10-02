@@ -707,7 +707,7 @@
 
   function renderPlan() {
     const { P } = planState();
-    let h = `<div class="box plan-crew"><h2>The crew</h2><p class="muted small" style="margin:4px 0 10px">Party order follows the order the Straw Hats joined. Tap one for its Pokédex page.</p><div class="crew">` +
+    let h = `<div class="box plan-crew"><h2>The crew</h2><p class="muted small" style="margin:4px 0 10px">In the order they join your team. Tap one for its Pokédex page.</p><div class="crew">` +
       (D.extra.crew || []).map(([id, nick, sp, moves], i) => `<button class="crew-m" data-act="dex" data-id="${id}"><span class="slot">${i + 1}</span>${planSprite(id)}<b>${esc(nick)}</b><span class="muted small">${esc(sp)}</span><span class="small">${esc(moves)}</span></button>`).join("") + `</div></div>`;
     P.forEach((m) => { h += planCard(m, false); });
     const run = D.extra.run || [];
