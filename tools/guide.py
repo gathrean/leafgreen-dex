@@ -108,7 +108,7 @@ LOCATIONS = [
     L("kindle-road", "Kindle Road", "sevii", "sevii:kindle"),
     L("treasure-beach", "Treasure Beach", "sevii", "sevii:treasure"),
     L("mt-ember", "Mt. Ember", "sevii", "sevii:mt-ember", [
-        ("Outside", ["mt-ember"]), ("Ruby Path caves", ["mt-ember/cave", "mt-ember/inside", "mt-ember/1f-cave-behind-team-rocket"]),
+        ("Outside", ["mt-ember"]), ("Summit Path 1F/3F", ["mt-ember/cave"]), ("Summit Path 2F", ["mt-ember/inside"]), ("Ruby Path 1F", ["mt-ember/1f-cave-behind-team-rocket"]),
         ("Ruby Path B1F", ["mt-ember/b1f"]), ("Ruby Path B2F", ["mt-ember/b2f"]), ("Ruby Path B3F", ["mt-ember/b3f"]), ("Summit", ["mt-ember/summit"])], mapName="Mt. Ember Exterior"),
     L("cape-brink", "Cape Brink (Two Island)", "sevii", "sevii:cape-brink"),
     L("bond-bridge", "Bond Bridge", "sevii", "sevii:bond"),
@@ -126,7 +126,7 @@ LOCATIONS = [
     L("memorial-pillar", "Memorial Pillar", "post", "sevii:memorial"),
     L("water-labyrinth", "Water Labyrinth", "post", "sevii:water-lab"),
     L("resort-gorgeous", "Resort Gorgeous", "post", "sevii:resort-gorgeous"),
-    L("lost-cave", "Lost Cave", "post", "sevii:lost-cave", [(None, ["lost-cave/room-%d" % i for i in range(1, 11)] + ["lost-cave/item-rooms"])], mapName="Five Island Lost Cave Entrance"),
+    L("lost-cave", "Lost Cave", "post", "sevii:lost-cave", [("Rooms", ["lost-cave/room-%d" % i for i in range(1, 11)]), ("Item rooms", ["lost-cave/item-rooms"])], mapName="Five Island Lost Cave Entrance"),
     L("water-path", "Water Path", "post", "sevii:water-path"),
     L("ruin-valley", "Ruin Valley", "post", "sevii:ruin-valley"),
     L("green-path", "Green Path", "post", "sevii:green-path"),

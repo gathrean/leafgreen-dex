@@ -131,7 +131,7 @@
  "balls": {
   "poke": "brock",
   "great": "erika",
-  "ultra": "koga",
+  "ultra": "sabrina",
   "safari": "koga"
  },
  "locations": [
@@ -700,10 +700,20 @@
      ]
     },
     {
-     "label": "Ruby Path caves",
+     "label": "Summit Path 1F/3F",
      "keys": [
-      "mt-ember/cave",
-      "mt-ember/inside",
+      "mt-ember/cave"
+     ]
+    },
+    {
+     "label": "Summit Path 2F",
+     "keys": [
+      "mt-ember/inside"
+     ]
+    },
+    {
+     "label": "Ruby Path 1F",
+     "keys": [
       "mt-ember/1f-cave-behind-team-rocket"
      ]
     },
@@ -890,7 +900,7 @@
    "map": "sevii:lost-cave",
    "areas": [
     {
-     "label": null,
+     "label": "Rooms",
      "keys": [
       "lost-cave/room-1",
       "lost-cave/room-2",
@@ -901,7 +911,12 @@
       "lost-cave/room-7",
       "lost-cave/room-8",
       "lost-cave/room-9",
-      "lost-cave/room-10",
+      "lost-cave/room-10"
+     ]
+    },
+    {
+     "label": "Item rooms",
+     "keys": [
       "lost-cave/item-rooms"
      ]
     }
@@ -1028,5 +1043,257 @@
    "mapName": "Cerulean Cave 1F"
   }
  ],
- "extra": {}
+ "extra": {
+  "tips": {
+   "63": "Teleports away on turn one. Throw a ball immediately (catch rate 200) on Route 24/25, or skip the hassle and buy one at the Game Corner for 120 coins.",
+   "113": "Safari Zone only: 1% in Center, 4% in North (Area 2). Throw one Bait first, since it raises Chansey's catch odds and cuts its 45% flee chance.",
+   "128": "Safari Zone only, 4% in West (Area 3) and 1% in North (Area 2). Throw Bait: at catch rate 45 it doesn't lower your odds, and it cuts the 45% per-turn flee chance to 10%.",
+   "115": "Safari Zone only, 4% in East (Area 1) and 1% in West (Area 3). Same bait-first approach as Tauros.",
+   "127": "LeafGreen exclusive. Safari Zone Center 4% or East 1%, or buy it at the Game Corner for 2500 coins (Lv18) to avoid the Safari gamble.",
+   "123": "Not obtainable in LeafGreen at all. Trade from FireRed.",
+   "147": "Super Rod in any Safari Zone water (15%, Dragonair 1%), each catch spending Safari steps and balls. The Game Corner sells one for 4600 coins (Lv24) if you would rather grind coins.",
+   "132": "Pokémon Mansion B1F (10%), Routes 13 to 15, or Cerulean Cave. It turns into a copy of your lead Pokémon, so lead with something that won't hurt your own team; catch rate 35.",
+   "137": "No wild encounter in either version. Game Corner only, 6500 coins (Lv18) in LeafGreen.",
+   "143": "Two chances (Routes 12 and 16), Lv30, catch rate 25. Save first; running or knocking it out removes it permanently. Sleep it and chip it down, and watch for Rest.",
+   "101": "The two fake-item Electrode in the Power Plant (Lv34) know Self-Destruct, and blowing itself up counts as a defeat, which removes it for good. Put it to sleep or paralyze it before it can move.",
+   "92": "Pokémon Tower ghosts can't be caught until you have the Silph Scope. Gastly is the common Tower encounter; Haunter appears higher up.",
+   "144": "Lv50, catch rate 3. Save first. Running makes them respawn when you re-enter, but knocking one out loses it, so chip with weak hits and use sleep or paralysis.",
+   "145": "Lv50, catch rate 3. Save first. Running makes them respawn when you re-enter, but knocking one out loses it, so chip with weak hits and use sleep or paralysis.",
+   "146": "Lv50, catch rate 3. Save first. Running makes them respawn when you re-enter, but knocking one out loses it, so chip with weak hits and use sleep or paralysis.",
+   "150": "Lv70, catch rate 3, knows Recover. Bring a sleep or paralysis user and lots of Ultra Balls (or the Master Ball). Running lets it respawn; fainting it does not.",
+   "243": "Only one per save and it flees every turn, so Mean Look or Block it, or use the Master Ball. On GBA, never let Entei or Raikou use Roar: if it escapes that way it is gone forever.",
+   "244": "Only one per save and it flees every turn, so Mean Look or Block it, or use the Master Ball. On GBA, never let Entei or Raikou use Roar: if it escapes that way it is gone forever.",
+   "245": "Only one per save and it flees every turn, so Mean Look or Block it, or use the Master Ball. On GBA, never let Entei or Raikou use Roar: if it escapes that way it is gone forever.",
+   "201": "Tanoby Chambers (Seven Island) after solving the Sevault Canyon Tanoby Key. Each chamber holds different letters, so you have to visit all seven for every form.",
+   "131": "The Silph Co. gift is the easy one. Wild Lapras surf in Icefall Cave's back cave at only 1%; FRLG has no clock, so there is no Friday rule.",
+   "133": "One gift only. FRLG has no day/night clock, so Espeon and Umbreon cannot be evolved here; trade to Ruby/Sapphire/Emerald for those.",
+   "106": "Choose one at the Dojo; the other needs a trade.",
+   "107": "Choose one at the Dojo; the other needs a trade.",
+   "138": "Mutually exclusive fossil choice at Mt. Moon. Trade for the other.",
+   "140": "Mutually exclusive fossil choice at Mt. Moon. Trade for the other.",
+   "108": "Trade only in LeafGreen, and the Route 18 trader wants a Slowbro (Golduck in FireRed).",
+   "151": "Event only; not needed for the Kanto diploma."
+  },
+  "notes": {
+   "1": "Starter from Oak's Lab. You get one of Bulbasaur, Charmander or Squirtle; trade for the other two.",
+   "4": "Starter from Oak's Lab. Only one starter per save; trade for the others.",
+   "7": "Starter from Oak's Lab. Only one starter per save; trade for the others.",
+   "106": "Gift at the Saffron Fighting Dojo. You pick Hitmonlee or Hitmonchan, not both.",
+   "107": "Gift at the Saffron Fighting Dojo. You pick Hitmonlee or Hitmonchan, not both.",
+   "138": "Helix Fossil at the end of Mt. Moon, revived at the Cinnabar Lab. You pick Helix or Dome, not both.",
+   "140": "Dome Fossil at the end of Mt. Moon, revived at the Cinnabar Lab. You pick Helix or Dome, not both.",
+   "142": "Old Amber from the back of the Pewter Museum (needs Cut), revived at the Cinnabar Lab.",
+   "133": "One Eevee, a gift on the top floor of Celadon Mansion (back entrance).",
+   "131": "Gift on Silph Co. 7F after your rival battle. Wild ones surf at the back of Icefall Cave (1%).",
+   "122": "Trade only: give an Abra to the man in the Route 2 house near Diglett's Cave.",
+   "124": "Trade only: give a Poliwhirl in the Cerulean City house.",
+   "83": "Trade only: give a Spearow in the Vermilion City house.",
+   "108": "Trade only: give a Slowbro in the Route 18 gate, 2F.",
+   "137": "Game Corner prize only: 6,500 coins.",
+   "151": "Event only. Not needed for the Kanto diploma.",
+   "249": "Event only (Navel Rock, MysticTicket).",
+   "250": "Event only (Navel Rock, MysticTicket).",
+   "386": "Event only (Birth Island, AuroraTicket).",
+   "251": "Not in LeafGreen. Event or Colosseum bonus disc only.",
+   "385": "Not in LeafGreen. Event only."
+  },
+  "lgMissing": [
+   23,
+   24,
+   43,
+   44,
+   45,
+   54,
+   55,
+   58,
+   59,
+   90,
+   91,
+   123,
+   125,
+   151
+  ],
+  "oak": {
+   "basis": "caught",
+   "how": "Talk to him in his lab, or use PROF. OAK's PC on any Pokémon Center PC.",
+   "tiers": [
+    {
+     "min": 0,
+     "max": 9,
+     "short": "Just getting started",
+     "say": [
+      "You've barely started! Pokémon live in every patch of tall grass. Go and look!",
+      "Come back when your Pokédex has a little more in it."
+     ]
+    },
+    {
+     "min": 10,
+     "max": 19,
+     "short": "Flash from the Route 2 aide",
+     "say": [
+      "Good, you're on the right track.",
+      "One of my aides on Route 2 has HM05 Flash waiting for you. Go see him!"
+     ]
+    },
+    {
+     "min": 20,
+     "max": 29,
+     "short": "Everstone from the Route 10 aide",
+     "say": [
+      "Hmm, still a bit thin.",
+      "Try catching kinds you haven't met yet, not more of the same. My aide in the Route 10 Pokémon Center has an Everstone for you."
+     ]
+    },
+    {
+     "min": 30,
+     "max": 39,
+     "short": "Itemfinder from the Route 11 aide",
+     "say": [
+      "I can tell you're working hard at this.",
+      "My aide in the Route 11 gate has an Itemfinder for you. Very handy for hidden items!"
+     ]
+    },
+    {
+     "min": 40,
+     "max": 49,
+     "short": "Amulet Coin from the Route 16 aide",
+     "say": [
+      "It's really coming along now!",
+      "Visit my aide in the Route 16 gate. He's holding an Amulet Coin for you."
+     ]
+    },
+    {
+     "min": 50,
+     "max": 59,
+     "short": "Exp. Share from the Route 15 aide",
+     "say": [
+      "Over fifty kinds! Splendid!",
+      "My aide in the Route 15 gate has an Exp. Share with your name on it."
+     ]
+    },
+    {
+     "min": 60,
+     "max": 69,
+     "short": "Respectable, and National Dex range",
+     "say": [
+      "Now this is starting to look like a proper Pokédex.",
+      "Keep it up!"
+     ]
+    },
+    {
+     "min": 70,
+     "max": 79,
+     "short": "Go fishing",
+     "say": [
+      "Very good indeed!",
+      "Have you tried fishing? Plenty of Pokémon hide under the water."
+     ]
+    },
+    {
+     "min": 80,
+     "max": 89,
+     "short": "A real collector",
+     "say": [
+      "Wonderful! You must really love collecting.",
+      "Don't forget to evolve what you've caught. Each new form counts!"
+     ]
+    },
+    {
+     "min": 90,
+     "max": 99,
+     "short": "Seriously impressive",
+     "say": [
+      "Ninety-odd kinds! That can't have been easy.",
+      "I'm honestly impressed."
+     ]
+    },
+    {
+     "min": 100,
+     "max": 109,
+     "short": "Triple digits",
+     "say": [
+      "A hundred! I can hardly believe it!",
+      "You're in rare company now."
+     ]
+    },
+    {
+     "min": 110,
+     "max": 119,
+     "short": "Evolved forms too",
+     "say": [
+      "Marvellous. And you've raised plenty of evolved forms too.",
+      "That's the sign of a real trainer."
+     ]
+    },
+    {
+     "min": 120,
+     "max": 129,
+     "short": "Time to trade",
+     "say": [
+      "Excellent work!",
+      "For the ones you can't find here, trade with a friend. Some only live in FireRed."
+     ]
+    },
+    {
+     "min": 130,
+     "max": 139,
+     "short": "A true expert",
+     "say": [
+      "Outstanding! You've become a true expert.",
+      "Only a handful left now."
+     ]
+    },
+    {
+     "min": 140,
+     "max": 149,
+     "short": "You're the professor now",
+     "say": [
+      "There's nothing left for me to teach you.",
+      "At this point, you're the professor!"
+     ]
+    },
+    {
+     "min": 150,
+     "max": 151,
+     "short": "Complete. Get your diploma",
+     "say": [
+      "You did it! The Kanto Pokédex is complete!",
+      "Thank you. You've made an old man's dream come true. Go see the game designer in Celadon Mansion for your diploma!"
+     ]
+    }
+   ],
+   "extra": [
+    "National Dex: enter the Hall of Fame with at least 60 Kanto Pokémon caught and having visited One Island, then talk to Oak in his lab.",
+    "Kanto diploma: catch all 150 (Mew doesn't count), then talk to the game designer on the top floor of Celadon Mansion.",
+    "Missing from LeafGreen entirely, trade from FireRed: Ekans, Arbok, Oddish, Gloom, Vileplume, Psyduck, Golduck, Growlithe, Arcanine, Shellder, Cloyster, Scyther, Electabuzz."
+   ]
+  },
+  "aides": [
+   {
+    "where": "Route 2, east house",
+    "need": 10,
+    "reward": "HM05 Flash"
+   },
+   {
+    "where": "Route 10 Pokémon Center",
+    "need": 20,
+    "reward": "Everstone"
+   },
+   {
+    "where": "Route 11 gate, 2F",
+    "need": 30,
+    "reward": "Itemfinder"
+   },
+   {
+    "where": "Route 16 gate, 2F",
+    "need": 40,
+    "reward": "Amulet Coin"
+   },
+   {
+    "where": "Route 15 gate, 2F",
+    "need": 50,
+    "reward": "Exp. Share"
+   }
+  ]
+ }
 }
