@@ -428,7 +428,7 @@
         <div></div></div>`).join("");
     const seen = [...by.keys()].filter((id) => monS(id) >= 1).length;
     return `<div class="tbl battle"><div class="tbl-head"><h4>In battle</h4><span class="muted small">${seen}/${by.size} seen · ${l.battles.length} trainer${l.battles.length > 1 ? "s" : ""}</span></div>${rows}
-      <details class="trainers"><summary class="small">Trainers and their teams</summary>${l.battles.map((b) => `<div class="tr-row ${b.L ? "boss" : ""}"><b>${esc(b.n)}</b><span class="tr-party">${b.p.filter(([id]) => SP[id]).map(([id, lv]) => `<span><img src="${spr(id)}" alt="${esc(SP[id].n)}" loading="lazy" width="40" height="40"><small>${lv}</small></span>`).join("")}</span></div>`).join("")}</details></div>`;
+      <details class="trainers"><summary class="small">Trainers and their teams</summary>${l.battles.map((b) => `<div class="tr-row ${b.L ? "boss" : ""}"><b>${esc(b.n)}</b><span class="tr-party">${b.p.filter(([id]) => SP[id]).map(([id, lv]) => `<button class="pmon ${monS(id) >= 1 ? "on" : ""}" data-act="seen" data-mon="${id}" aria-pressed="${monS(id) >= 1}" aria-label="Seen ${esc(SP[id].n)}"><img src="${spr(id)}" alt="" loading="lazy" width="40" height="40"><small>${lv}</small></button>`).join("")}</span></div>`).join("")}</details></div>`;
   }
 
   function renderTable(l, f, t) {
@@ -468,7 +468,7 @@
   function refreshMon(id) {
     const s = monS(id);
     $$(`.check[data-mon="${id}"]`).forEach((b) => { b.classList.toggle("c", s === 2); b.setAttribute("aria-pressed", s === 2); });
-    $$(`.seen[data-mon="${id}"]`).forEach((b) => { b.classList.toggle("on", s >= 1); b.setAttribute("aria-pressed", s >= 1); });
+    $$(`.seen[data-mon="${id}"], .pmon[data-mon="${id}"]`).forEach((b) => { b.classList.toggle("on", s >= 1); b.setAttribute("aria-pressed", s >= 1); });
     $$(`[data-row="${id}"]`).forEach((r) => r.classList.toggle("caught", s === 2));
     $$(`.strip img[data-mon="${id}"]`).forEach((im) => { im.className = s === 2 ? "c" : s === 1 ? "s" : ""; });
     $$(`details.loc`).forEach((el) => {
@@ -753,7 +753,9 @@
       if (next === 2) { t.classList.add("pop"); setTimeout(() => t.classList.remove("pop"), 400); toast(`Gotcha! ${SP[id].n} was caught!`); }
     } else if (act === "seen") {
       e.preventDefault();
+      if (monS(id) === 2) { toast(`${SP[id].n} is caught, so it's already seen`); return; }
       setMon(id, monS(id) >= 1 ? 0 : 1);
+      if (monS(id) === 1) toast(`${SP[id].n} marked seen`);
     } else if (act === "badges") { setFlag("badges", +t.dataset.v); route(); }
     else if (act === "flag") { setFlag(t.dataset.v, flag(t.dataset.v) ? 0 : 1); route(); }
     else if (act === "map") { UI.map = t.dataset.v; saveUI(); route(); }
@@ -773,7 +775,7 @@
     else if (act === "close") { $("#sheet").close(); }
     else if (act === "close-go") { $("#sheet").close(); }
     else if (act === "sheet-catch") { setMon(id, monS(id) === 2 ? 1 : 2); openMon(id); if (monS(id) === 2) toast(`Gotcha! ${SP[id].n} was caught!`); }
-    else if (act === "sheet-seen") { setMon(id, monS(id) >= 1 ? 0 : 1); openMon(id); }
+    else if (act === "sheet-seen") { if (monS(id) === 2) { toast("Caught counts as seen"); return; } setMon(id, monS(id) >= 1 ? 0 : 1); openMon(id); }
     else if (act === "call") callOak();
     else if (act === "sync-connect") {
       const tok = $("#tok").value.trim();
@@ -828,6 +830,7 @@
     flag, setFlag: (k, v) => { setFlag(k, v); }, monS, toast,
     name: (id) => (SP[id] ? SP[id].n : null),
     openMon: (id) => openMon(id),
+    toggleSeen: (id) => { if (monS(id) === 2) return 2; setMon(id, monS(id) >= 1 ? 0 : 1); return monS(id); },
     canReach: (name, kind) => needsMet(mapNeeds(name, kind)),
     lockText: (name, kind) => "Needs " + mapNeeds(name, kind).filter((u) => !has(u)).map(unlockName).join(" + "),
   };

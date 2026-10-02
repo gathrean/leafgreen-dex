@@ -187,7 +187,7 @@
     const render = () => {
       const beat = A && A.flag("tr:" + x + "," + y);
       d.innerHTML = `<b>${esc(m[2])}</b><br><span class="muted">${esc(m[4])}</span>` +
-        (m[5].length ? `<div class="mk-party">${m[5].map(([id, lv]) => `<button data-id="${id}"><img src="${SPRITE + id}.png" alt=""><span>${esc((A && A.name(id)) || "#" + id)}</span><small>Lv ${lv}</small></button>`).join("")}</div>` : `<p class="muted">Team not listed.</p>`);
+        (m[5].length ? `<div class="mk-party">${m[5].map(([id, lv]) => { const st = A ? A.monS(id) : 0; return `<button data-seen="${id}" class="${st >= 1 ? "on" : ""}"><img src="${SPRITE + id}.png" alt=""><span>${esc((A && A.name(id)) || "#" + id)}</span><small>Lv ${lv} · ${st === 2 ? "caught" : st === 1 ? "seen ✓" : "tap: seen"}</small></button>`; }).join("")}</div>` : `<p class="muted">Team not listed.</p>`);
       const btn = document.createElement("button");
       btn.className = "btn " + (beat ? "on" : "primary") + " mk-go";
       btn.textContent = beat ? "Beaten ✓" : "Mark beaten";
@@ -195,7 +195,7 @@
       d.appendChild(btn);
     };
     render();
-    d.addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b && A) A.openMon(+b.dataset.id); });
+    d.addEventListener("click", (e) => { const b = e.target.closest("button[data-seen]"); if (b && A) { A.toggleSeen(+b.dataset.seen); render(); } });
     L.popup({ maxWidth: 300, offset: [0, -14] }).setLatLng(mk.getLatLng()).setContent(d).openOn(map);
   }
 
