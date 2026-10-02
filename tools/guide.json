@@ -3175,7 +3175,7 @@
      [
       2,
       "Luffy",
-      "Ivysaur. Resists Electric; teach him Cut. Shreds Rock Tunnel's Hikers next."
+      "Ivysaur. Resists Electric. Shreds Rock Tunnel's Hikers next."
      ],
      [
       34,
@@ -3186,6 +3186,11 @@
       12,
       "Stand-in",
       "Butterfree. Takes the rival's Kadabra; Sleep Powder at Lv 15 for catching."
+     ],
+     [
+      83,
+      "CH'DING",
+      "Farfetch'd, HM carrier: Cut now, Fly later. False Swipe at Lv 46 for catching."
      ]
     ],
     "prep": [
@@ -3239,7 +3244,7 @@
      },
      {
       "k": "v12",
-      "t": "Teach Cut to Luffy."
+      "t": "Teach Cut to CH'DING (Farfetch'd), so Luffy keeps all four battle moves."
      },
      {
       "k": "v13",
@@ -3326,6 +3331,11 @@
       84,
       "Zoro",
       "Doduo on Route 16. Press B at Lv 31 to wait for Drill Peck at 37."
+     ],
+     [
+      83,
+      "CH'DING",
+      "Farfetch'd, carries Cut and Fly."
      ]
     ],
     "prep": [
@@ -3371,7 +3381,7 @@
      },
      {
       "k": "e10",
-      "t": "Route 16 (Cut the tree west of Celadon): catch Doduo, the future Zoro. The house there gives HM02 Fly."
+      "t": "Route 16 (Cut the tree west of Celadon): catch Doduo, the future Zoro. The house there gives HM02 Fly; teach it to CH'DING."
      },
      {
       "k": "e11",
