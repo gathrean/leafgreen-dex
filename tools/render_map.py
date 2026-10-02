@@ -141,7 +141,7 @@ for d in sorted(os.listdir(p("data/maps"))):
         m["dir"] = d
         maps[m["id"]] = m
 
-SKIP = re.compile(r"BattleColosseum|TradeCenter|RecordCorner|UnionRoom|BirthIsland|NavelRock|^MAP_UNUSED|Unused|SeviiIsle_?Unused|CeruleanCity_Unused|^MAP_NAVEL|DesertUnderpass|^MAP_ROUTE\d+_UNUSED")
+SKIP = re.compile(r"Prototype|BattleColosseum|TradeCenter|RecordCorner|UnionRoom|BirthIsland|NavelRock|^MAP_UNUSED|Unused|SeviiIsle_?Unused|CeruleanCity_Unused|^MAP_NAVEL|DesertUnderpass|^MAP_ROUTE\d+_UNUSED")
 
 
 def render(m):
@@ -164,7 +164,7 @@ def size(mid):
 
 
 # ---------------- stitch outdoor components ----------------
-outdoor = {k for k, m in maps.items() if m.get("connections") and not SKIP.search(m["dir"]) and not SKIP.search(k)}
+outdoor = {k for k, m in maps.items() if (m.get("connections") or m["map_type"] in ("MAP_TYPE_TOWN", "MAP_TYPE_CITY")) and not SKIP.search(m["dir"]) and not SKIP.search(k)}
 pos = {}
 components = []
 for start in ["MAP_PALLET_TOWN"] + sorted(outdoor):
@@ -250,48 +250,182 @@ for comp, w, h, x0, y0 in blocks:
     for m in comp:
         world[m] = (pos[m][0] - x0 + bx, pos[m][1] - y0 + by)
 
-# Interiors: group by region map section so floors of one dungeon stay together.
+# Interiors: buildings and dungeons sit next to their own entrance, floors stacked
+# top floor first, the way a printed strategy-guide map lays them out.
 interiors = [k for k, m in maps.items() if k not in world and not SKIP.search(m["dir"]) and not SKIP.search(k) and m["layout"] in layouts]
+interior_set = set(interiors)
+parent = {k: k for k in interiors}
+
+
+def find(k):
+    while parent[k] != k:
+        parent[k] = parent[parent[k]]
+        k = parent[k]
+    return k
+
+
+def union(a, b):
+    ra, rb = find(a), find(b)
+    if ra != rb:
+        parent[rb] = ra
+
+
+FLOOR_RE = re.compile(r"_(B?\d+F|Roof|Rooftop|RoofRoom|Elevator|Lobby|Basement)$")
+
+
+def stem(d):
+    return FLOOR_RE.sub("", d)
+
+
+for k in interiors:
+    for w in maps[k].get("warp_events") or []:
+        if w["dest_map"] in interior_set:
+            union(k, w["dest_map"])
+by_stem = defaultdict(list)
+for k in interiors:
+    by_stem[stem(maps[k]["dir"])].append(k)
+for ks in by_stem.values():
+    for k in ks[1:]:
+        union(ks[0], k)
 groups = defaultdict(list)
 for k in interiors:
-    groups[maps[k]["region_map_section"]].append(k)
+    groups[find(k)].append(k)
 
 
-def group_key(sec):
-    # put each group near the order its entrance appears in the outdoor world
-    best = None
-    for k in groups[sec]:
-        for w in maps[k].get("warp_events") or []:
-            dm = w["dest_map"]
-            if dm in world:
-                wx, wy = world[dm]
-                v = (wy // 40, wx)
-                best = v if best is None or v < best else best
-    return best or (9999, 0)
+def floor_rank(d):
+    m = re.search(r"_(B?)(\d+)F$", d)
+    if m:
+        return -int(m.group(2)) if m.group(1) else int(m.group(2))
+    if re.search(r"Roof", d):
+        return 50
+    return 0
 
 
 def natural(s):
     return [int(t) if t.isdigit() else t for t in re.split(r"(\d+)", s)]
 
 
-items = []
-for sec in sorted(groups, key=group_key):
-    for k in sorted(groups[sec], key=lambda k: natural(maps[k]["dir"])):
+def layout_group(ks):
+    """Stack a group's maps: highest floor on top. Wraps into columns when tall."""
+    ks = sorted(ks, key=lambda k: (-floor_rank(maps[k]["dir"]), natural(maps[k]["dir"])))
+    widest = max(size(k)[0] for k in ks)
+    total_h = sum(size(k)[1] + 1 for k in ks)
+    limit = max(widest, int((sum((size(k)[0] + 1) * (size(k)[1] + 1) for k in ks)) ** 0.5 * 1.2))
+    if total_h <= 70:
+        limit = widest  # a single column reads best for short stacks
+    out, x, y, row_h = {}, 0, 0, 0
+    for k in ks:
         w, h = size(k)
-        items.append((k, w, h))
-area = sum((w + GAP) * (h + GAP) for _, w, h in items) + canvas_w * cursor_y
-side = int(area ** 0.5 * 1.08)
-if side > canvas_w:
-    # interiors go in a column block to the right of Kanto and Sevii
-    placed, end_y = shelf_pack(items, GAP, side - canvas_w)
-    placed = {k: (x + canvas_w, y) for k, (x, y) in placed.items()}
-    canvas_w = side
-    cursor_y = max(cursor_y, end_y)
-else:
-    placed, cursor_y = shelf_pack(items, cursor_y + GAP, canvas_w)
-world.update(placed)
-canvas_h = cursor_y + GAP
-print("canvas %dx%d metatiles (%dx%d px), %d maps" % (canvas_w, canvas_h, canvas_w * MT, canvas_h * MT, len(world)), file=sys.stderr)
+        if x + w > limit and x > 0:
+            x, y, row_h = 0, y + row_h + 1, 0
+        out[k] = (x, y)
+        x += w + 1
+        row_h = max(row_h, h)
+    gw = max(x + size(k)[0] for k, (x, _) in out.items())
+    gh = max(y + size(k)[1] for k, (_, y) in out.items())
+    return out, gw, gh
+
+
+def entrance(ks):
+    pts = []
+    for k in ks:
+        for w in maps[k].get("warp_events") or []:
+            dm = w["dest_map"]
+            if dm in world:
+                di = int(w["dest_warp_id"]) if str(w["dest_warp_id"]).isdigit() else 0
+                dw = (maps[dm].get("warp_events") or [{"x": 0, "y": 0}])
+                dw = dw[di] if di < len(dw) else dw[0]
+                pts.append((world[dm][0] + dw["x"], world[dm][1] + dw["y"]))
+    if not pts:
+        # some caves are only linked from the outside door, so look the other way too
+        kset = set(ks)
+        for om, (wx, wy) in world.items():
+            for w in maps[om].get("warp_events") or []:
+                if w["dest_map"] in kset:
+                    pts.append((wx + w["x"], wy + w["y"]))
+    if not pts:
+        return None
+    return min(pts, key=lambda p: (p[1], p[0]))
+
+
+# occupancy grid over the outdoor world plus a border to grow into
+R = 110
+ox0 = min(x for x, _ in world.values()) - R
+oy0 = min(y for _, y in world.values()) - R
+ox1 = max(world[k][0] + size(k)[0] for k in world) + R
+oy1 = max(world[k][1] + size(k)[1] for k in world) + R
+GW, GH = ox1 - ox0, oy1 - oy0
+occ = np.zeros((GH, GW), np.int32)
+for k, (x, y) in world.items():
+    w, h = size(k)
+    occ[max(0, y - oy0 - 2):y - oy0 + h + 2, max(0, x - ox0 - 2):x - ox0 + w + 2] = 1
+yy, xx = np.mgrid[0:GH, 0:GW]
+
+order = []
+for g, ks in groups.items():
+    lay, gw, gh = layout_group(ks)
+    order.append((g, ks, lay, gw, gh, entrance(ks)))
+order.sort(key=lambda t: -(t[3] * t[4]))
+unplaced = []
+group_box = {}
+for g, ks, lay, gw, gh, ent in order:
+    if ent is None:
+        print("  no entrance:", maps[g]["dir"], len(ks), file=sys.stderr)
+        unplaced.append((g, ks, lay, gw, gh))
+        continue
+    pw, ph = gw + 2, gh + 2  # one-tile margin
+    sat = np.pad(occ, ((1, 0), (1, 0))).cumsum(0).cumsum(1)
+    vh, vw = GH - ph + 1, GW - pw + 1
+    if vh <= 0 or vw <= 0:
+        unplaced.append((g, ks, lay, gw, gh))
+        continue
+    filled = sat[ph:ph + vh, pw:pw + vw] - sat[0:vh, pw:pw + vw] - sat[ph:ph + vh, 0:vw] + sat[0:vh, 0:vw]
+    ex, ey = ent[0] - ox0, ent[1] - oy0
+    X, Y = xx[:vh, :vw], yy[:vh, :vw]
+    dx = np.maximum(0, np.maximum(X - ex, ex - (X + pw)))
+    dy = np.maximum(0, np.maximum(Y - ey, ey - (Y + ph)))
+    cost = (dx * dx + dy * dy) + 0.02 * ((X + pw / 2 - ex) ** 2 + (Y + ph / 2 - ey) ** 2)
+    cost = np.where(filled == 0, cost, np.inf)
+    i = int(np.argmin(cost))
+    if not np.isfinite(cost.flat[i]) or cost.flat[i] > 140 ** 2:
+        print("  side:", maps[g]["dir"], gw, gh, "best", cost.flat[i] if np.isfinite(cost.flat[i]) else "none", file=sys.stderr)
+        unplaced.append((g, ks, lay, gw, gh))
+        continue
+    py, px = divmod(i, vw)
+    gx, gy = px + ox0 + 1, py + oy0 + 1
+    for k, (lx, ly) in lay.items():
+        world[k] = (gx + lx, gy + ly)
+    group_box[g] = (gx, gy, gw, gh)
+    occ[py:py + ph, px:px + pw] = 1
+
+# anything without an outdoor entrance (or no room nearby) goes on a shelf to the right
+xs_max = max(world[k][0] + size(k)[0] for k in world)
+ys_min = min(y for _, y in world.values())
+items = []
+for g, ks, lay, gw, gh in unplaced:
+    items.append((g, gw, gh))
+cx, cy, row_h = xs_max + GAP * 2, ys_min, 0
+col_w = 120
+for g, ks, lay, gw, gh in unplaced:
+    if cx + gw > xs_max + GAP * 2 + col_w and cx > xs_max + GAP * 2:
+        cx, cy, row_h = xs_max + GAP * 2, cy + row_h + GAP, 0
+    for k, (lx, ly) in lay.items():
+        world[k] = (cx + lx, cy + ly)
+    group_box[g] = (cx, cy, gw, gh)
+    cx += gw + GAP
+    row_h = max(row_h, gh)
+
+# normalise to a positive canvas
+mx = min(x for x, _ in world.values()) - GAP
+my = min(y for _, y in world.values()) - GAP
+world = {k: (x - mx, y - my) for k, (x, y) in world.items()}
+group_box = {g: (x - mx, y - my, w, h) for g, (x, y, w, h) in group_box.items()}
+canvas_w = max(world[k][0] + size(k)[0] for k in world) + GAP
+canvas_h = max(world[k][1] + size(k)[1] for k in world) + GAP
+group_of = {k: find(k) for k in interiors}
+print("canvas %dx%d metatiles (%dx%d px), %d maps, %d groups near entrances, %d on the side" % (
+    canvas_w, canvas_h, canvas_w * MT, canvas_h * MT, len(world), len(groups) - len(unplaced), len(unplaced)), file=sys.stderr)
+
 
 def px_bbox(keys):
     xs0 = [world[k][0] for k in keys]; ys0 = [world[k][1] for k in keys]
@@ -299,7 +433,7 @@ def px_bbox(keys):
     return [min(xs0) * MT, min(ys0) * MT, max(xs1) * MT, max(ys1) * MT]
 
 
-regions = {"kanto": px_bbox(kanto), "sevii": px_bbox([m for c in rest for m in c]), "inside": px_bbox(list(placed))}
+regions = {"kanto": px_bbox(kanto), "sevii": px_bbox([m for c in rest for m in c]), "inside": px_bbox(interiors)}
 
 # ---------------- render canvas ----------------
 W, H = canvas_w * MT, canvas_h * MT
@@ -325,7 +459,8 @@ for z in range(max_z, -1, -1):
     lw, lh = lvl.size
     for tx in range(0, (lw + TILE - 1) // TILE):
         for ty in range(0, (lh + TILE - 1) // TILE):
-            crop = lvl.crop((tx * TILE, ty * TILE, tx * TILE + TILE, ty * TILE + TILE))
+            crop = Image.new("RGB", (TILE, TILE), BG)
+            crop.paste(lvl.crop((tx * TILE, ty * TILE, min(lw, tx * TILE + TILE), min(lh, ty * TILE + TILE))), (0, 0))
             a = np.asarray(crop)
             if (a == np.array(BG, np.uint8)).all():
                 continue
@@ -518,13 +653,29 @@ for k, (mx, my) in world.items():
     for i, w in enumerate(maps[k].get("warp_events") or []):
         warp_index[(k, i)] = ((mx + w["x"]) * MT + 8, (my + w["y"]) * MT + 8)
 
+def group_title(g):
+    names = [pretty_map(maps[k]["dir"]) for k in groups[g]]
+    pre = os.path.commonprefix(names)
+    pre = pre[: pre.rfind(" ")] if not all(n == pre for n in names) and " " in pre else pre
+    return pre.strip() or names[0]
+
+
+for g, (gx, gy, gw, gh) in group_box.items():
+    if len(groups[g]) > 1:
+        markers["labels"].append([group_title(g), (gx + gw / 2) * MT, gy * MT - 10, 3])
+
 sp_names = {}
 for k, (mx, my) in world.items():
     m = maps[k]
     w, h = size(k)
     name = pretty_map(m["dir"])
     markers["maps"].append([k, name, mx * MT, my * MT, w * MT, h * MT, 1 if k in outdoor else 0])
-    markers["labels"].append([name, (mx + w / 2) * MT, (my + h / 2) * MT, 1 if k in outdoor else 0])
+    if k in group_of and len(groups[group_of[k]]) > 1:
+        title = group_title(group_of[k])
+        short = name[len(title):].strip() if name.startswith(title) else name
+        markers["labels"].append([short or name, (mx + w / 2) * MT, (my + h / 2) * MT, 2])
+    else:
+        markers["labels"].append([name, (mx + w / 2) * MT, (my + h / 2) * MT, 1 if k in outdoor else 0])
     for o in m.get("object_events") or []:
         if o.get("type") == "clone" or "x" not in o:
             continue

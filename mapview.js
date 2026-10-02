@@ -71,9 +71,10 @@
     placedSpecials = [];
     LAYERS.forEach((L0) => {
       if (!prefs.layers[L0.id] || z < L0.z) return;
-      W[L0.id].forEach((m) => {
+      (L0.id === "mons" ? W.monsM : W[L0.id]).forEach((m) => {
         const x = L0.id === "labels" ? m[1] : m[0], y = L0.id === "labels" ? m[2] : m[1];
-        if (L0.id === "labels" && !m[3] && z < 3) return;
+        if (L0.id === "labels" && (m[3] === 0 || m[3] === 2) && z < 3) return;
+        if (L0.id === "labels" && m[3] === 3 && z < 2) return;
         if (!inView(x, y)) return;
         const mk = build(L0.id, m, z, A);
         if (mk) group.addLayer(mk);
@@ -83,7 +84,7 @@
 
   function build(layer, m, z, A) {
     const [x, y] = layer === "labels" ? [m[1], m[2]] : m;
-    if (layer === "labels") return L.marker(ll(x, y), { icon: icon(`<span>${esc(m[0])}</span>`, "mk-label " + (m[3] ? "out" : "in")), interactive: false, keyboard: false });
+    if (layer === "labels") return L.marker(ll(x, y), { icon: icon(`<span>${esc(m[0])}</span>`, "mk-label " + ["in", "out", "floor", "title"][m[3]]), interactive: false, keyboard: false });
     if (layer === "items" || layer === "hidden") {
       const got = A && A.flag(itemKey(m));
       if (got && prefs.hideGot) return null;
@@ -132,17 +133,18 @@
       return mk;
     }
     if (layer === "mons") {
-      if (!prefs.kinds[kindOf(m[2])]) return null;
-      const reachable = !A || A.canReach(m[4], m[2]);
-      if (!reachable && prefs.hideLocked) return null;
-      const rows = m[3];
+      // m = [x, y, group, subs[{k, rows}], name]
+      const subs = m[3].filter((sb) => prefs.kinds[kindOf(sb.k)]).map((sb) => ({ ...sb, ok: !A || A.canReach(m[4], sb.k) })).filter((sb) => sb.ok || !prefs.hideLocked);
+      if (!subs.length) return null;
+      const reachable = subs.some((sb) => sb.ok);
       const caught = (id) => A && A.monS(id) === 2;
-      const left = rows.filter((r) => !caught(r[0]));
-      const show = (left.length ? left : rows).slice(0, 3);
-      const html = show.map((r) => `<img class="${caught(r[0]) ? "c" : ""}" src="${SPRITE + r[0]}.png" alt="">`).join("") +
-        (rows.length > 3 ? `<em>+${rows.length - 3}</em>` : "") + (!left.length ? `<em class="ok">✓</em>` : "") + (!reachable ? `<em class="lk">🔒</em>` : "");
+      const ids = [...new Set(subs.flatMap((sb) => sb.rows.map((r) => r[0])))];
+      const left = ids.filter((id) => !caught(id));
+      const show = (left.length ? left : ids).slice(0, 3);
+      const html = show.map((id) => `<img class="${caught(id) ? "c" : ""}" src="${SPRITE + id}.png" alt="">`).join("") +
+        (ids.length > 3 ? `<em>+${ids.length - 3}</em>` : "") + (!left.length ? `<em class="ok">✓</em>` : "") + (!reachable ? `<em class="lk">🔒</em>` : "");
       const mk = L.marker(ll(x, y), { icon: icon(html, `mk-mons ${m[2]} ${reachable ? "" : "locked"}`), riseOnHover: true });
-      mk.on("click", () => monsPopup(mk, m, reachable));
+      mk.on("click", () => monsPopup(mk, m, subs));
       return mk;
     }
     return null;
@@ -168,17 +170,19 @@
     L.popup({ offset: [0, -6] }).setLatLng(mk.getLatLng()).setContent(d).openOn(map);
   }
 
-  function monsPopup(mk, m, reachable) {
+  function monsPopup(mk, m, subs) {
     const A = window.APP;
     const d = document.createElement("div");
     d.className = "mk-pop";
-    const lock = !reachable && A ? A.lockText(m[4], m[2]) : "";
-    d.innerHTML = `<b>${esc(m[4])}</b> · ${esc(METHOD[m[2]] || m[2])}${lock ? `<div class="mk-lock">🔒 ${esc(lock)}</div>` : ""}<div class="mk-rows">` + m[3].map((r) => {
-      const c = A && A.monS(r[0]) === 2;
-      return `<button data-id="${r[0]}" class="${c ? "c" : ""}"><img src="${SPRITE + r[0]}.png" alt=""><span>${esc((A && A.name(r[0])) || r[1])}<small>Lv ${r[3] === r[4] ? r[3] : r[3] + "–" + r[4]}${c ? " · caught" : ""}</small></span><b>${r[2]}%</b></button>`;
-    }).join("") + `</div>`;
+    d.innerHTML = `<b>${esc(m[4])}</b>` + subs.map((sb) => {
+      const lock = !sb.ok && A ? A.lockText(m[4], sb.k) : "";
+      return `<div class="mk-sec">${esc(METHOD[sb.k] || sb.k)}${lock ? ` <span class="mk-lock">🔒 ${esc(lock)}</span>` : ""}</div><div class="mk-rows">` + sb.rows.map((r) => {
+        const c = A && A.monS(r[0]) === 2;
+        return `<button data-id="${r[0]}" class="${c ? "c" : ""}"><img src="${SPRITE + r[0]}.png" alt=""><span>${esc((A && A.name(r[0])) || r[1])}<small>Lv ${r[3] === r[4] ? r[3] : r[3] + "–" + r[4]}${c ? " · caught" : ""}</small></span><b>${r[2]}%</b></button>`;
+      }).join("") + `</div>`;
+    }).join("");
     d.addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b && A) A.openMon(+b.dataset.id); });
-    L.popup({ maxWidth: 280, offset: [0, -10] }).setLatLng(mk.getLatLng()).setContent(d).openOn(map);
+    L.popup({ maxWidth: 290, offset: [0, -10] }).setLatLng(mk.getLatLng()).setContent(d).openOn(map);
   }
 
   function fitRegion(r) {
@@ -236,6 +240,20 @@
     try { await load(); } catch { root.querySelector("#mvmap").innerHTML = `<p style="padding:16px">Couldn't load the map. Check your connection and reload.</p>`; return; }
     W = window.WORLD;
     tileSet = tileSet || new Set(W.tiles.split(" "));
+    if (!W.monsM) {
+      // one bubble per area for land, one for all water methods, one for Rock Smash
+      const byKey = new Map();
+      W.mons.forEach(([x, y, k, rows, name]) => {
+        const g = k === "land" ? "land" : k === "rock" ? "rock" : "water";
+        const key = name + "|" + g;
+        if (!byKey.has(key)) byKey.set(key, [x, y, g, [], name]);
+        const e = byKey.get(key);
+        if (k === "surf") { e[0] = x; e[1] = y; }
+        e[3].push({ k, rows });
+      });
+      const order = ["surf", "old_rod", "good_rod", "super_rod"];
+      W.monsM = [...byKey.values()].map((e) => { e[3].sort((a, b) => order.indexOf(a.k) - order.indexOf(b.k)); return e; });
+    }
     root.querySelector("#mv-places").innerHTML = [...new Set(W.maps.map((m) => m[1]))].sort().map((n) => `<option value="${esc(n)}">`).join("");
     const el = root.querySelector("#mvmap");
     if (!opts.embed) {
