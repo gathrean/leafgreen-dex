@@ -166,6 +166,11 @@
     tileSet = tileSet || new Set(W.tiles.split(" "));
     root.querySelector("#mv-places").innerHTML = [...new Set(W.maps.map((m) => m[1]))].sort().map((n) => `<option value="${esc(n)}">`).join("");
     const el = root.querySelector("#mvmap");
+    const fit = () => { el.style.height = Math.max(320, window.innerHeight - el.getBoundingClientRect().top - window.scrollY) + "px"; if (map) map.invalidateSize(); };
+    fit();
+    window.removeEventListener("resize", window.__mvfit || (() => {}));
+    window.__mvfit = fit;
+    window.addEventListener("resize", fit);
     el.innerHTML = "";
     el.style.background = W.bg;
     if (map) { map.remove(); map = null; }

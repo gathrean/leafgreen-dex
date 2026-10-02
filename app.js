@@ -145,9 +145,11 @@
     const caught = all.filter((id) => monS(id) === 2).length;
     return { total: all.length, caught, done: all.length > 0 && caught === all.length };
   }
-  function availableUncaught(l) {
+  const WILD = new Set(["walk", "surf", "old-rod", "good-rod", "super-rod", "rock-smash"]);
+  function availableUncaught(l, wildOnly) {
     const out = new Set();
     l.floors.forEach((f) => f.tables.forEach((t) => {
+      if (wildOnly && !WILD.has(t.m)) return;
       if (!needsMet(tableNeeds(l, f, t))) return;
       t.mons.forEach((m) => { if (monS(m.id) !== 2) out.add(m.id); });
     }));
@@ -192,7 +194,7 @@
   function renderRoutes(focusId) {
     const app = $("#app");
     const k = counts(KANTO_MAX);
-    const nextLoc = LOCS.find((l) => (!l.req || needsMet(l.req)) && availableUncaught(l).length);
+    const nextLoc = LOCS.find((l) => (!l.req || needsMet(l.req)) && availableUncaught(l, true).length);
     const cb = comebacks();
 
     let h = `<section class="hero">
@@ -205,7 +207,7 @@
         <div class="bar"><i id="kBar" style="width:${(k.caught / 151) * 100}%"></i></div>
       </div>`;
     if (nextLoc) {
-      const un = availableUncaught(nextLoc);
+      const un = availableUncaught(nextLoc, true);
       h += `<div class="box next"><span class="kicker">Next stop</span>
         <a class="go" href="#/routes/${nextLoc.id}">${esc(nextLoc.name)} →</a>
         <span class="why">${un.length} you can catch here now: ${un.slice(0, 6).map((id) => esc(SP[id].n)).join(", ")}${un.length > 6 ? "…" : ""}</span></div>`;
@@ -430,7 +432,7 @@
     const html = `<div class="in">
       <div class="hd"><img src="${spr(id)}" alt="">
         <div><span class="muted small">#${String(id).padStart(3, "0")}</span><h2>${esc(sp.n)}</h2><div class="types">${sp.t.map(typeTag).join("")}</div></div>
-        <button class="x" data-act="close" aria-label="Close">✕</button></div>
+        <button class="x" data-act="close" aria-label="Close" autofocus>✕</button></div>
       <div class="actions">
         <button class="btn ${s === 2 ? "on" : "primary"}" data-act="sheet-catch" data-mon="${id}">${s === 2 ? "Caught ✓" : "Mark caught"}</button>
         <button class="btn ${s >= 1 ? "on" : ""}" data-act="sheet-seen" data-mon="${id}">${s >= 1 ? "Seen ✓" : "Mark seen"}</button>
@@ -507,7 +509,7 @@
     const on = SYNC.connected;
     dlg.dataset.mon = "";
     dlg.innerHTML = `<div class="in">
-      <div class="hd" style="grid-template-columns:1fr auto"><div><h2>Sync</h2><p class="muted small" style="margin:2px 0 0">Your checks save on this device straight away. Connect GitHub to share them between phone and laptop through a private Gist.</p></div><button class="x" data-act="close" aria-label="Close">✕</button></div>
+      <div class="hd" style="grid-template-columns:1fr auto"><div><h2>Sync</h2><p class="muted small" style="margin:2px 0 0">Your checks save on this device straight away. Connect GitHub to share them between phone and laptop through a private Gist.</p></div><button class="x" data-act="close" aria-label="Close" autofocus>✕</button></div>
       ${on ? `<div class="note">Connected${SYNC.gistId ? `. Saving to <a href="https://gist.github.com/${esc(SYNC.gistId)}" target="_blank" rel="noopener">your private gist</a>` : ""}.</div>
         <p class="small muted" id="syncStatus"></p>
         <div class="actions"><button class="btn primary" data-act="sync-now">Sync now</button><button class="btn" data-act="sync-off">Disconnect</button></div>`
