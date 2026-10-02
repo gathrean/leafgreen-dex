@@ -26,7 +26,7 @@ Choices made so far, kept alongside the site. The same list shows at the top of 
 - TM34 Shock Wave from Lt. Surge is reserved for Nami.
 - Luffy's Sleep Powder comes back at the Two Island Move Reminder: Big Mushroom from Pokémon Tower 5F, or two Tiny.
 - Master Ball: save it for Mewtwo or Entei.
-- Day Care: Nidoran♀ suggested, for Nidorina and then Nidoqueen with the spare Moon Stone.
+- Day Care: done. Nidoran♀ became Nidorina, then Nidoqueen with the spare Moon Stone.
 
 ## Stand-ins
 
