@@ -242,6 +242,7 @@
         </div>
         <div class="bar"><i id="kBar" style="width:${(k.caught / 151) * 100}%"></i></div>
       </div>`;
+    h += hereLink();
     if (nextLoc) {
       const un = availableUncaught(nextLoc, true);
       h += `<div class="box next"><span class="kicker">Next stop</span>
@@ -330,6 +331,11 @@
   }
   SPLIT_MQ.addEventListener("change", () => { if ((location.hash || "#/routes").startsWith("#/routes")) route(); });
 
+  function hereLink() {
+    const l = LOC[flag("here")];
+    return l ? `<a class="box here-link" id="hereLink" href="#/routes/${l.id}"><span>📍 You're at</span><b>${esc(l.name)}</b><span class="go">Jump →</span></a>` : `<span id="hereLink" hidden></span>`;
+  }
+
   function renderTeam() {
     const C = D.extra.crewLines || [];
     if (!C.length) return "";
@@ -364,12 +370,12 @@
     const st = locStatus(l);
     const reqs = (l.req || []).map((r) => `<span class="lock ${has(r) ? "ok" : ""}">${has(r) ? "✓" : "🔒"} ${esc(unlockName(r))}</span>`).join("");
     const strip = l.mons.map((id) => `<img src="${spr(id)}" alt="${esc(SP[id].n)}" title="${esc(SP[id].n)}" data-mon="${id}" class="${monS(id) === 2 ? "c" : monS(id) === 1 ? "s" : ""}" loading="lazy" width="40" height="40">`).join("");
-    return `<details class="box loc ${st.done ? "done" : ""}" id="loc-${l.id}" data-loc="${l.id}" data-mons="${l.mons.join(",")}" ${UI.open[l.id] ? "open" : ""}>
+    return `<details class="box loc ${st.done ? "done" : ""} ${flag("here") === l.id ? "here" : ""}" id="loc-${l.id}" data-loc="${l.id}" data-mons="${l.mons.join(",")}" ${UI.open[l.id] ? "open" : ""}>
       <summary>
         <span class="num">${st.done ? "✓" : i + 1}</span>
         <span class="name">${esc(l.name)}</span>
         <span class="prog" data-prog>${progHtml(st)}</span>
-        <span class="meta">${reqs}${(l.gates || []).length ? `<span>${l.gates.length} locked part${l.gates.length > 1 ? "s" : ""}</span>` : ""}</span>
+        <span class="meta"><span class="here-tag">📍 You're here</span>${reqs}${(l.gates || []).length ? `<span>${l.gates.length} locked part${l.gates.length > 1 ? "s" : ""}</span>` : ""}</span>
         ${strip ? `<span class="strip">${strip}</span>` : ""}
       </summary>
       <div class="loc-body" data-body></div>
@@ -390,7 +396,7 @@
     });
     if (l.back) h += `<div class="back"><b>Come back:</b> ${esc(l.back)}</div>`;
     if (l.notes) h += `<p>${esc(l.notes)}</p>`;
-    h += `<p><a class="btn" style="display:inline-block;text-decoration:none" href="#/map/${encodeURIComponent(l.mapName || l.name)}">Open on the full map</a></p>`;
+    h += `<p class="loc-actions"><button class="btn here-btn ${flag("here") === l.id ? "on" : ""}" data-act="here" data-v="${l.id}">${flag("here") === l.id ? "📍 You're here" : "📍 I'm here"}</button><a class="btn" style="display:inline-block;text-decoration:none" href="#/map/${encodeURIComponent(l.mapName || l.name)}">Open on the full map</a></p>`;
     h += `</div></div>`;
 
     const multi = l.floors.length > 1;
@@ -720,8 +726,11 @@
   }
 
   // ---------------- router + events ----------------
+  let autoJumped = false;
   function route() {
-    const [, page, arg] = (location.hash || "#/routes").split("/");
+    let [, page, arg] = (location.hash || "#/routes").split("/");
+    if (!autoJumped && (!page || page === "routes") && !arg && LOC[flag("here")]) arg = flag("here");
+    autoJumped = true;
     $$(".tabs a").forEach((a) => a.classList.toggle("on", a.dataset.tab === (page || "routes")));
     document.body.classList.toggle("on-map", page === "map");
     document.body.classList.remove("is-split");
@@ -759,6 +768,14 @@
     } else if (act === "badges") { setFlag("badges", +t.dataset.v); route(); }
     else if (act === "flag") { setFlag(t.dataset.v, flag(t.dataset.v) ? 0 : 1); route(); }
     else if (act === "map") { UI.map = t.dataset.v; saveUI(); route(); }
+    else if (act === "here") {
+      const id = t.dataset.v, on = flag("here") !== id;
+      setFlag("here", on ? id : 0);
+      $$("details.loc").forEach((d) => d.classList.toggle("here", on && d.dataset.loc === id));
+      $$(".here-btn").forEach((b) => { b.textContent = on && b.dataset.v === id ? "📍 You're here" : "📍 I'm here"; b.classList.toggle("on", on && b.dataset.v === id); });
+      const hl = $("#hereLink"); if (hl) hl.outerHTML = hereLink();
+      toast(on ? `Saved: you're at ${LOC[id].name}` : "Cleared your spot");
+    }
     else if (act === "plan") return;
     else if (act === "plandone") {
       const id = t.dataset.v, on = !flag("plandone:" + id);
