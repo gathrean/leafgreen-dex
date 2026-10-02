@@ -413,27 +413,22 @@
      [
       34,
       "Usopp",
-      "Nidoking. Ground type makes him immune to Electric; give him Dig."
-     ],
-     [
-      25,
-      "Stand-in",
-      "Pikachu. Good vs the rival's Pidgeotto on the S.S. Anne; bench it for Surge."
+      "Nidoking. Immune to Electric, so he's your Lt. Surge answer. Give him Dig."
      ],
      [
       12,
       "Stand-in",
-      "Butterfree (Caterpie, Lv 10). Sleep Powder at Lv 15 covers for Luffy's when catching."
-     ],
-     [
-      27,
-      "Stand-in",
-      "Sandshrew, Route 4 (25%). Immune to Electric, so it walls Raichu while it Slashes (Lv 23)."
+      "Butterfree. Sleep Powder at Lv 15 for catching; Confusion meanwhile."
      ],
      [
       17,
       "Stand-in",
-      "Pidgeotto (Pidgey, Lv 18). Flying for Erika next, and Fly until Zoro joins."
+      "Pidgeotto (Pidgey, Lv 18). Optional; Flying helps vs Erika."
+     ],
+     [
+      25,
+      "Stand-in",
+      "Pikachu. Optional; useful vs the rival's Pidgeotto, useless vs Surge."
      ]
     ],
     "prep": [
@@ -452,10 +447,6 @@
      {
       "k": "v3",
       "t": "Cerulean: the burgled house is now open. Beat the Rocket grunt behind it for TM28 Dig. Teach it to Usopp."
-     },
-     {
-      "k": "v4",
-      "t": "Catch a Sandshrew on Route 4, just east of Mt. Moon (25%, LeafGreen exclusive)."
      },
      {
       "k": "v5",
