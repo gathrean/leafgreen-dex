@@ -361,7 +361,7 @@
     "id": "surge",
     "title": "Vermilion and Lt. Surge",
     "badges": 2,
-    "target": "Lv 24 to 25",
+    "target": "Lv 24 to 25 (rotate leads so Butterfree keeps up)",
     "bosses": [
      {
       "name": "Rival",
@@ -408,27 +408,17 @@
      [
       2,
       "Luffy",
-      "Ivysaur resists Electric. Teach him Cut."
+      "Ivysaur. Resists Electric; teach him Cut. Shreds Rock Tunnel's Hikers next."
      ],
      [
       34,
       "Usopp",
-      "Nidoking. Immune to Electric, so he's your Lt. Surge answer. Give him Dig."
+      "Nidoking. Lead vs Lt. Surge (immune to Electric) and the rival's Charmeleon. Dig, then Thrash at Lv 22."
      ],
      [
       12,
       "Stand-in",
-      "Butterfree. Sleep Powder at Lv 15 for catching; Confusion meanwhile."
-     ],
-     [
-      17,
-      "Stand-in",
-      "Pidgeotto (Pidgey, Lv 18). Optional; Flying helps vs Erika."
-     ],
-     [
-      25,
-      "Stand-in",
-      "Pikachu. Optional; useful vs the rival's Pidgeotto, useless vs Surge."
+      "Butterfree. Takes the rival's Kadabra; Sleep Powder at Lv 15 for catching."
      ]
     ],
     "prep": [
@@ -543,7 +533,7 @@
      [
       2,
       "Luffy",
-      "Becomes Venusaur at Lv 32."
+      "Becomes Venusaur at Lv 32, around Celadon."
      ],
      [
       34,
@@ -551,24 +541,24 @@
       ""
      ],
      [
-      38,
+      12,
+      "Stand-in",
+      "Butterfree, until the crew fills out."
+     ],
+     [
+      37,
       "Sanji",
-      "Vulpix, Route 8. Keep it a Vulpix until Lv 29 for Flamethrower, then use the Fire Stone (Ninetales learns nothing new until 45)."
+      "Joins on Route 8. Keep it a Vulpix until Lv 29 for Flamethrower, then the Fire Stone."
      ],
      [
       135,
       "Nami",
-      "Eevee (Lv 25) + Thunder Stone. Teach TM34 Shock Wave right away; it's her only Electric attack until TM24 Thunderbolt."
+      "Eevee (Lv 25) + Thunder Stone in Celadon. Teach TM34 Shock Wave right away."
      ],
      [
       84,
       "Zoro",
-      "Doduo on Route 16. Press B to stop it evolving at Lv 31 until it learns Drill Peck at Lv 37 (Dodrio waits until 47)."
-     ],
-     [
-      17,
-      "Stand-in",
-      "Pidgeotto. Flying beats Erika's grass types until Sanji's ready."
+      "Doduo on Route 16. Press B at Lv 31 to wait for Drill Peck at 37."
      ]
     ],
     "prep": [
