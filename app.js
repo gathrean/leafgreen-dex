@@ -351,16 +351,20 @@
       }).join("") + `</div></div>`;
   }
 
-  function renderBag() {
+  function bagBody() {
     const b = flag("badges");
     const groups = {};
     Object.entries(UNL).forEach(([id, u]) => { (groups[u.group] = groups[u.group] || []).push([id, u]); });
+    return `<div class="grp"><span>Badges</span><div class="badges">${[0, 1, 2, 3, 4, 5, 6, 7, 8].map((n) => `<button class="chip ${b === n ? "on" : ""}" data-act="badges" data-v="${n}">${n}</button>`).join("")}
+        <button class="chip ${flag("hof") ? "on" : ""}" data-act="flag" data-v="hof">Hall of Fame</button></div></div>
+      ${Object.entries(groups).map(([g, list]) => `<div class="grp"><span>${esc(g)}</span><div class="badges">${list.map(([id, u]) => `<button class="chip ${flag(id) ? "on" : ""}" data-act="flag" data-v="${id}" title="${esc(u.where || "")}">${esc(u.name)}</button>`).join("")}</div></div>`).join("")}`;
+  }
+  function renderBag() {
+    const b = flag("badges");
     return `<details class="box bag" ${UI.bagOpen ? "open" : ""} data-act="bag">
       <summary><h3>Your bag</h3><span class="muted small">${b} badge${b === 1 ? "" : "s"}${flag("hof") ? ", Champion" : ""}</span><span class="caret">▸</span></summary>
       <p class="muted small" style="margin:8px 0 0">Tick what you have. Locked tables open up and "Come back to" fills in.</p>
-      <div class="grp"><span>Badges</span><div class="badges">${[0, 1, 2, 3, 4, 5, 6, 7, 8].map((n) => `<button class="chip ${b === n ? "on" : ""}" data-act="badges" data-v="${n}">${n}</button>`).join("")}
-        <button class="chip ${flag("hof") ? "on" : ""}" data-act="flag" data-v="hof">Hall of Fame</button></div></div>
-      ${Object.entries(groups).map(([g, list]) => `<div class="grp"><span>${esc(g)}</span><div class="badges">${list.map(([id, u]) => `<button class="chip ${flag(id) ? "on" : ""}" data-act="flag" data-v="${id}" title="${esc(u.where || "")}">${esc(u.name)}</button>`).join("")}</div></div>`).join("")}
+      ${bagBody()}
     </details>`;
   }
 
@@ -693,9 +697,11 @@
       const k = `plan:${m.id}:${pk}`;
       return `<label class="prep ${flag(k) ? "on" : ""}"><input type="checkbox" data-act="plan" data-k="${k}" ${flag(k) ? "checked" : ""}><span>${esc(t)}</span></label>`;
     }).join("");
-    return `<aside class="float-plan ${UI.floatMin ? "min" : ""}" aria-label="Checklist">
-      <button class="fp-head" data-act="floatmin"><span class="kicker">Checklist · ${left} to do</span><b>${esc(m.title)}</b><span class="fp-caret">${UI.floatMin ? "▴" : "▾"}</span></button>
-      <div class="fp-body">${items}<button class="btn primary plan-done" data-act="plandone" data-v="${m.id}">Mark this stop done</button></div>
+    const bagTab = UI.floatTab === "bag";
+    const b = flag("badges");
+    return `<aside class="float-plan ${UI.floatMin ? "min" : ""}" aria-label="Checklist and bag">
+      <div class="fp-tabs"><button class="fp-tab ${bagTab ? "" : "on"}" data-act="floattab" data-v="list">Checklist · ${left}</button><button class="fp-tab ${bagTab ? "on" : ""}" data-act="floattab" data-v="bag">Bag · ${b} badge${b === 1 ? "" : "s"}</button><button class="fp-caret" data-act="floatmin" aria-label="Collapse">${UI.floatMin ? "▴" : "▾"}</button></div>
+      ${bagTab ? `<div class="fp-body bag-body">${bagBody()}</div>` : `<div class="fp-body"><b class="fp-title">${esc(m.title)}</b>${items}<button class="btn primary plan-done" data-act="plandone" data-v="${m.id}">Mark this stop done</button></div>`}
     </aside>`;
   }
   function mountFloatPlan(container) {
@@ -749,6 +755,15 @@
     el.textContent = st === "syncing" ? "Syncing…" : st === "error" ? err || window.__syncE : st === "offline" ? "Offline. Will sync when you're back online." : st === "idle" ? "Up to date." : "";
   }
 
+  // redraw after a bag change without jumping back to the pinned route
+  function refreshKeepScroll() {
+    const page = (location.hash || "#/routes").split("/")[1] || "routes";
+    if (page !== "routes") { route(); return; }
+    const y = window.scrollY;
+    renderRoutes(null);
+    window.scrollTo(0, y);
+  }
+
   // ---------------- router + events ----------------
   let autoJumped = false;
   function route() {
@@ -789,8 +804,8 @@
       if (monS(id) === 2) { toast(`${SP[id].n} is caught, so it's already seen`); return; }
       setMon(id, monS(id) >= 1 ? 0 : 1);
       if (monS(id) === 1) toast(`${SP[id].n} marked seen`);
-    } else if (act === "badges") { setFlag("badges", +t.dataset.v); route(); }
-    else if (act === "flag") { setFlag(t.dataset.v, flag(t.dataset.v) ? 0 : 1); route(); }
+    } else if (act === "badges") { setFlag("badges", +t.dataset.v); refreshKeepScroll(); }
+    else if (act === "flag") { setFlag(t.dataset.v, flag(t.dataset.v) ? 0 : 1); refreshKeepScroll(); }
     else if (act === "map") { UI.map = t.dataset.v; saveUI(); route(); }
     else if (act === "here") {
       const id = t.dataset.v, on = flag("here") !== id;
@@ -801,6 +816,10 @@
       toast(on ? `Saved: you're at ${LOC[id].name}` : "Cleared your spot");
     }
     else if (act === "plan") return;
+    else if (act === "floattab") {
+      UI.floatTab = t.dataset.v; UI.floatMin = 0; saveUI();
+      $$(".float-plan").forEach((fp) => fp.parentElement && mountFloatPlan(fp.parentElement));
+    }
     else if (act === "floatmin") {
       UI.floatMin = !UI.floatMin; saveUI();
       $$(".float-plan").forEach((fp) => { fp.classList.toggle("min", !!UI.floatMin); const c = $(".fp-caret", fp); if (c) c.textContent = UI.floatMin ? "▴" : "▾"; });
@@ -849,7 +868,7 @@
     const curPlan = (D.extra.plan || []).find((x) => x.id === before);
     if (curPlan) {
       const left = curPlan.prep.filter(({ k: pk }) => !flag(`plan:${curPlan.id}:${pk}`)).length;
-      $$(".float-plan .fp-head .kicker").forEach((el) => { el.textContent = `Checklist · ${left} to do`; });
+      $$('.float-plan [data-v="list"]').forEach((el) => { el.textContent = `Checklist · ${left}`; });
     }
     if (planState().cur !== before) {
       $$(".float-plan").forEach((fp) => fp.parentElement && mountFloatPlan(fp.parentElement)); route(); toast("Stop done. On to the next one!"); const nxt = $(".plan.now"); if (nxt) nxt.scrollIntoView({ behavior: "smooth", block: "start" }); }

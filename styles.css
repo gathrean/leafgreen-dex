@@ -589,3 +589,16 @@ details.loc.here:not(.active) { box-shadow: inset 0 0 0 2px var(--red), inset 0 
 .run > summary::-webkit-details-marker { display: none; }
 .run h3 { margin: 14px 0 4px; color: var(--leaf); }
 .run ul { margin: 0; padding-left: 18px; display: grid; gap: 3px; font-size: 14.5px; }
+@media (min-width: 900px) {
+  .fp-tabs { display: grid; grid-template-columns: 1fr 1fr auto; gap: 4px; padding: 8px 8px 6px; border-bottom: 1px solid var(--line); }
+  .fp-tab { border: 0; cursor: pointer; border-radius: 8px; padding: 8px 6px; background: var(--panel-2); color: var(--ink-2); font: 700 13px var(--f-display); }
+  .fp-tab.on { background: var(--leaf); color: #fff; }
+  .fp-tabs .fp-caret { border: 0; background: none; cursor: pointer; padding: 0 8px; color: var(--ink-3); font-size: 14px; }
+  .fp-title { font: 700 15px var(--f-display); padding-top: 8px; }
+  .fp-body { padding-top: 6px; }
+  .bag-body .grp { margin-top: 4px; }
+  .bag-body .grp > span { font: 500 11px/1 var(--f-display); text-transform: uppercase; letter-spacing: 1px; color: var(--ink-3); }
+  .bag-body .badges { margin: 6px 0 4px; gap: 4px; }
+  .bag-body .chip { padding: 5px 10px; font-size: 13px; }
+  .float-plan.min .fp-tabs { border-bottom: 0; }
+}
