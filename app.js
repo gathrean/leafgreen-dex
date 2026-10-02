@@ -165,6 +165,8 @@
   Object.entries(SP).forEach(([id, s]) => { NAME_IDX[s.n.toLowerCase().replace(/[^a-z0-9]/g, "")] = +id; });
   function idByName(slug) { return NAME_IDX[slug.replace(/-f$/, "♀").replace(/-m$/, "♂").replace(/[^a-z0-9]/g, "")] || NAME_IDX[slug.replace(/[^a-z0-9]/g, "")]; }
 
+  const EYE = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3.2"/></svg>`;
+  const seenBtn = (id) => `<button class="seen ${monS(id) >= 1 ? "on" : ""}" data-mon="${id}" data-act="seen" aria-pressed="${monS(id) >= 1}" aria-label="Seen ${esc(SP[id].n)}" title="Seen">${EYE}</button>`;
   const checkBtn = (id) => `<button class="check ${monS(id) === 2 ? "c" : ""}" data-mon="${id}" data-act="catch" aria-label="Caught ${esc(SP[id].n)}" aria-pressed="${monS(id) === 2}"></button>`;
 
   function toast(msg) {
@@ -412,10 +414,9 @@
       const tip = D.extra.tips && D.extra.tips[m.id];
       const rare = showOdds && m.p <= 5;
       h += `<div class="row ${monS(m.id) === 2 ? "caught" : ""}" data-row="${m.id}">
-        ${checkBtn(m.id)}
+        ${checkBtn(m.id)}${seenBtn(m.id)}
         <img class="spr" src="${spr(m.id)}" alt="" loading="lazy" width="52" height="52">
         <div class="who"><b>${esc(sp.n)}</b><span class="lv">${t.m === "npc-trade" ? "" : lvText(m)}</span>
-          <button class="seen ${monS(m.id) >= 1 ? "on" : ""}" data-mon="${m.id}" data-act="seen" aria-pressed="${monS(m.id) >= 1}">${monS(m.id) >= 1 ? "seen" : "mark seen"}</button>
           <div class="ball">${ballHtml}</div>
           ${tip ? `<div class="tip">${esc(tip)}</div>` : ""}
         </div>
@@ -428,7 +429,7 @@
   function refreshMon(id) {
     const s = monS(id);
     $$(`.check[data-mon="${id}"]`).forEach((b) => { b.classList.toggle("c", s === 2); b.setAttribute("aria-pressed", s === 2); });
-    $$(`.seen[data-mon="${id}"]`).forEach((b) => { b.classList.toggle("on", s >= 1); b.textContent = s >= 1 ? "seen" : "mark seen"; });
+    $$(`.seen[data-mon="${id}"]`).forEach((b) => { b.classList.toggle("on", s >= 1); b.setAttribute("aria-pressed", s >= 1); });
     $$(`[data-row="${id}"]`).forEach((r) => r.classList.toggle("caught", s === 2));
     $$(`.strip img[data-mon="${id}"]`).forEach((im) => { im.className = s === 2 ? "c" : s === 1 ? "s" : ""; });
     $$(`details.loc`).forEach((el) => {
