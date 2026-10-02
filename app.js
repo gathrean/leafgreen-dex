@@ -269,6 +269,7 @@
         const inCh = LOCS.filter((x) => x.chapter === l.chapter);
         const done = inCh.filter((x) => locStatus(x).done || !x.mons.length).length;
         h += `<div class="chapter"><div><h2>${esc(c.name)}</h2>${c.blurb ? `<p class="muted small">${esc(c.blurb)}</p>` : ""}</div><span class="count" data-chcount="${c.id}">${done}/${inCh.length}</span></div>`;
+        (PLAN_FOR_CHAPTER[c.id] || []).forEach((pid) => { const pm = (D.extra.plan || []).find((x) => x.id === pid); if (pm) h += planCard(pm, true); });
         lastCh = l.chapter;
       }
       h += renderLoc(l, i);
@@ -592,33 +593,42 @@
   }
 
   // ---------------- PLAN PAGE ----------------
-  function renderPlan() {
+  const PLAN_FOR_CHAPTER = { misty: ["misty"], surge: ["surge"], erika: ["erika"], koga: ["koga"], sabrina: ["sabrina"], blaine: ["blaine"], sevii: ["sevii", "giovanni"], league: ["league"] };
+  function planState() {
     const P = D.extra.plan || [];
     const b = flag("badges");
     const cur = flag("hof") ? null : (P.find((m) => m.badges >= b) || P[P.length - 1]).id;
-    const sprite = (id, cls) => `<img class="${cls || ""}" src="${spr(id)}" alt="" loading="lazy" width="56" height="56">`;
+    const ci = P.findIndex((x) => x.id === cur);
+    return { P, cur, ci };
+  }
+  const planSprite = (id, cls) => `<img class="${cls || ""}" src="${spr(id)}" alt="" loading="lazy" width="56" height="56">`;
+  function planCard(m, inline) {
+    const { P, cur, ci } = planState();
+    const isCur = m.id === cur;
+    const done = !cur || P.indexOf(m) < ci;
+    const prep = m.prep.map((t, i) => {
+      const k = `plan:${m.id}:${i}`;
+      return `<label class="prep ${flag(k) ? "on" : ""}"><input type="checkbox" data-act="plan" data-k="${k}" ${flag(k) ? "checked" : ""}><span>${esc(t)}</span></label>`;
+    }).join("");
+    const left = m.prep.filter((t, i) => !flag(`plan:${m.id}:${i}`)).length;
+    const kicker = (inline ? "Team plan · " : "") + (isCur ? "You are here" : done ? "Done" : "Up next");
+    const open = inline ? isCur && !done : isCur || UI.plan === m.id;
+    return `<details class="box plan ${inline ? "inline" : ""} ${isCur ? "now" : ""} ${done ? "past" : ""}" ${open ? "open" : ""} data-plan="${m.id}">
+      <summary><span class="kicker">${kicker}</span><h2>${esc(m.title)}</h2><span class="muted small">Target ${esc(m.target)}${left ? ` · ${left} to do` : " · all set"}</span></summary>
+      <div class="plan-body">
+        ${m.bosses.length ? `<div class="bosses">${m.bosses.map((bo) => `<div class="boss"><div class="boss-h"><b>${esc(bo.name)}</b><span class="muted small">${esc(bo.where)}</span></div><div class="party">${bo.party.map(([id, lv]) => `<button data-act="dex" data-id="${id}">${planSprite(id)}<small>${lv}</small></button>`).join("")}</div></div>`).join("")}</div>` : ""}
+        <h3>Your team</h3>
+        <div class="team">${m.team.map(([id, nick, note]) => `<div class="tm">${planSprite(id, monS(id) === 2 ? "" : "sil")}<div><b>${esc(nick)}</b> <span class="muted small">${esc(SP[id].n)}</span>${note ? `<div class="small">${esc(note)}</div>` : ""}</div></div>`).join("")}</div>
+        <h3>Before you go</h3>
+        <div class="preps">${prep}</div>
+      </div></details>`;
+  }
+  function renderPlan() {
+    const { P } = planState();
     let h = `<div class="box plan-crew"><h2>The crew</h2><p class="muted small" style="margin:4px 0 10px">Party order follows the order the Straw Hats joined. Tap one for its Pokédex page.</p><div class="crew">` +
-      (D.extra.crew || []).map(([id, nick, sp, moves], i) => `<button class="crew-m" data-act="dex" data-id="${id}"><span class="slot">${i + 1}</span>${sprite(id)}<b>${esc(nick)}</b><span class="muted small">${esc(sp)}</span><span class="small">${esc(moves)}</span></button>`).join("") + `</div></div>`;
-    P.forEach((m) => {
-      const isCur = m.id === cur;
-      const done = P.indexOf(m) < P.findIndex((x) => x.id === cur) || (!cur);
-      const prep = m.prep.map((t, i) => {
-        const k = `plan:${m.id}:${i}`;
-        return `<label class="prep ${flag(k) ? "on" : ""}"><input type="checkbox" data-act="plan" data-k="${k}" ${flag(k) ? "checked" : ""}><span>${esc(t)}</span></label>`;
-      }).join("");
-      h += `<details class="box plan ${isCur ? "now" : ""} ${done ? "past" : ""}" ${isCur || UI.plan === m.id ? "open" : ""} data-plan="${m.id}">
-        <summary><span class="kicker">${isCur ? "You are here" : done ? "Done" : "Up next"}</span><h2>${esc(m.title)}</h2><span class="muted small">Target ${esc(m.target)}</span></summary>
-        <div class="plan-body">
-          ${m.bosses.length ? `<div class="bosses">${m.bosses.map((bo) => `<div class="boss"><div class="boss-h"><b>${esc(bo.name)}</b><span class="muted small">${esc(bo.where)}</span></div><div class="party">${bo.party.map(([id, lv]) => `<button data-act="dex" data-id="${id}">${sprite(id)}<small>${lv}</small></button>`).join("")}</div></div>`).join("")}</div>` : ""}
-          <h3>Your team</h3>
-          <div class="team">${m.team.map(([id, nick, note]) => `<div class="tm">${sprite(id, monS(id) === 2 ? "" : "sil")}<div><b>${esc(nick)}</b> <span class="muted small">${esc(SP[id].n)}</span>${note ? `<div class="small">${esc(note)}</div>` : ""}</div></div>`).join("")}</div>
-          <h3>Before you go</h3>
-          <div class="preps">${prep}</div>
-        </div></details>`;
-    });
+      (D.extra.crew || []).map(([id, nick, sp, moves], i) => `<button class="crew-m" data-act="dex" data-id="${id}"><span class="slot">${i + 1}</span>${planSprite(id)}<b>${esc(nick)}</b><span class="muted small">${esc(sp)}</span><span class="small">${esc(moves)}</span></button>`).join("") + `</div></div>`;
+    P.forEach((m) => { h += planCard(m, false); });
     $("#app").innerHTML = `<div class="planpage">${h}</div>`;
-    const curEl = $(".plan.now");
-    if (curEl && !UI.planScrolled) { UI.planScrolled = 1; }
   }
 
   // ---------------- SYNC SHEET ----------------
@@ -693,7 +703,7 @@
     } else if (act === "badges") { setFlag("badges", +t.dataset.v); route(); }
     else if (act === "flag") { setFlag(t.dataset.v, flag(t.dataset.v) ? 0 : 1); route(); }
     else if (act === "map") { UI.map = t.dataset.v; saveUI(); route(); }
-    else if (act === "plan") { e.preventDefault(); const k = t.dataset.k; setFlag(k, flag(k) ? 0 : 1); t.checked = !!flag(k); t.closest(".prep").classList.toggle("on", !!flag(k)); return; }
+    else if (act === "plan") return; // handled on "change" below, so a tap on the label counts once
     else if (act === "filt") { UI.filter[t.dataset.v] = UI.filter[t.dataset.v] ? 0 : 1; saveUI(); route(); }
     else if (act === "dexf") { UI.dexFilter = t.dataset.v; saveUI(); renderDex(); }
     else if (act === "natl") { UI.natl = !UI.natl; saveUI(); renderDex(); }
@@ -715,6 +725,13 @@
         S = SYNC.merge(S, data); save(); toast("Imported"); $("#sheet").close(); route();
       } catch { toast("That code didn't work"); }
     }
+  });
+  document.addEventListener("change", (e) => {
+    const t = e.target;
+    if (!t.matches || !t.matches('input[data-act="plan"]')) return;
+    const k = t.dataset.k;
+    setFlag(k, t.checked ? 1 : 0);
+    $$(`[data-act="plan"][data-k="${k}"]`).forEach((c) => { c.checked = t.checked; c.closest(".prep").classList.toggle("on", t.checked); });
   });
   document.addEventListener("toggle", (e) => {
     const el = e.target;

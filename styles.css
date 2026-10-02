@@ -505,3 +505,6 @@ details.loc.active { box-shadow: inset 0 0 0 2px var(--red), inset 0 0 0 4px var
 .prep.on span { color: var(--ink-3); text-decoration: line-through; }
 .tabs a { font-size: 15px; padding: 10px 2px; }
 .loc .prog small .sn { color: var(--leaf); }
+.plan.inline { margin: 4px 0 12px; background: var(--panel-2); }
+.plan.inline > summary h2 { font-size: 18px; }
+.plan.inline .boss, .plan.inline .prep { background: var(--panel); }
