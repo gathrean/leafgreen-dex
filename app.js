@@ -843,8 +843,14 @@
     const before = planState().cur;
     setFlag(k, t.checked ? 1 : 0);
     $$(`[data-act="plan"][data-k="${k}"]`).forEach((c) => { c.checked = t.checked; c.closest(".prep").classList.toggle("on", t.checked); });
-    $$(".float-plan").forEach((fp) => fp.parentElement && mountFloatPlan(fp.parentElement));
-    if (planState().cur !== before) { route(); toast("Stop done. On to the next one!"); const nxt = $(".plan.now"); if (nxt) nxt.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    // update the floating checklist in place so its scroll position stays put
+    const curPlan = (D.extra.plan || []).find((x) => x.id === before);
+    if (curPlan) {
+      const left = curPlan.prep.filter(({ k: pk }) => !flag(`plan:${curPlan.id}:${pk}`)).length;
+      $$(".float-plan .fp-head .kicker").forEach((el) => { el.textContent = `Checklist · ${left} to do`; });
+    }
+    if (planState().cur !== before) {
+      $$(".float-plan").forEach((fp) => fp.parentElement && mountFloatPlan(fp.parentElement)); route(); toast("Stop done. On to the next one!"); const nxt = $(".plan.now"); if (nxt) nxt.scrollIntoView({ behavior: "smooth", block: "start" }); }
   });
   document.addEventListener("toggle", (e) => {
     const el = e.target;
