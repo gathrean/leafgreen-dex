@@ -325,7 +325,7 @@
       h += `<div class="row ${monS(m.id) === 2 ? "caught" : ""}" data-row="${m.id}">
         ${checkBtn(m.id)}
         <img class="spr" src="${spr(m.id)}" alt="" loading="lazy" width="52" height="52">
-        <div class="who"><b>${esc(sp.n)}</b><span class="lv">${lvText(m)}</span>
+        <div class="who"><b>${esc(sp.n)}</b><span class="lv">${t.m === "npc-trade" ? "" : lvText(m)}</span>
           <button class="seen ${monS(m.id) >= 1 ? "on" : ""}" data-mon="${m.id}" data-act="seen" aria-pressed="${monS(m.id) >= 1}">${monS(m.id) >= 1 ? "seen" : "mark seen"}</button>
           <div class="ball">${ballHtml}</div>
           ${tip ? `<div class="tip">${esc(tip)}</div>` : ""}
@@ -439,7 +439,7 @@
       </div>
       ${note ? `<div class="note ${note.startsWith("Not") ? "warn" : ""}">${esc(note)}</div>` : ""}
       ${tip ? `<div class="note">${esc(tip)}</div>` : ""}
-      ${rows.length ? `<div><h3 style="margin-bottom:6px">Where to find it</h3><div class="where">${rows.map((w) => `<a href="#/routes/${w.l.id}" data-act="close-go"><b class="pc">${esc(w.l.name)}${w.l.floors.length > 1 && w.f.label ? " · " + esc(w.f.label) : ""}</b><b>${["gift", "gift-egg", "npc-trade", "static", "pokeflute", "roaming-grass"].includes(w.t.m) ? "" : w.m.p + "%"}</b><span>${esc(METHOD_LABEL[w.t.m] || w.t.m)} · ${lvText(w.m)}${w.m.c ? " · " + esc(condText(w.m.c)) : ""}</span><span>${esc(CH[w.l.ci].name)}</span></a>`).join("")}</div></div>` : ""}
+      ${rows.length ? `<div><h3 style="margin-bottom:6px">Where to find it</h3><div class="where">${rows.map((w) => `<a href="#/routes/${w.l.id}" data-act="close-go"><b class="pc">${esc(w.l.name)}${w.l.floors.length > 1 && w.f.label ? " · " + esc(w.f.label) : ""}</b><b>${["gift", "gift-egg", "npc-trade", "static", "pokeflute", "roaming-grass"].includes(w.t.m) ? "" : w.m.p + "%"}</b><span>${esc(METHOD_LABEL[w.t.m] || w.t.m)}${w.t.m === "npc-trade" ? "" : " · " + lvText(w.m)}${w.m.c ? " · " + esc(condText(w.m.c)) : ""}</span><span>${esc(CH[w.l.ci].name)}</span></a>`).join("")}</div></div>` : ""}
       ${chain.length > 1 ? `<div><h3 style="margin-bottom:6px">Evolution</h3><div class="evo">${chain.map(([x, d], i) => `${i ? `<span>→ ${esc(SP[x].e || "")}</span>` : ""}<button data-act="dex" data-id="${x}"><img src="${spr(x)}" alt="">${esc(SP[x].n)}</button>`).join("")}</div></div>` : ""}
       <div><h3 style="margin-bottom:4px">Catch odds per throw</h3><p class="muted small" style="margin:0 0 6px">Catch rate ${sp.c}. Gen 3 formula.</p>
         <table class="ctab"><thead><tr><th>Ball</th><th>Full HP</th><th>Red HP</th><th>Red + asleep</th></tr></thead><tbody>

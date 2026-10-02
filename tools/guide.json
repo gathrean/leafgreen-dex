@@ -44,9 +44,9 @@
   },
   {
    "id": "sevii",
-   "name": "Sevii Islands 1 to 3",
+   "name": "Sevii Islands 1 to 3, then loose ends",
    "badges": 7,
-   "blurb": "Bill takes you to One Island. Then back to Viridian for Giovanni."
+   "blurb": "Bill takes you to One Island. Back in Kanto, Route 21 and the Power Plant before Giovanni."
   },
   {
    "id": "league",
@@ -122,8 +122,28 @@
    "group": "Key items",
    "chapter": "erika"
   },
+  "bicycle": {
+   "name": "Bicycle",
+   "group": "Key items",
+   "chapter": "erika"
+  },
   "national-dex": {
    "name": "National Dex",
+   "group": "Key items",
+   "chapter": "post"
+  },
+  "rainbow-pass": {
+   "name": "Rainbow Pass",
+   "group": "Key items",
+   "chapter": "post"
+  },
+  "sapphire": {
+   "name": "Sapphire delivered",
+   "group": "Key items",
+   "chapter": "post"
+  },
+  "tanoby-key": {
+   "name": "Tanoby Key solved",
    "group": "Key items",
    "chapter": "post"
   }
@@ -140,25 +160,133 @@
    "name": "Pallet Town",
    "chapter": "brock",
    "map": "kanto:pallet",
-   "mapName": "Pallet Town"
+   "mapName": "Pallet Town",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters on the water south of town (Tentacool)",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing off the south shore (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing off the south shore",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing off the south shore",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Return with a rod or Surf for Pallet's water table, and Surf south from here to Route 21.",
+   "notes": "Gift: Bulbasaur/Charmander/Squirtle Lv5 from Oak; first rival battle in the lab.",
+   "blurb": "Start of the game; Oak gives your starter in his lab."
   },
   {
    "id": "kanto-route-1",
    "name": "Route 1",
    "chapter": "brock",
-   "map": "kanto:r1"
+   "map": "kanto:r1",
+   "notes": "All grass reachable from the start; Poké Mart clerk gives a free Potion.",
+   "blurb": "Walking north from Pallet Town to Viridian."
   },
   {
    "id": "viridian-city",
    "name": "Viridian City",
    "chapter": "brock",
-   "map": "kanto:viridian"
+   "map": "kanto:viridian",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the city pond",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the city pond (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the city pond",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the city pond",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "Small area behind a cut tree (a Potion, extra pond-side fishing spots)",
+     "when": "HM01 from the S.S. Anne captain + Cascade Badge (before Lt. Surge)"
+    }
+   ],
+   "back": "Come back with a rod or Surf for the pond, and with 7 badges for the Viridian Gym.",
+   "notes": "Oak gives the Pokédex after you deliver the Parcel; Gym stays locked until the end.",
+   "blurb": "North end of Route 1; deliver Oak's Parcel from the Poké Mart."
   },
   {
    "id": "kanto-route-22",
    "name": "Route 22",
    "chapter": "brock",
-   "map": "kanto:r22"
+   "map": "kanto:r22",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the pond",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the pond (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the pond",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the pond",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Come back with a rod or Surf for the pond; you also pass through again with 8 badges.",
+   "notes": "Optional rival battle (only until you fight him in Cerulean); mandatory rival battle here after 8 badges.",
+   "blurb": "West of Viridian City, right after getting the Pokédex."
   },
   {
    "id": "kanto-route-2",
@@ -167,25 +295,49 @@
    "map": "kanto:r2",
    "areas": [
     {
-     "label": null,
+     "label": "West path",
      "keys": [
-      "kanto-route-2/south-towards-viridian-city",
+      "kanto-route-2/south-towards-viridian-city"
+     ]
+    },
+    {
+     "label": "East side (Cut)",
+     "keys": [
       "kanto-route-2/north-towards-pewter-city"
+     ],
+     "req": [
+      "cut"
      ]
     }
-   ]
+   ],
+   "gates": [
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "East side: Mr. Mime trade house, Oak's aide gate (HM05 Flash), Ether and Parlyz Heal; no grass",
+     "when": "Once you have HM01 Cut from the S.S. Anne. Walk back from Pewter, or come through Diglett's Cave from Vermilion."
+    }
+   ],
+   "back": "After getting Cut, return to the east side to trade an Abra for Mr. Mime and claim Flash (10 species caught).",
+   "notes": "All of Route 2's grass is on the west path (both halves); the Cut-only east side has no wild Pokémon.",
+   "blurb": "North of Viridian City on the way to Viridian Forest."
   },
   {
    "id": "viridian-forest",
    "name": "Viridian Forest",
    "chapter": "brock",
-   "map": "kanto:viridian-forest"
+   "map": "kanto:viridian-forest",
+   "notes": "Bug catcher trainers; no HM obstacles.",
+   "blurb": "Between the two halves of Route 2's west path."
   },
   {
    "id": "kanto-route-3",
    "name": "Route 3",
    "chapter": "misty",
-   "map": "kanto:r3"
+   "map": "kanto:r3",
+   "notes": "All grass reachable; several trainers including Youngster Calvin.",
+   "blurb": "East of Pewter City after beating Brock."
   },
   {
    "id": "mt-moon",
@@ -212,7 +364,9 @@
      ]
     }
    ],
-   "mapName": "Mt. Moon 1F"
+   "mapName": "Mt. Moon 1F",
+   "notes": "Beat Super Nerd Miguel on B2F to choose the Helix Fossil (Omanyte) or Dome Fossil (Kabuto), revived later at the Cinnabar Lab. B1F hides 3 Tiny Mushrooms and 3 Big Mushrooms. Keep one Big Mushroom (or two Tiny) for the Move Reminder on Two Island.",
+   "blurb": "End of Route 3, entered from the Route 4 west segment."
   },
   {
    "id": "kanto-route-4",
@@ -227,31 +381,172 @@
       "kanto-route-4/pokemon-center"
      ]
     }
-   ]
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Water near Cerulean (Surf in from Cerulean City / Route 24)",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing; the water is only reachable by surfing",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge) + Surf"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing; the water is only reachable by surfing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute) + Surf"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing; the water is only reachable by surfing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute) + Surf"
+    }
+   ],
+   "back": "With Surf, come back from Cerulean for the water and the hilltop Lass.",
+   "notes": "Route 4 Pokémon Center man sells a Magikarp Lv5 for $500; all grass is on the east segment.",
+   "blurb": "West segment before Mt. Moon, east segment after exiting it."
   },
   {
    "id": "cerulean-city",
    "name": "Cerulean City",
    "chapter": "misty",
-   "map": "kanto:cerulean"
+   "map": "kanto:cerulean",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters; Surfing up the river also leads to Cerulean Cave",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the river (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the river",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the river",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Return with rods/Surf, and in the postgame Surf to Cerulean Cave.",
+   "notes": "Trade Poliwhirl for Jynx (ZYNX) in the house by the Pokémon Center; rival battle at the north end.",
+   "blurb": "East exit of Route 4."
   },
   {
    "id": "kanto-route-24",
    "name": "Route 24",
    "chapter": "misty",
-   "map": "kanto:r24"
+   "map": "kanto:r24",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters; the waterway leads to Route 4's hill and Cerulean Cave",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing from the west strip (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing from the west strip",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing from the west strip",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Return with Surf for the water and the route to Cerulean Cave.",
+   "notes": "Nugget Bridge trainers; a Rocket grunt gives a Nugget then battles; TM45 (Attract) on the plateau.",
+   "blurb": "North of Cerulean City (Nugget Bridge)."
   },
   {
    "id": "kanto-route-25",
    "name": "Route 25",
    "chapter": "misty",
-   "map": "kanto:r25"
+   "map": "kanto:r25",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the Cerulean Cape ponds",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the ponds (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the ponds",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the ponds",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "Item: TM43 (Secret Power) behind a tree (also reachable by beating Camper Flint)",
+     "when": "HM01 from the S.S. Anne captain + Cascade Badge (before Lt. Surge)"
+    }
+   ],
+   "back": "Return with a rod or Surf for the ponds.",
+   "notes": "Help Bill to get the S.S. Ticket; all grass is reachable without HMs.",
+   "blurb": "East of Route 24, leading to Bill's Sea Cottage."
   },
   {
    "id": "kanto-route-5",
    "name": "Route 5",
    "chapter": "surge",
-   "map": "kanto:r5"
+   "map": "kanto:r5",
+   "notes": "Pokémon Day Care; the Underground Path entrance building has a trade: give Nidoran♀, get Nidoran♂ (MR. NIDO) in LeafGreen.",
+   "blurb": "South of Cerulean City after Misty."
   },
   {
    "id": "kanto-underground-path",
@@ -264,7 +559,40 @@
    "id": "kanto-route-6",
    "name": "Route 6",
    "chapter": "surge",
-   "map": "kanto:r6"
+   "map": "kanto:r6",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the pond",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing from the shore (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing from the shore",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing from the shore",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Return with a rod or Surf for the pond.",
+   "notes": "Hidden Rare Candy and Sitrus Berry near the Saffron gate.",
+   "blurb": "South end of the Underground Path, north of Vermilion."
   },
   {
    "id": "vermilion-city",
@@ -284,20 +612,95 @@
       "ss-anne"
      ]
     }
-   ]
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the harbor",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the harbor (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the harbor",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the harbor",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Vermilion Harbor (S.S. Anne dock): Fishing off the dock (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    }
+   ],
+   "back": "Fish here once you have each rod; Surf later.",
+   "notes": "Fishing Guru gives the Old Rod; trade Spearow for Farfetch'd (CH'DING); Fan Club chairman gives the Bike Voucher; Surge's Gym needs Cut. Vermilion Harbor (S.S. Anne dock): The dock closes when the ship sails after you get HM01 Cut, so its Good Rod, Super Rod and Surf tables can't be used in normal play; the S.S. Anne itself has no wild Pokémon.",
+   "blurb": "South end of Route 6."
   },
   {
    "id": "kanto-route-11",
    "name": "Route 11",
    "chapter": "surge",
-   "map": "kanto:r11"
+   "map": "kanto:r11",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the channel",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the channel (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the channel",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the channel",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Return with rods/Surf; the east end is blocked into Route 12 by Snorlax until you have the Poké Flute.",
+   "notes": "Gate: Oak's aide gives the Itemfinder for 30 species; trade Nidorina for Nidorino (NINO) in LeafGreen.",
+   "blurb": "East of Vermilion City (Bulbapedia's walkthrough visits it after Lt. Surge)."
   },
   {
    "id": "digletts-cave",
    "name": "Diglett's Cave",
    "chapter": "surge",
    "map": "kanto:digletts-cave",
-   "mapName": "Digletts Cave B1F"
+   "mapName": "Digletts Cave B1F",
+   "notes": "Only Diglett and Dugtrio; a no-Cut path to Route 2's east side.",
+   "blurb": "Entrance at the west end of Route 11; exits on Route 2's east side."
   },
   {
    "id": "kanto-route-9",
@@ -306,7 +709,9 @@
    "map": "kanto:r9",
    "req": [
     "cut"
-   ]
+   ],
+   "notes": "TM40 (Aerial Ace) in the southwest corner; many trainers.",
+   "blurb": "East of Cerulean City."
   },
   {
    "id": "kanto-route-10",
@@ -315,7 +720,47 @@
    "map": "kanto:r10",
    "req": [
     "cut"
-   ]
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters on the river; the river leads to the Power Plant",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the river (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the river",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the river",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "Hidden Super Potion by the Rock Tunnel wall (no wild Pokémon)",
+     "when": "HM01 from the S.S. Anne captain + Cascade Badge (before Lt. Surge)"
+    }
+   ],
+   "back": "With Surf, return to sail down the river to the Power Plant (Zapdos).",
+   "notes": "Oak's aide in the Pokémon Center gives an Everstone for 20 species; all grass is on the north side.",
+   "blurb": "End of Route 9; north part has a Pokémon Center by Rock Tunnel, south part reaches Lavender."
   },
   {
    "id": "rock-tunnel",
@@ -339,19 +784,44 @@
    "req": [
     "cut"
    ],
-   "mapName": "Rock Tunnel 1F"
+   "mapName": "Rock Tunnel 1F",
+   "gates": [
+    {
+     "need": [
+      "rock-smash"
+     ],
+     "what": "B1F breakable rocks (Geodude/Graveler)",
+     "when": "HM06 from Ember Spa on Kindle Road (Sevii trip after Blaine) + Marsh Badge"
+    }
+   ],
+   "back": "With Rock Smash, come back to B1F for rock encounters.",
+   "notes": "Flash helps but isn't required.",
+   "blurb": "Between north and south Route 10."
   },
   {
    "id": "kanto-route-8",
    "name": "Route 8",
    "chapter": "erika",
-   "map": "kanto:r8"
+   "map": "kanto:r8",
+   "gates": [
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "The route's only grass patch, in the fenced field (Vulpix in LeafGreen), plus three hidden Berries",
+     "when": "HM01 from the S.S. Anne captain + Cascade Badge (before Lt. Surge)"
+    }
+   ],
+   "notes": "You have Cut by this point, so the field is open on the first visit; Saffron gate needs Tea.",
+   "blurb": "West of Lavender Town, toward the Saffron gate and Underground Path."
   },
   {
    "id": "kanto-route-7",
    "name": "Route 7",
    "chapter": "erika",
-   "map": "kanto:r7"
+   "map": "kanto:r7",
+   "notes": "Small grass patch on the middle terrace; Saffron gate needs Tea.",
+   "blurb": "West end of the Route 7-8 Underground Path, next to Celadon."
   },
   {
    "id": "celadon-city",
@@ -380,7 +850,65 @@
       "coin-case"
      ]
     }
-   ]
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the central pond",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the central pond (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the central pond",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the central pond",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Return with rods/Surf for the pond (Koffing, Grimer, Slowpoke).",
+   "notes": "Gift Eevee Lv25 on the Condominiums rooftop; Tea on Condominiums 1F; Coin Case from the restaurant; Erika's Gym needs Cut. Celadon Game Corner: LeafGreen prizes: Abra Lv7 (120 coins), Clefairy Lv12 (750), Pinsir Lv18 (2500), Dratini Lv24 (4600), Porygon Lv18 (6500); the Rocket Hideout (Silph Scope) is under it.",
+   "blurb": "West end of Route 7."
+  },
+  {
+   "id": "kanto-route-16",
+   "name": "Route 16",
+   "chapter": "erika",
+   "map": "kanto:r16",
+   "gates": [
+    {
+     "need": [
+      "poke-flute"
+     ],
+     "what": "Snorlax Lv30 blocking the main road to the Cycling Road gate",
+     "when": "After clearing the Pokémon Tower (Mr. Fuji)"
+    },
+    {
+     "need": [
+      "bicycle"
+     ],
+     "what": "Cycling Road section west of the gate (trainers only, no grass)",
+     "when": "Bike Voucher from the Vermilion Fan Club, redeemed at the Cerulean Bike Shop"
+    }
+   ],
+   "back": "Return with the Poké Flute to catch Snorlax and ride the Cycling Road south.",
+   "notes": "The cut tree is east of Snorlax, so the route's only grass patch and the Fly house (HM02) open with just Cut; gate aide gives an Amulet Coin for 40 species.",
+   "blurb": "West exit of Celadon City."
   },
   {
    "id": "pokemon-tower",
@@ -422,37 +950,181 @@
    "req": [
     "silph-scope"
    ],
-   "mapName": "Pokémon Tower 3F"
+   "mapName": "Pokémon Tower 3F",
+   "notes": "Silph Scope comes from Giovanni on Rocket Hideout B4F; the ghost Marowak on 6F can't be caught; rescuing Mr. Fuji gets the Poké Flute.",
+   "blurb": "Lavender Town; rival battle on 2F on the first pass, catching needs the Silph Scope."
   },
   {
    "id": "kanto-route-12",
    "name": "Route 12",
    "chapter": "koga",
-   "map": "kanto:r12"
+   "map": "kanto:r12",
+   "gates": [
+    {
+     "need": [
+      "poke-flute"
+     ],
+     "what": "Wake Snorlax Lv30 to open the southern half (Super Rod house, grass)",
+     "when": "After clearing the Pokémon Tower"
+    },
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "The route's only grass patch at the south end, plus an Iron in the bushes",
+     "when": "Already available (Cut) once Snorlax is awake"
+    },
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters (Tentacool); TM48 on an island needs Surf",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing from the bridges and piers; the north part is reachable from Lavender before the Flute (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing from the bridges and piers; the north part is reachable from Lavender before the Flute",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing from the bridges and piers; the north part is reachable from Lavender before the Flute",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Come back with Surf for TM48 and the Surf table.",
+   "notes": "Super Rod from the Fishing Guru's younger brother; he gives Net Balls for record Magikarp.",
+   "blurb": "South of Lavender Town; Snorlax lies where Route 11 joins it."
   },
   {
    "id": "kanto-route-13",
    "name": "Route 13",
    "chapter": "koga",
-   "map": "kanto:r13"
+   "map": "kanto:r13",
+   "gates": [
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "The route's only grass patch in the fence maze (Ditto here)",
+     "when": "Already available on arrival"
+    },
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters at the east end",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing at the east end (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing at the east end",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing at the east end",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Return with Surf for the water table.",
+   "notes": "Hidden PP Up pointed out by a sign.",
+   "blurb": "South of Route 12."
   },
   {
    "id": "kanto-route-14",
    "name": "Route 14",
    "chapter": "koga",
-   "map": "kanto:r14"
+   "map": "kanto:r14",
+   "gates": [
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "The route's only grass patch (Ditto here) and a hidden Zinc; Cut also opens the hill path into Route 15",
+     "when": "Already available on arrival"
+    }
+   ],
+   "notes": "Checked against the game's map data: no grass is reachable without Cut.",
+   "blurb": "West end of Route 13."
   },
   {
    "id": "kanto-route-15",
    "name": "Route 15",
    "chapter": "koga",
-   "map": "kanto:r15"
+   "map": "kanto:r15",
+   "gates": [
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "North hill: trainers and TM18 (Rain Dance), no grass",
+     "when": "Already available on arrival"
+    }
+   ],
+   "notes": "All grass is on the south half; gate aide gives an Exp. Share for 50 species.",
+   "blurb": "West of Route 14, leading into Fuchsia."
   },
   {
    "id": "fuchsia-city",
    "name": "Fuchsia City",
    "chapter": "koga",
-   "map": "kanto:fuchsia"
+   "map": "kanto:fuchsia",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the pond behind the Good Rod house",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in that pond, reached through the house's back door (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in that pond, reached through the house's back door",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in that pond, reached through the house's back door",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Fish the backyard pond as soon as you get the Good Rod here.",
+   "notes": "Good Rod from the Fishing Guru's brother; the Warden gives HM04 Strength for the Gold Teeth; Koga's Gym.",
+   "blurb": "End of Route 15 (or Route 18 from the Cycling Road)."
   },
   {
    "id": "kanto-safari-zone",
@@ -486,25 +1158,68 @@
     }
    ],
    "safari": true,
-   "mapName": "Safari Zone Center"
-  },
-  {
-   "id": "kanto-route-16",
-   "name": "Route 16",
-   "chapter": "koga",
-   "map": "kanto:r16"
+   "mapName": "Safari Zone Center",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in each area's water",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in each area (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in each area",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in each area",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "back": "Return with Surf (after Koga) to use the Safari Zone water tables.",
+   "notes": "600 steps per visit; the Secret House in the west area gives HM03 Surf; the Gold Teeth are in the west area too.",
+   "blurb": "North side of Fuchsia City."
   },
   {
    "id": "kanto-route-17",
    "name": "Route 17 (Cycling Road)",
    "chapter": "koga",
-   "map": "kanto:r17"
+   "map": "kanto:r17",
+   "req": [
+    "bicycle"
+   ],
+   "notes": "Downhill southbound; fishing and Surfing aren't possible here; hidden items along the paths.",
+   "blurb": "Cycling Road between the Route 16 and Route 18 gates."
   },
   {
    "id": "kanto-route-18",
    "name": "Route 18",
    "chapter": "koga",
-   "map": "kanto:r18"
+   "map": "kanto:r18",
+   "gates": [
+    {
+     "need": [
+      "bicycle"
+     ],
+     "what": "West part through the gate onto the Cycling Road",
+     "when": "Bicycle from the Cerulean Bike Shop"
+    }
+   ],
+   "notes": "The grass area next to Fuchsia needs no Bicycle; the gate's 2F trade gives Lickitung (MARC) for Slowbro in LeafGreen.",
+   "blurb": "West of Fuchsia City."
   },
   {
    "id": "saffron-city",
@@ -524,16 +1239,8 @@
       "saffron-city/silph-co-7f"
      ]
     }
-   ]
-  },
-  {
-   "id": "kanto-power-plant",
-   "name": "Power Plant",
-   "chapter": "blaine",
-   "map": "kanto:power-plant",
-   "req": [
-    "surf"
-   ]
+   ],
+   "notes": "Fighting Dojo: Beat Karate Master Koichi to choose Hitmonlee or Hitmonchan Lv25. Silph Co.: No wild Pokémon; after the rival battle an employee on 7F gives Lapras Lv25; Card Key on 5F; Giovanni on 11F."
   },
   {
    "id": "kanto-sea-route-19",
@@ -542,7 +1249,32 @@
    "map": "kanto:r19",
    "req": [
     "surf"
-   ]
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing from the beach (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing from the beach",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing from the beach",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Water-only route full of swimmers.",
+   "blurb": "Surf south from Fuchsia's beach."
   },
   {
    "id": "kanto-sea-route-20",
@@ -551,7 +1283,32 @@
    "map": "kanto:r20",
    "req": [
     "surf"
-   ]
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Rocks split the route; you cross through the Seafoam Islands.",
+   "blurb": "Continues west from Route 19 toward Cinnabar."
   },
   {
    "id": "seafoam-islands",
@@ -599,7 +1356,39 @@
    "req": [
     "surf"
    ],
-   "mapName": "Seafoam Islands 1F"
+   "mapName": "Seafoam Islands 1F",
+   "gates": [
+    {
+     "need": [
+      "strength"
+     ],
+     "what": "Push boulders to stop the B3F/B4F currents, reaching their water and Articuno",
+     "when": "HM04 from the Fuchsia Safari Zone Warden (Gold Teeth) + Rainbow Badge"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing on B3F and B4F (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing on B3F and B4F",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing on B3F and B4F",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Articuno Lv50 on B4F.",
+   "blurb": "In the middle of Route 20."
   },
   {
    "id": "cinnabar-island",
@@ -622,7 +1411,32 @@
    ],
    "req": [
     "surf"
-   ]
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing off the shore (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing off the shore",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing off the shore",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Blaine's Gym needs the Secret Key from the Pokémon Mansion. Cinnabar Lab: Revives the Helix/Dome Fossil (Omanyte/Kabuto Lv5) and Old Amber (Aerodactyl Lv5; Old Amber is behind a Cut tree at the back of the Pewter Museum); trades Ponyta for Seel, Raichu for Electrode, Venonat for Tangela.",
+   "blurb": "Surf from Route 20 (or Route 21)."
   },
   {
    "id": "pokemon-mansion",
@@ -658,34 +1472,122 @@
    "req": [
     "surf"
    ],
-   "mapName": "Pokémon Mansion 1F"
-  },
-  {
-   "id": "kanto-sea-route-21",
-   "name": "Route 21",
-   "chapter": "blaine",
-   "map": "kanto:r21",
-   "req": [
-    "surf"
-   ]
+   "mapName": "Pokémon Mansion 1F",
+   "notes": "Secret Key on B1F; statue switches open the gates.",
+   "blurb": "Cinnabar Island."
   },
   {
    "id": "one-island",
    "name": "One Island",
    "chapter": "sevii",
-   "map": "sevii:one"
+   "map": "sevii:one",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Celio gives the Tri-Pass at the Pokémon Network Center.",
+   "blurb": "Bill takes you here on the Seagallop ferry after Blaine."
   },
   {
    "id": "kindle-road",
    "name": "Kindle Road",
    "chapter": "sevii",
-   "map": "sevii:kindle"
+   "map": "sevii:kindle",
+   "req": [
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "rock-smash"
+     ],
+     "what": "Breakable rocks (Geodude/Graveler) plus an Ether and Carbos",
+     "when": "HM06 from the Ember Spa old man on this route (Marsh Badge)"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Ember Spa (heals) holds HM06 Rock Smash.",
+   "blurb": "North from One Island; the route starts on the water."
   },
   {
    "id": "treasure-beach",
    "name": "Treasure Beach",
    "chapter": "sevii",
-   "map": "sevii:treasure"
+   "map": "sevii:treasure",
+   "req": [
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Recurring hidden items on the sand.",
+   "blurb": "Surf south from One Island."
   },
   {
    "id": "mt-ember",
@@ -697,6 +1599,9 @@
      "label": "Outside",
      "keys": [
       "mt-ember"
+     ],
+     "req": [
+      "strength"
      ]
     },
     {
@@ -715,24 +1620,36 @@
      "label": "Ruby Path 1F",
      "keys": [
       "mt-ember/1f-cave-behind-team-rocket"
+     ],
+     "req": [
+      "national-dex"
      ]
     },
     {
      "label": "Ruby Path B1F",
      "keys": [
       "mt-ember/b1f"
+     ],
+     "req": [
+      "national-dex"
      ]
     },
     {
      "label": "Ruby Path B2F",
      "keys": [
       "mt-ember/b2f"
+     ],
+     "req": [
+      "national-dex"
      ]
     },
     {
      "label": "Ruby Path B3F",
      "keys": [
       "mt-ember/b3f"
+     ],
+     "req": [
+      "national-dex"
      ]
     },
     {
@@ -742,38 +1659,258 @@
      ]
     }
    ],
-   "mapName": "Mt. Ember Exterior"
+   "mapName": "Mt. Ember Exterior",
+   "gates": [
+    {
+     "need": [
+      "strength"
+     ],
+     "what": "The exterior grass and the Summit Path to Moltres",
+     "when": "HM04 from the Fuchsia Safari Zone Warden (Gold Teeth) + Rainbow Badge"
+    },
+    {
+     "need": [
+      "rock-smash"
+     ],
+     "what": "Breakable rocks outside and on Summit Path 2F",
+     "when": "HM06 from Ember Spa on Kindle Road (Sevii trip after Blaine) + Marsh Badge"
+    },
+    {
+     "need": [
+      "national-dex"
+     ],
+     "what": "Ruby Path (see the separate postgame step)",
+     "when": "Postgame, after talking to Celio"
+    },
+    {
+     "need": [
+      "rock-smash"
+     ],
+     "what": "Mt. Ember (Ruby Path): Rock encounters inside",
+     "when": "Already available"
+    }
+   ],
+   "notes": "Moltres Lv50 at the summit; two Rocket grunts guard the Ruby Path entrance. Mt. Ember (Ruby Path): Beat the two Rocket grunts at the base (one gives a Rocket Warehouse password); Ruby in the Braille room.",
+   "blurb": "North end of Kindle Road."
   },
   {
    "id": "cape-brink",
    "name": "Cape Brink (Two Island)",
    "chapter": "sevii",
-   "map": "sevii:cape-brink"
+   "map": "sevii:cape-brink",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the lake",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the lake (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the lake",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the lake",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Move Tutor for Frenzy Plant / Blast Burn / Hydro Cannon (max friendship).",
+   "blurb": "Uphill path from Two Island's northeast corner."
   },
   {
    "id": "bond-bridge",
    "name": "Bond Bridge",
    "chapter": "sevii",
-   "map": "sevii:bond"
+   "map": "sevii:bond",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "Shortcut up the hill (no grass behind it)",
+     "when": "Already available"
+    }
+   ],
+   "notes": "Leads to Berry Forest.",
+   "blurb": "West of Three Island."
   },
   {
    "id": "berry-forest",
    "name": "Berry Forest",
    "chapter": "sevii",
-   "map": "sevii:berry-forest"
+   "map": "sevii:berry-forest",
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters, plus a few grass tiles only reachable across the water",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "Max Elixir dead end (also needs Surf)",
+     "when": "Already available"
+    }
+   ],
+   "notes": "Rescue Lostelle from a scripted wild Hypno Lv30; she gives an Iapapa Berry; regrowing Berries.",
+   "blurb": "Islet at the west end of Bond Bridge."
   },
   {
    "id": "three-isle-port",
    "name": "Three Isle Port",
    "chapter": "sevii",
    "map": "sevii:three-isle-port",
-   "mapName": "Three Island Port"
+   "req": [
+    "national-dex"
+   ],
+   "mapName": "Three Island Port",
+   "notes": "Only Dunsparce; the western dock area has no encounters.",
+   "blurb": "Ferry dock reached in the Sevii trip; the eastern grass opens when the Dunsparce Tunnel is finished after the National Dex."
+  },
+  {
+   "id": "kanto-sea-route-21",
+   "name": "Route 21",
+   "chapter": "sevii",
+   "map": "kanto:r21",
+   "req": [
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "The only grass is a small outcrop near Pallet (Tangela), reachable only by Surf.",
+   "blurb": "Surf north from Cinnabar back to Pallet Town."
+  },
+  {
+   "id": "kanto-power-plant",
+   "name": "Power Plant",
+   "chapter": "sevii",
+   "map": "kanto:power-plant",
+   "req": [
+    "surf"
+   ],
+   "notes": "Zapdos Lv50 near the back exit; two Electrode Lv34 disguised as items; Bulbapedia's walkthrough comes here after the Sevii trip, but it's open as soon as you can Surf.",
+   "blurb": "Surf along the river from Route 10's north side."
   },
   {
    "id": "kanto-route-23",
    "name": "Route 23",
    "chapter": "league",
-   "map": "kanto:r23"
+   "map": "kanto:r23",
+   "req": [
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing near the south gate (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing near the south gate",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing near the south gate",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Badge checkpoints along the way; all grass is past the water.",
+   "blurb": "North of the Route 22 gate; checkpoints along it check all 8 badges."
   },
   {
    "id": "kanto-victory-road-2",
@@ -800,7 +1937,9 @@
      ]
     }
    ],
-   "mapName": "Victory Road 1F"
+   "mapName": "Victory Road 1F",
+   "notes": "Boulder switch puzzles; Indigo Plateau and the Elite Four are beyond it (no wild Pokémon there).",
+   "blurb": "North end of Route 23."
   },
   {
    "id": "roaming-kanto",
@@ -817,7 +1956,7 @@
    ],
    "req": [
     "hof",
-    "national-dex"
+    "sapphire"
    ],
    "mapName": "Route 1"
   },
@@ -825,7 +1964,42 @@
    "id": "four-island",
    "name": "Four Island",
    "chapter": "post",
-   "map": "sevii:four"
+   "map": "sevii:four",
+   "req": [
+    "rainbow-pass"
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters (Marill, Slowpoke)",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing from the harbor (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing from the harbor",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing from the harbor",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Lorelei's house; Day Care that can produce Eggs.",
+   "blurb": "Seagallop ferry once Celio gives the Rainbow Pass for the Ruby."
   },
   {
    "id": "icefall-cave",
@@ -861,37 +2035,237 @@
      ]
     }
    ],
-   "mapName": "Four Island Icefall Cave Entrance"
+   "req": [
+    "rainbow-pass",
+    "surf"
+   ],
+   "mapName": "Four Island Icefall Cave Entrance",
+   "gates": [
+    {
+     "need": [
+      "waterfall"
+     ],
+     "what": "Back Cave: wild Lapras (Surf), Seel/Dewgong, Lorelei rescue",
+     "when": "HM07 on Icefall Cave 1F + Volcano Badge"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing at the entrance and in the back cave (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing at the entrance and in the back cave",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing at the entrance and in the back cave",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "HM07 Waterfall is inside; thin ice floors.",
+   "blurb": "Surf from Four Island's harbor."
   },
   {
    "id": "five-island",
    "name": "Five Island",
    "chapter": "post",
-   "map": "sevii:five"
+   "map": "sevii:five",
+   "req": [
+    "rainbow-pass"
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Connects to Five Isle Meadow and the Water Labyrinth.",
+   "blurb": "Seagallop ferry with the Rainbow Pass."
   },
   {
    "id": "five-isle-meadow",
    "name": "Five Isle Meadow",
    "chapter": "post",
-   "map": "sevii:meadow"
+   "map": "sevii:meadow",
+   "req": [
+    "rainbow-pass"
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "cut"
+     ],
+     "what": "A handful of extra grass tiles",
+     "when": "Already available"
+    }
+   ],
+   "notes": "Rocket Warehouse: enter both passwords, beat the admins and Gideon to recover the Sapphire.",
+   "blurb": "East of Five Island town."
   },
   {
    "id": "memorial-pillar",
    "name": "Memorial Pillar",
    "chapter": "post",
-   "map": "sevii:memorial"
+   "map": "sevii:memorial",
+   "req": [
+    "rainbow-pass",
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Leave a Lemonade at Tectonix's grave for a reward.",
+   "blurb": "Surf southeast from Five Isle Meadow."
   },
   {
    "id": "water-labyrinth",
    "name": "Water Labyrinth",
    "chapter": "post",
-   "map": "sevii:water-lab"
+   "map": "sevii:water-lab",
+   "req": [
+    "rainbow-pass",
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Gentleman gives a Togepi Egg if your lead Pokémon has high friendship.",
+   "blurb": "Surf north from Five Island."
   },
   {
    "id": "resort-gorgeous",
    "name": "Resort Gorgeous",
    "chapter": "post",
-   "map": "sevii:resort-gorgeous"
+   "map": "sevii:resort-gorgeous",
+   "req": [
+    "rainbow-pass",
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Selphy's item rewards for showing her Pokémon; Surf to the Lost Cave entrance.",
+   "blurb": "Surf north from the Water Labyrinth."
   },
   {
    "id": "lost-cave",
@@ -921,37 +2295,189 @@
      ]
     }
    ],
-   "mapName": "Five Island Lost Cave Entrance"
+   "req": [
+    "rainbow-pass",
+    "surf"
+   ],
+   "mapName": "Five Island Lost Cave Entrance",
+   "notes": "Maze of identical rooms; rescue Selphy; Silk Scarf and other items.",
+   "blurb": "Entrance on a Resort Gorgeous islet, reached by Surf."
   },
   {
    "id": "water-path",
    "name": "Water Path",
    "chapter": "post",
-   "map": "sevii:water-path"
+   "map": "sevii:water-path",
+   "req": [
+    "rainbow-pass"
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters; Surf also reaches the Heracross-size house and items",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Woman in the north house rewards record Heracross with Nest Balls.",
+   "blurb": "East of the Six Island town."
   },
   {
    "id": "ruin-valley",
    "name": "Ruin Valley",
    "chapter": "post",
-   "map": "sevii:ruin-valley"
+   "map": "sevii:ruin-valley",
+   "req": [
+    "rainbow-pass"
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters in the pool",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing in the pool (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing in the pool",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing in the pool",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "strength"
+     ],
+     "what": "Items only: Sun Stone, HP Up, Full Restore",
+     "when": "Already available"
+    }
+   ],
+   "notes": "Dotted Hole (Cut the door) holds the Sapphire and has no wild Pokémon; a scientist steals the Sapphire.",
+   "blurb": "North end of the Water Path."
   },
   {
    "id": "green-path",
    "name": "Green Path",
    "chapter": "post",
-   "map": "sevii:green-path"
+   "map": "sevii:green-path",
+   "req": [
+    "rainbow-pass"
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Water-only encounters; the north water leads to Outcast Island.",
+   "blurb": "West branch of the Water Path."
   },
   {
    "id": "outcast-island",
    "name": "Outcast Island",
    "chapter": "post",
-   "map": "sevii:outcast"
+   "map": "sevii:outcast",
+   "req": [
+    "rainbow-pass",
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Water-only encounters; Altering Cave is on the island.",
+   "blurb": "Surf north from the Green Path."
   },
   {
    "id": "pattern-bush",
    "name": "Pattern Bush",
    "chapter": "post",
-   "map": "sevii:pattern-bush"
+   "map": "sevii:pattern-bush",
+   "req": [
+    "rainbow-pass"
+   ],
+   "notes": "Bug-type grass area (Heracross).",
+   "blurb": "Entered on foot from the Green Path."
   },
   {
    "id": "kanto-altering-cave",
@@ -966,25 +2492,92 @@
      ]
     }
    ],
-   "mapName": "Six Island Altering Cave"
+   "req": [
+    "rainbow-pass",
+    "surf"
+   ],
+   "mapName": "Six Island Altering Cave",
+   "notes": "Only Zubat in normal play; the other tables were never distributed (Mystery Gift).",
+   "blurb": "Outcast Island."
   },
   {
    "id": "trainer-tower",
    "name": "Trainer Tower (Seven Island)",
    "chapter": "post",
-   "map": "sevii:trainer-tower"
+   "map": "sevii:trainer-tower",
+   "req": [
+    "rainbow-pass"
+   ],
+   "gates": [
+    {
+     "need": [
+      "surf"
+     ],
+     "what": "Surf encounters around the island",
+     "when": "After Koga (Soul Badge) + HM03 from the Safari Zone Secret House"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing near Seven Island (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing near Seven Island",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing near Seven Island",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Water-only encounters; Trainer Tower time trials give evolution items.",
+   "blurb": "North of Seven Island town."
   },
   {
    "id": "canyon-entrance",
    "name": "Sevault Canyon Entrance",
    "chapter": "post",
-   "map": "sevii:canyon"
+   "map": "sevii:canyon",
+   "req": [
+    "rainbow-pass"
+   ],
+   "notes": "Grass encounters with no HM needed.",
+   "blurb": "South of Seven Island town."
   },
   {
    "id": "sevault-canyon",
    "name": "Sevault Canyon",
    "chapter": "post",
-   "map": "sevii:sevault"
+   "map": "sevii:sevault",
+   "req": [
+    "rainbow-pass"
+   ],
+   "gates": [
+    {
+     "need": [
+      "rock-smash"
+     ],
+     "what": "Rock encounters and a King's Rock (also needs Strength)",
+     "when": "Already available"
+    },
+    {
+     "need": [
+      "strength"
+     ],
+     "what": "Tanoby Key boulder puzzle that unlocks Unown",
+     "when": "Already available"
+    }
+   ],
+   "notes": "Larvitar and Phanpy live here; Chansey Dance house heals.",
+   "blurb": "East of the Canyon Entrance."
   },
   {
    "id": "tanoby-ruins",
@@ -1008,9 +2601,48 @@
       "scufib-chamber",
       "rixy-chamber",
       "viapos-chamber"
+     ],
+     "req": [
+      "tanoby-key"
      ]
     }
-   ]
+   ],
+   "req": [
+    "rainbow-pass",
+    "surf"
+   ],
+   "gates": [
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "tanoby-key"
+     ],
+     "what": "Tanoby Chambers: Unown appear only after the Sevault Canyon Tanoby Key puzzle",
+     "when": "Strength puzzle in Sevault Canyon"
+    }
+   ],
+   "notes": "Water encounters around the seven ruin islets. Tanoby Chambers: Only Unown; Bulbapedia lists 28 forms across the chambers.",
+   "blurb": "Surf south from Sevault Canyon."
   },
   {
    "id": "cerulean-cave",
@@ -1038,9 +2670,43 @@
     }
    ],
    "req": [
-    "hof"
+    "hof",
+    "sapphire",
+    "surf"
    ],
-   "mapName": "Cerulean Cave 1F"
+   "mapName": "Cerulean Cave 1F",
+   "gates": [
+    {
+     "need": [
+      "rock-smash"
+     ],
+     "what": "Rock encounters and some items on 1F/2F",
+     "when": "Already available"
+    },
+    {
+     "need": [
+      "old-rod"
+     ],
+     "what": "Fishing on 1F and B1F (Magikarp only)",
+     "when": "Vermilion City Fishing Guru (before Lt. Surge)"
+    },
+    {
+     "need": [
+      "good-rod"
+     ],
+     "what": "Fishing on 1F and B1F",
+     "when": "Fuchsia City Fishing Guru's brother (after Poké Flute)"
+    },
+    {
+     "need": [
+      "super-rod"
+     ],
+     "what": "Fishing on 1F and B1F",
+     "when": "Route 12 house of the younger Fishing Guru brother (after Poké Flute)"
+    }
+   ],
+   "notes": "Opens after the Hall of Fame and Celio's Network Machine is fixed; Mewtwo Lv70 on B1F.",
+   "blurb": "Surf from Route 24/Cerulean City to the cave mouth."
   }
  ],
  "extra": {
